@@ -6,6 +6,8 @@
 Welcome to manim_editor's documentation!
 ========================================
 
+Table of content:
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
