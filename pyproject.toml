@@ -7,6 +7,8 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.9"
+Flask = "^2.0.2"
+manim = { git = "https://github.com/christopher-besch/manim", branch = "main" }
 
 [tool.poetry.dev-dependencies]
 

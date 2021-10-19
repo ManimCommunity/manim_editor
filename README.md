@@ -1,2 +1,2 @@
-# manim_editor
+# Manim Editor
 Editor and Presenter for Manim Generated Content
