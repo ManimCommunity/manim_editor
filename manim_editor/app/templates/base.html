@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% if title %}
+        <title>{{ title }}</title>
+        {% else %}
+        <title>Manim Editor</title>
+        {% endif %}
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        {% block stylesheets %}{% endblock %}
+    </head>
+
+    <body>
+        {% block content %}{% endblock %}
+
+        {% block scripts %}{% endblock scripts %}
+    </body>
+</html>
