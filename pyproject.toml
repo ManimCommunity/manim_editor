@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "manim_editor"
+version = "0.1.0"
+description = "Editor and Presenter for Manim Generated Content"
+authors = ["christopher-besch <christopher.besch@gmx.de>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
