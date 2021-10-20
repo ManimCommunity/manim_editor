@@ -13,6 +13,7 @@ Table of content:
    :caption: Contents:
 
    ch1
+   ch2
 
 
 Indices and tables
