@@ -506,7 +506,7 @@ watchdog = ["watchdog"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "17a80626830713f65e42e459c88b57a13056d0eeb9d4d45e825b0e46f80ddd56"
+content-hash = "766b2edc01449915bb8d122c4c3a357aea735f61ad3fef9b38146b760d0d2134"
 
 [metadata.files]
 certifi = [
