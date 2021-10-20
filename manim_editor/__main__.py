@@ -3,8 +3,8 @@ import click
 
 
 @click.command()
-@click.option("--debug", help="Launch Flask in Debug mode.")
-def main(debug=False):
+@click.option('--debug', is_flag=True, help="Launch Flask in Debug mode.")
+def main(debug):
     app = create_app()
     app.run(debug=debug)
 
