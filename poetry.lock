@@ -206,7 +206,7 @@ gui = ["dearpygui (>=0.8,<0.9)"]
 type = "git"
 url = "https://github.com/christopher-besch/manim"
 reference = "main"
-resolved_reference = "97f0e0ecf91a4d36256b3787e36ad27123214d8a"
+resolved_reference = "b469193394a56e3ec36561b4fb7f57ad1ef5c89b"
 
 [[package]]
 name = "manimpango"
