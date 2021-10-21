@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <title>Manim Editor &mdash; {{ title }}</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/jpg" href="{{ url_for('static', filename='img/favicon.png') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='build/base.css') }}">
     {% block stylesheets %}{% endblock %}
 </head>
 
@@ -12,6 +13,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Manim Video Editor</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="navbar-nav">
                     <a class="nav-link {% if title == 'Index' %}active{% endif %}" aria-current="page" href="{{ url_for('main.index') }}">Index</a>
@@ -25,6 +29,7 @@
         {% block content %}{% endblock %}
     </div>
 
+    <script src="{{ url_for('static', filename='build/base.js') }}"></script>
     {% block scripts %}{% endblock scripts %}
 </body>
 </html>
