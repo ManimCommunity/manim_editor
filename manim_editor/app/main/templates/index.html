@@ -4,17 +4,51 @@
 
 <h1>Found Section Indices</h1>
 
-<ul>
-{% for index in indices %}
-<li>{{ index.path }}
-    <ul>
-        {% for section in index.sections %}
-        <li>{{ section.name }}: {{ section.type }} {{ section.video }}
-        {% endfor %}
-    </ul>
-</li>
-{% endfor %}
-</ul>
+<table class="table table-sm">
+<thead>
+    <tr>
+      <th scope="col">Scene</th>
+      <th scope="col"></th>
+    </tr>
+</thead>
+<tbody>
+    {% for index in indices %}
+        <tr>
+            <th>#{{ index.id }} {{ index.name }}</th>
+            <th>
+                <table class="table table-hover table-sm mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            <input class="form-check-input" type="checkbox" value="" id="index{{ index.id }}_select">
+                            Name
+                        </th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Resolution</th>
+                        <th scope="col">fps</th>
+                        <th scope="col">duration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for section in index.sections %}
+                    <tr>
+                        <td>
+                            <input class="form-check-input" type="checkbox" value="" id="index{{ index.id }}_section{{ section.id }}_select">
+                            #{{section.id}} {{ section.name }}
+                        </td>
+                        <td>{{ section.type }}</td>
+                        <td>{{ section.width }}:{{ section.height }}</td>
+                        <td>{{ section.fps }}</td>
+                        <td>{{ section.duration }}sec</td>
+                    <tr>
+                {% endfor %}
+                </tbody>
+                </table>
+            </th>
+        </th>
+    {% endfor %}
+</tbody>
+</table>
 
 {% endblock %}
 

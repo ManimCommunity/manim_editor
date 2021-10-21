@@ -3,11 +3,12 @@ from pathlib import Path
 from typing import List, Optional, Any, Dict
 import json
 from collections.abc import Iterable
+from fractions import Fraction
 
 from .section import Section, Index
 
 
-def get_section(raw_section: Dict[str, Any], index_path: str) -> Optional[Section]:
+def get_section(raw_section: Dict[str, Any], index_path: str, new_id: int) -> Optional[Section]:
     """Create :class:`.Section` from dict read from an section index.
     Return ``None`` if dict is invalid. This happens when a JSON file that isn't a section index gets read.
     """
@@ -30,13 +31,18 @@ def get_section(raw_section: Dict[str, Any], index_path: str) -> Optional[Sectio
 
     parent_path = Path(index_path).parent.absolute()
     return Section(
+        new_id,
         raw_section["name"],
         raw_section["type"],
-        os.path.join(parent_path, raw_section["video"])
+        os.path.join(parent_path, raw_section["video"]),
+        int(raw_section["width"]),
+        int(raw_section["height"]),
+        Fraction(raw_section["avg_frame_rate"]),
+        float(raw_section["duration"]),
     )
 
 
-def get_index(path: str) -> Optional[Index]:
+def get_index(path: str, new_id: int) -> Optional[Index]:
     """Check if path points to a valid section index file.
     Return None if it is invalid. Return a list of :class:`.Section` otherwise.
     """
@@ -52,11 +58,11 @@ def get_index(path: str) -> Optional[Index]:
     for raw_section in raw_sections:
         if not isinstance(raw_section, dict):
             return None
-        section = get_section(raw_section, path)
+        section = get_section(raw_section, path, len(sections))
         if section is None:
             return None
         sections.append(section)
-    return Index(os.path.abspath(path), sections)
+    return Index(new_id, os.path.basename(path)[:-5], os.path.abspath(path), sections)
 
 
 def get_indices(path=".") -> List[Index]:
@@ -69,7 +75,7 @@ def get_indices(path=".") -> List[Index]:
 
     indices: List[Index] = []
     for raw_index in raw_indices:
-        index = get_index(raw_index)
+        index = get_index(raw_index, len(indices))
         if index is not None:
             indices.append(index)
     return indices
