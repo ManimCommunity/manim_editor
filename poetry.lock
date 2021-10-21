@@ -204,9 +204,9 @@ gui = ["dearpygui (>=0.8,<0.9)"]
 
 [package.source]
 type = "git"
-url = "https://github.com/christopher-besch/manim"
+url = "https://github.com/ManimCommunity/manim"
 reference = "main"
-resolved_reference = "b469193394a56e3ec36561b4fb7f57ad1ef5c89b"
+resolved_reference = "61cddb224f5c95b31a2d0925da8a2897d605ced5"
 
 [[package]]
 name = "manimpango"
@@ -506,7 +506,7 @@ watchdog = ["watchdog"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "766b2edc01449915bb8d122c4c3a357aea735f61ad3fef9b38146b760d0d2134"
+content-hash = "fb4ffb8ab18fcddfacce1a876c968cce8438ab2adfdf98dd2de4a9b44a73f582"
 
 [metadata.files]
 certifi = [

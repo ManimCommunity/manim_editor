@@ -8,10 +8,8 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = "^3.9"
 Flask = "^2.0.2"
-manim = { git = "https://github.com/christopher-besch/manim", branch = "main" }
+manim = { git = "https://github.com/ManimCommunity/manim", branch = "main" }
 click = "^8.0.3"
-
-[tool.poetry.dev-dependencies]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
