@@ -1,5 +1,5 @@
 from flask import render_template
-from ..editor import get_indices
+from ...editor import get_indices
 
 from . import bp
 
