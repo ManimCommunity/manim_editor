@@ -2,6 +2,22 @@
 
 {% block content %}
 
-<h1> Hello World! </h1>
+<h1>Found Section Indices</h1>
 
+<ul>
+{% for index in indices %}
+<li>{{ index.path }}
+    <ul>
+        {% for section in index.sections %}
+        <li>{{ section.name }}: {{ section.type }} {{ section.video }}
+        {% endfor %}
+    </ul>
+</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='build/index.js') }}"></script>
 {% endblock %}

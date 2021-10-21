@@ -13,3 +13,12 @@ My goal is for this repo to eventually become part of the ManimCommunity Organis
 With such a tool, Manim can really rival something like PowerPoint.
 
 If anyone would like to join forces, I'm happy to add them to the (hopefully intermediate) ManimEditorProject organisation.
+
+# Build from Source
+
+- clone repo: `git clone https://github.com/ManimEditorProject/manim_editor && cd manim_editor`
+- install poetry dependencies: `poetry install`
+- enter poetry shell: `poetry shell`
+- install npm modules: `npm ci`
+- compile web files: `npm run build_debug` or `npm run build_release`
+- start editor: `manedit`

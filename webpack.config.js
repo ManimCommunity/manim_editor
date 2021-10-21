@@ -8,6 +8,7 @@ module.exports = (env) => {
         plugins: [new MiniCssExtractPlugin()],
         entry: {
             base: "./web_src/ts/base.ts",
+            index: "./web_src/ts/index.ts",
         },
         resolve: {
             extensions: [".ts", ".js"],
@@ -23,9 +24,6 @@ module.exports = (env) => {
                     // inject CSS to page
                     test: /\.(scss)$/,
                     use: [
-                        // {
-                        //     loader: "style-loader",
-                        // },
                         {
                             // bundle in separate CSS file
                             // <- loading with JavaScript takes a few millisections every time the page reloads
@@ -35,19 +33,6 @@ module.exports = (env) => {
                             // translate CSS into CommonJS modules
                             loader: "css-loader",
                         },
-                        // {
-                        //     // run PostCSS actions
-                        //     loader: "postcss-loader",
-                        //     options: {
-                        //         postcssOptions: {
-                        //             plugins: function() {
-                        //                 return [
-                        //                     require("autoprefixer")
-                        //                 ];
-                        //             }
-                        //         }
-                        //     },
-                        // },
                         {
                             // compile SCSS to Css
                             loader: "sass-loader",
@@ -58,7 +43,10 @@ module.exports = (env) => {
                 {
                     test: /\.ts$/,
                     use: "ts-loader",
-                    include: [path.resolve(__dirname, "src")],
+                    include: [
+                        path.resolve(__dirname, "./web_src/ts"),
+                        path.resolve(__dirname, "./web_src/scss"),
+                    ],
                 }
             ]
         }
