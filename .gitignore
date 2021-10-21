@@ -262,21 +262,6 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-### Web ###
-*.asp
-*.cer
-*.csr
-*.css
-*.htm
-*.html
-*.js
-*.jsp
-*.php
-*.rss
-*.wasm
-*.wat
-*.xhtml
-
 # End of https://www.toptal.com/developers/gitignore/api/node,python,web
 
 # files compiled by webpack
