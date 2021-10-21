@@ -266,3 +266,6 @@ cython_debug/
 
 # files compiled by webpack
 manim_editor/app/static/js
+
+media/
+
