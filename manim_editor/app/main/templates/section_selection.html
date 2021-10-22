@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Scenes</h1>
+<h1>Section Selection</h1>
 
 <table class="table table-sm">
 <thead>
@@ -45,13 +45,15 @@
                 </tbody>
                 </table>
             </th>
-        </th>
+        </tr>
     {% endfor %}
 </tbody>
 </table>
 
+<button type="button" class="btn btn-primary" id="confirm-button" disabled>Confirm Selection</button>
+
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ url_for('static', filename='build/index.js') }}"></script>
+<script src="{{ url_for('static', filename='build/section_selection.js') }}"></script>
 {% endblock %}

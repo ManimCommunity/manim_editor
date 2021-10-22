@@ -8,7 +8,7 @@ module.exports = (env) => {
         plugins: [new MiniCssExtractPlugin()],
         entry: {
             base: "./web_src/ts/base.ts",
-            index: "./web_src/ts/index.ts",
+            section_selection: "./web_src/ts/section_selection.ts",
         },
         resolve: {
             extensions: [".ts", ".js"],

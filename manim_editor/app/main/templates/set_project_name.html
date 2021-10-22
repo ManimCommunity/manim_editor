@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Create New Project</h1>
+
+<h2 class="mt-4">Project Name</h2>
+
+<div class="row g-2" novalidate>
+    <div class="col-auto">
+        <input type="text" class="form-control" id="project-name" required>
+        <div class="valid-feedback">valid</div>
+    </div>
+    <div class="col-auto">
+        <button class="btn btn-primary mb-3" type="submit">Confirm Name</button>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='build/create_section.js') }}"></script>
+{% endblock %}

@@ -20,6 +20,18 @@ function update_scene(scene: HTMLTableRowElement): void {
     set_scene_status(scene, new_status);
 }
 
+function update_button(): void {
+    let section_check_boxes = document.getElementsByClassName("section-check-box") as HTMLCollectionOf<HTMLInputElement>;
+    let button = document.getElementById("confirm-button") as HTMLButtonElement;
+    for (let section_check_box of section_check_boxes) {
+        if (section_check_box.checked) {
+            button.disabled = false;
+            return;
+        }
+    }
+    button.disabled = true;
+}
+
 // set click callbacks for scenes and sections
 function watch_indices(): void {
     // scenes
@@ -28,6 +40,7 @@ function watch_indices(): void {
         let scene_check_box = scene.getElementsByClassName("scene-check-box")[0] as HTMLInputElement;
         scene_check_box.addEventListener("click", () => {
             set_scene_status(scene, scene_check_box.checked);
+            update_button();
         });
         // sections
         let sections = scene.getElementsByClassName("section-select") as HTMLCollectionOf<HTMLTableRowElement>;
@@ -35,6 +48,7 @@ function watch_indices(): void {
             let section_check_box = section.getElementsByClassName("section-check-box")[0] as HTMLInputElement;
             section_check_box.addEventListener("click", () => {
                 update_scene(scene);
+                update_button();
             })
         }
     }
