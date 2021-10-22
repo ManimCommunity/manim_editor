@@ -1,2 +1,2 @@
-from .loader import get_indices
-from .section import PresentationSectionType, Section
+from .loader import get_scenes
+from .scene import PresentationSectionType, Section, Scene

@@ -62,13 +62,13 @@ class Section:
         self.duration = duration
 
 
-class Index:
+class Scene:
     """Representation of the entire section index of one scene.
 
     Attributes
     ----------
     id
-        unique id for this index
+        unique id for this scene
     name
         name for the represented scene
     path

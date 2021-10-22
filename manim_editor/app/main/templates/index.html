@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Found Section Indices</h1>
+<h1>Scenes</h1>
 
 <table class="table table-sm">
 <thead>
@@ -12,15 +12,15 @@
     </tr>
 </thead>
 <tbody>
-    {% for index in indices %}
-        <tr>
-            <th>#{{ index.id }} {{ index.name }}</th>
+    {% for scene in scenes %}
+        <tr class="scene-select">
+            <th>#{{ scene.id }} {{ scene.name }}</th>
             <th>
                 <table class="table table-hover table-sm mb-0">
                 <thead>
-                    <tr>
+                    <tr data-id="{{ scene.id }}">
                         <th scope="col">
-                            <input class="form-check-input" type="checkbox" value="" id="index{{ index.id }}_select">
+                            <input class="form-check-input scene-check-box" type="checkbox" value="">
                             Name
                         </th>
                         <th scope="col">Type</th>
@@ -30,10 +30,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                {% for section in index.sections %}
-                    <tr>
+                {% for section in scene.sections %}
+                    <tr class="section-select" data-id="{{ section.id }}">
                         <td>
-                            <input class="form-check-input" type="checkbox" value="" id="index{{ index.id }}_section{{ section.id }}_select">
+                            <input class="form-check-input section-check-box" type="checkbox" value="">
                             #{{section.id}} {{ section.name }}
                         </td>
                         <td>{{ section.type }}</td>

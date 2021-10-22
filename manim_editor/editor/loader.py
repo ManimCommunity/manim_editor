@@ -5,7 +5,7 @@ import json
 from collections.abc import Iterable
 from fractions import Fraction
 
-from .section import Section, Index
+from .scene import Section, Scene
 
 
 def get_section(raw_section: Dict[str, Any], index_path: str, new_id: int) -> Optional[Section]:
@@ -42,7 +42,7 @@ def get_section(raw_section: Dict[str, Any], index_path: str, new_id: int) -> Op
     )
 
 
-def get_index(path: str, new_id: int) -> Optional[Index]:
+def get_scene(path: str, new_id: int) -> Optional[Scene]:
     """Check if path points to a valid section index file.
     Return None if it is invalid. Return a list of :class:`.Section` otherwise.
     """
@@ -62,20 +62,20 @@ def get_index(path: str, new_id: int) -> Optional[Index]:
         if section is None:
             return None
         sections.append(section)
-    return Index(new_id, os.path.basename(path)[:-5], os.path.abspath(path), sections)
+    return Scene(new_id, os.path.basename(path)[:-5], os.path.abspath(path), sections)
 
 
-def get_indices(path=".") -> List[Index]:
+def get_scenes(path=".") -> List[Scene]:
     """Search recursively in ``path`` for any valid JSON section index files."""
-    raw_indices: List[str] = []
+    raw_scenes: List[str] = []
     for root, _, files in os.walk(path):
         for file in files:
             if file.endswith(".json"):
-                raw_indices.append(os.path.join(root, file))
+                raw_scenes.append(os.path.join(root, file))
 
-    indices: List[Index] = []
-    for raw_index in raw_indices:
-        index = get_index(raw_index, len(indices))
-        if index is not None:
-            indices.append(index)
-    return indices
+    scenes: List[Scene] = []
+    for raw_scene in raw_scenes:
+        scene = get_scene(raw_scene, len(scenes))
+        if scene is not None:
+            scenes.append(scene)
+    return scenes
