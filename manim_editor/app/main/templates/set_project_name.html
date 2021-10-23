@@ -4,20 +4,13 @@
 
 <h1>Create New Project</h1>
 
-<h2 class="mt-4">Project Name</h2>
-
-<div class="row g-2" novalidate>
-    <div class="col-auto">
-        <input type="text" class="form-control" id="project-name" required>
-        <div class="valid-feedback">valid</div>
+<form action="{{ url_for('main.section_selection') }}" method="POST">
+    <div class="mb-3">
+        <label for="project-name" class="form-label" name="project_name">Project Name</label>
+        <input type="text" class="form-control" id="project-name" name="project_name">
+        <div id="project-help" class="form-text">The name must be valid directory name that isn't being used in the CWD.</div>
     </div>
-    <div class="col-auto">
-        <button class="btn btn-primary mb-3" type="submit">Confirm Name</button>
-    </div>
-</div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
-{% endblock %}
-
-{% block scripts %}
-<script src="{{ url_for('static', filename='build/create_section.js') }}"></script>
 {% endblock %}

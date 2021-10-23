@@ -19,7 +19,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="navbar-nav">
                     <a class="nav-link {% if title == 'Index' %}active{% endif %}" aria-current="page" href="{{ url_for('main.index') }}">Index</a>
-                    <a class="nav-link {% if title == 'Create New Project' %}active{% endif %}" aria-current="page" href="{{ url_for('main.set_project_name') }}">Create New Project</a>
+                    <a class="nav-link {% if title == 'Create New Project' %}active{% endif %}" aria-current="page" href="{{ url_for('main.create_project') }}">Create New Project</a>
                     <a class="nav-link" aria-current="page" href="https://manim-editor.readthedocs.io/en/latest/">Docs</a>
                 </div>
             </div>
@@ -29,14 +29,12 @@
         <!-- flashes -->
         {% with messages = get_flashed_messages(with_categories=True) %}
         {# needed for bootstrap #}
-        {% with category_alias = { "info": "info", "warning": "warning", "error": "danger" } %}
         {% for category, message in messages %}
-        <div class="alert alert-{{ category_alias[category] }} alert-dismissible fade show" role="alert">
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
             {{ message }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         {% endfor %}
-        {% endwith %}
         {% endwith %}
 
         {% block content %}{% endblock %}
