@@ -85,7 +85,6 @@ function get_selected_sections(): Section[] {
     let priorities = get_scene_priorities();
     if (!priorities.length)
         return [];
-    console.log(priorities);
 
     let scenes = document.getElementsByClassName("scene-select") as HTMLCollectionOf<HTMLTableRowElement>;
     // list of selected sections for each scene in order of priority
@@ -105,7 +104,6 @@ function get_selected_sections(): Section[] {
                 });
             }
     }
-    console.log(selected_scene_sections);
     let sections: Section[] = [];
     for (let i = 0; i < scenes.length; ++i) {
         for (let section of selected_scene_sections[i])
@@ -121,7 +119,6 @@ function get_selected_sections(): Section[] {
         }
     }
     console.log(scene_log);
-    console.log(sections);
     return sections;
 }
 
@@ -134,9 +131,9 @@ function set_button(): void {
                 "name": button.dataset.project_name as string,
                 "sections": selected_sections,
             };
-            // send_json(button.dataset.target as string, payload, (response: any) => {
-            //     console.log(response);
-            // });
+            send_json(button.dataset.target as string, payload, (response: any) => {
+                console.log(response);
+            });
         }
     });
 }

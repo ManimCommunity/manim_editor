@@ -268,4 +268,4 @@ cython_debug/
 manim_editor/app/static/js
 
 media/
-
+test/

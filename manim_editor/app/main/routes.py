@@ -1,6 +1,6 @@
 import os
-from flask import render_template, flash, redirect, url_for, request, jsonify
-from ...editor import get_scenes, create_project_dir
+from flask import render_template, flash, redirect, url_for, request, jsonify, abort
+from ...editor import get_scenes, create_project_dir, SectionId, populate_project
 
 from . import bp
 
@@ -39,5 +39,10 @@ def section_selection():
 # ajax
 @bp.route("/create_project3", methods=["POST"])
 def confirm_section_selection():
-    print(request.json)
+    project = request.json
+    if project is None:
+        abort(400)
+    project_name = project["name"]
+    sections = [SectionId(section["scene_id"], section["section_id"]) for section in project["sections"]]
+    populate_project(project_name, sections)
     return jsonify(success=True)

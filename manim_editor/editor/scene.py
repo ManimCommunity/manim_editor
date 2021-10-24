@@ -1,10 +1,12 @@
+import os
+import shutil
 import time
 import pathlib
-import os
 from fractions import Fraction
-
 from enum import Enum
 from typing import List
+
+from .utils import run_ffmpeg
 
 
 class PresentationSectionType(str, Enum):
@@ -24,21 +26,29 @@ class Section:
     Attributes
     ----------
     id
-        unique id for this section
+        Unique id for this section.
     name
         Human readable, non-unique name for this section.
     type
         How should this section be played?
     video
-        Path to video file.
+        Path to original video file.
     width
         width of the video
     height
-        height of the video
+        Height of the video.
     fps
-        frame rate of the video as :class:`.Fraction`
+        Frame rate of the video as :class:`.Fraction`.
     duration
-        duration of the video in seconds
+        Duration of the video in seconds.
+    project_name
+        Name of the project this section is used in.
+    in_project_video
+        Path to copied video file relative to project file.
+    in_project_thumbnail
+        Path to thumbnail file relative to project file.
+    in_project_id
+        Id for this section that is unique in its project.
 
     See Also
     --------
@@ -62,6 +72,46 @@ class Section:
         self.height = height
         self.fps = fps
         self.duration = duration
+
+        # to be set once project is being populated
+        self.project_name = ""
+        self.in_project_video = ""
+        self.in_project_thumbnail = ""
+        self.in_project_id = -1
+
+    def set_project(self, project_name: str, in_project_id: int) -> None:
+        self.project_name = project_name
+        self.in_project_id = in_project_id
+        # TODO support other filetypes as well
+        self.in_project_video = f"video_{in_project_id:04}.mp4"
+        self.in_project_thumbnail = f"thumb_{in_project_id:04}.jpg"
+
+    def get_in_project_video_abs(self) -> str:
+        return os.path.join(self.project_name, self.in_project_video)
+
+    def get_in_project_thumbnail_abs(self) -> str:
+        return os.path.join(self.project_name, self.in_project_thumbnail)
+
+    def copy_video(self) -> None:
+        """Copy video to project dir."""
+        shutil.copyfile(self.video, self.get_in_project_video_abs())
+
+    def create_thumbnail(self) -> None:
+        """Create thumbnail for section in project dir."""
+        print(f"extracting '{self.in_project_thumbnail}' from '{self.video}'")
+        if run_ffmpeg([
+            "-sseof",
+            "-3",
+            "-i",
+            self.video,
+            "-update",
+            "1",
+            "-q:v",
+            "1",
+            self.get_in_project_thumbnail_abs(),
+            "-y",
+        ])[2] != 0:
+            raise RuntimeError(f"FFmpeg failed to create thumbnail '{self.in_project_thumbnail}' for video '{self.video}'.")
 
 
 class Scene:
