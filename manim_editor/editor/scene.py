@@ -1,3 +1,5 @@
+import time
+import pathlib
 import os
 from fractions import Fraction
 
@@ -73,12 +75,22 @@ class Scene:
         name for the represented scene
     path
         path to index JSON file
+    last_modified
+        seconds since the epoch of last modification of index file
     sections
         list of sections in scene
     """
 
-    def __init__(self, id: int, name: str, path: str, sections: List[Section]):
+    def __init__(self, id: int, name: str, path: str, last_modified: float, sections: List[Section]):
         self.id = id
         self.name = name
         self.path = path
+        self.last_modified = last_modified
         self.sections = sections
+
+    def get_last_modified(self) -> str:
+        return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(self.last_modified))
+
+    def get_rel_dir_path(self) -> str:
+        parent_path = pathlib.Path(self.path).parent.absolute()
+        return os.path.relpath(parent_path)

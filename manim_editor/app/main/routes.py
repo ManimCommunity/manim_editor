@@ -1,6 +1,6 @@
 import os
-from flask import render_template, flash, redirect, url_for, request
-from ...editor import get_scenes, validate_project_name
+from flask import render_template, flash, redirect, url_for, request, jsonify
+from ...editor import get_scenes, create_project_dir
 
 from . import bp
 
@@ -24,10 +24,20 @@ def set_project_name():
 @bp.route("/create_project2", methods=["POST"])
 def section_selection():
     project_name = request.form["project_name"].strip()
-    if not validate_project_name(project_name):
-        flash(f"'{project_name}' is not a valid project name. Make sure that a folder with that name can be created in the CWD.", "danger")
+    success, message = create_project_dir(project_name)
+    if not success:
+        flash(message, "danger")
         return redirect(url_for("main.set_project_name"))
 
-    flash(f"Successfully created '{project_name}' directory in CWD. Everything the Manim Editor will create ends up in this directory.", "success")
+    flash(message, "success")
     scenes = get_scenes()
+    if len(scenes) == 0:
+        flash("No sections were found. Refer to the documentation for more information.", "danger")
     return render_template("section_selection.html", title="Create New Project", scenes=scenes, project_name=project_name)
+
+
+# ajax
+@bp.route("/create_project3", methods=["POST"])
+def confirm_section_selection():
+    print(request.json)
+    return jsonify(success=True)

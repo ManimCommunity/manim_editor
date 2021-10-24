@@ -2,23 +2,43 @@
 
 {% block content %}
 
-<h1>Section Selection</h1>
+<h1>Section Selection for Project {{ project_name }}</h1>
 
-<table class="table table-sm">
+The priority of a scene defines its place in the final project.
+The scene with priority 0 will be the first, priority 1 will be the second and so on.
+Every scene needs a unique priority.
+
+<table class="table">
 <thead>
     <tr>
-      <th scope="col">Scene</th>
-      <th scope="col"></th>
+        <th scope="col">Scene</th>
+        <th scope="col">Sections</th>
     </tr>
 </thead>
 <tbody>
     {% for scene in scenes %}
         <tr class="scene-select">
-            <th>#{{ scene.id }} {{ scene.name }}</th>
-            <th>
+            <td>
+                <span class="fw-bold">#{{ scene.id }} {{ scene.name }}<br/></span>
+                in: {{ scene.get_rel_dir_path() }}<br/>
+                Last modified on: {{ scene.get_last_modified() }}<br/>
+                <div class="row g-2 align-items-center">
+                    <div class="col-auto">
+                        <label for="{{ scene.id }}-priority">Priority</label>
+                    </div>
+                    <div class="col-auto">
+                        <select id="{{ scene.id }}-priority" data-scene_id="{{ scene.id }}" class="form-select scene-priority">
+                            {% for scene_option in scenes %}
+                            <option value="{{ scene_option.id }}" {% if scene.id == scene_option.id %}selected{% endif %}>{{ scene_option.id }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </td>
+            <td>
                 <table class="table table-hover table-sm mb-0">
                 <thead>
-                    <tr data-id="{{ scene.id }}">
+                    <tr data-scene_id="{{ scene.id }}">
                         <th scope="col">
                             <input class="form-check-input scene-check-box" type="checkbox" value="">
                             Name
@@ -31,11 +51,11 @@
                 </thead>
                 <tbody>
                 {% for section in scene.sections %}
-                    <tr class="section-select" data-id="{{ section.id }}">
-                        <td>
-                            <input class="form-check-input section-check-box" type="checkbox" value="">
+                    <tr class="section-select" data-scene_id="{{ scene.id }}" data-section_id="{{ section.id }}">
+                        <th scope="row">
+                            <input class="form-check-input section-check-box" data-scene_id="{{ scene.id }}" data-section_id="{{ section.id }}" type="checkbox" value="">
                             #{{section.id}} {{ section.name }}
-                        </td>
+                        </th>
                         <td>{{ section.type }}</td>
                         <td>{{ section.width }}:{{ section.height }}</td>
                         <td>{{ section.fps }}</td>
@@ -50,7 +70,7 @@
 </tbody>
 </table>
 
-<button type="button" class="btn btn-primary" id="confirm-button" disabled>Confirm Selection</button>
+<button type="button" class="btn btn-primary" id="confirm-button" data-target="{{ url_for('main.confirm_section_selection') }}" data-project_name="{{ project_name }}" disabled>Confirm Selection</button>
 
 {% endblock %}
 

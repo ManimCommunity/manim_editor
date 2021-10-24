@@ -26,16 +26,17 @@
         </div>
     </nav>
     <div class="container">
-        <!-- flashes -->
-        {% with messages = get_flashed_messages(with_categories=True) %}
-        {# needed for bootstrap #}
-        {% for category, message in messages %}
-        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div id="flashes">
+            {% with messages = get_flashed_messages(with_categories=True) %}
+            {# needed for bootstrap #}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show mt-3" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endwith %}
         </div>
-        {% endfor %}
-        {% endwith %}
 
         {% block content %}{% endblock %}
     </div>

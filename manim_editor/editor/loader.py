@@ -21,6 +21,7 @@ def get_section(raw_section: Dict[str, Any], index_path: str, new_id: int) -> Op
         "width": int,
         "height": int,
         "avg_frame_rate": str,
+        # Hodaka laesst gruessen
         "duration": str,
         "nb_frames": str,
     }.items():
@@ -62,12 +63,18 @@ def get_scene(path: str, new_id: int) -> Optional[Scene]:
         if section is None:
             return None
         sections.append(section)
-    return Scene(new_id, os.path.basename(path)[:-5], os.path.abspath(path), sections)
+    return Scene(
+        new_id,
+        os.path.basename(path)[:-5],
+        os.path.abspath(path),
+        os.path.getmtime(path),
+        sections)
 
 
 def get_scenes(path=".") -> List[Scene]:
     """Search recursively in ``path`` for any valid JSON section index files."""
     raw_scenes: List[str] = []
+    # TODO: add depth limit
     for root, _, files in os.walk(path):
         for file in files:
             if file.endswith(".json"):
