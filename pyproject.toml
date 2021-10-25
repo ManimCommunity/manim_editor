@@ -11,6 +11,7 @@ Flask = "^2.0.2"
 manim = { git = "https://github.com/ManimCommunity/manim", branch = "main" }
 click = "^8.0.3"
 waitress = "^2.0.0"
+jsonschema = "^4.1.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

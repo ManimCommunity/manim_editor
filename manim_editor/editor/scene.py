@@ -63,7 +63,12 @@ class Section:
                  width: int,
                  height: int,
                  fps: Fraction,
-                 duration: float):
+                 duration: float,
+                 # only to be used when loading from project file
+                 project_name: str = "",
+                 in_project_video: str = "",
+                 in_project_thumbnail: str = "",
+                 in_project_id: int = -1):
         self.id = id
         self.name = name
         self.type = type
@@ -72,12 +77,11 @@ class Section:
         self.height = height
         self.fps = fps
         self.duration = duration
-
         # to be set once project is being populated
-        self.project_name = ""
-        self.in_project_video = ""
-        self.in_project_thumbnail = ""
-        self.in_project_id = -1
+        self.project_name = project_name
+        self.in_project_video = in_project_video
+        self.in_project_thumbnail = in_project_thumbnail
+        self.in_project_id = in_project_id
 
     def set_project(self, project_name: str, in_project_id: int) -> None:
         self.project_name = project_name
@@ -121,11 +125,11 @@ class Section:
         return {
             "id": self.id,
             "name": self.name,
-            "type": self.name,
+            "type": self.type,
             "original_video": self.original_video,
             "width": self.width,
             "height": self.height,
-            "fps": self.height,
+            "fps": str(self.fps),
             "duration": self.duration,
             "project_name": self.project_name,
             "in_project_video": self.in_project_video,

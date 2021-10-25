@@ -1,4 +1,4 @@
-from .loader import *
+from .manim_loader import *
 from .scene import *
 from .project import *
 from .commands import *
