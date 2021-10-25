@@ -55,3 +55,17 @@ export function flash(message: string, category: string): void {
          </div>`
 
 }
+
+// add loading spinner to button
+// deletes innerText of button -> can't be undone
+export function spin_button(button: HTMLButtonElement): void {
+    button.disabled = true;
+    button.innerText = "";
+    let spinner = document.createElement("div");
+    button.appendChild(spinner);
+    spinner.innerHTML =
+        `<div>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+        </div>`;
+}

@@ -19,5 +19,5 @@ def capture_ffmpeg(params: List[str]) -> Tuple[str, str, int]:
 
 
 def run_ffmpeg(params: List[str]) -> bool:
-    """Run ffmpeg with params, print output to terminal and return true at success."""
-    return subprocess.call(["ffmpeg"] + params + ["-loglevel", get_config().FFMPEG_LOGLEVEL]) == 0
+    """Run ffmpeg with params and loglevel defined in config, print output to terminal and return True at success."""
+    return subprocess.call(["ffmpeg", "-loglevel", get_config().FFMPEG_LOGLEVEL] + params) == 0

@@ -4,7 +4,7 @@ import time
 import pathlib
 from fractions import Fraction
 from enum import Enum
-from typing import List
+from typing import List, Dict, Any
 
 from .commands import run_ffmpeg
 
@@ -31,7 +31,7 @@ class Section:
         Human readable, non-unique name for this section.
     type
         How should this section be played?
-    video
+    original_video
         Path to original video file.
     width
         width of the video
@@ -59,7 +59,7 @@ class Section:
                  id: int,
                  name: str,
                  type: PresentationSectionType,
-                 video: str,
+                 original_video: str,
                  width: int,
                  height: int,
                  fps: Fraction,
@@ -67,7 +67,7 @@ class Section:
         self.id = id
         self.name = name
         self.type = type
-        self.video = video
+        self.original_video = original_video
         self.width = width
         self.height = height
         self.fps = fps
@@ -93,25 +93,45 @@ class Section:
         return os.path.join(self.project_name, self.in_project_thumbnail)
 
     def copy_video(self) -> None:
-        """Copy video to project dir."""
-        shutil.copyfile(self.video, self.get_in_project_video_abs())
+        """Copy original video to project dir."""
+        shutil.copyfile(self.original_video, self.get_in_project_video_abs())
 
     def create_thumbnail(self) -> bool:
         """Create thumbnail for section in project dir.
         Retrun False at failure."""
-        print(f"extracting '{self.in_project_thumbnail}' from '{self.video}'")
-        return run_ffmpeg([
+        print(f"extracting '{self.in_project_thumbnail}' from '{self.original_video}'")
+        if not run_ffmpeg([
             "-sseof",
             "-3",
             "-i",
-            self.video,
+            self.original_video,
             "-update",
             "1",
             "-q:v",
             "1",
             self.get_in_project_thumbnail_abs(),
             "-y",
-        ])
+        ]):
+            print(f"Thumbnail extraction failed.")
+            return False
+        return True
+
+    def get_dict(self) -> Dict[str, Any]:
+        """Get dictionary representation."""
+        return {
+            "id": self.id,
+            "name": self.name,
+            "type": self.name,
+            "original_video": self.original_video,
+            "width": self.width,
+            "height": self.height,
+            "fps": self.height,
+            "duration": self.duration,
+            "project_name": self.project_name,
+            "in_project_video": self.in_project_video,
+            "in_project_thumbnail": self.in_project_thumbnail,
+            "in_project_id": self.in_project_id,
+        }
 
 
 class Scene:

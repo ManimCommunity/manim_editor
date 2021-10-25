@@ -1,4 +1,4 @@
-import { send_json, flash } from "./utils";
+import { send_json, flash, spin_button } from "./utils";
 
 function set_scene_status(scene: HTMLTableRowElement, status: boolean): void {
     let scene_check_box = scene.getElementsByClassName("scene-check-box")[0] as HTMLInputElement;
@@ -124,15 +124,24 @@ function get_selected_sections(): Section[] {
 
 function set_button(): void {
     let button = document.getElementById("confirm-button") as HTMLButtonElement;
+    let target = button.dataset.target as string;
+    let project_name = button.dataset.project_name as string;
+    let success_url = button.dataset.success_url as string;
     button.addEventListener("click", () => {
+        spin_button(button);
         let selected_sections = get_selected_sections();
         if (selected_sections.length) {
             let payload = {
-                "name": button.dataset.project_name as string,
+                "name": project_name,
                 "sections": selected_sections,
             };
-            send_json(button.dataset.target as string, payload, (response: any) => {
-                console.log(response);
+            send_json(target as string, payload, (response: any) => {
+                // redirect at success
+                if (response.success) {
+                    window.location.href = success_url;
+                }
+                else
+                    flash(`The editor unexpectedly failed to populate the project '${project_name}'. For more information see the console log. Please consider opening an Issue on GitHub if this problem persists.`, "danger");
             });
         }
     });

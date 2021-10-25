@@ -73,7 +73,7 @@ Otherwise the displayed data may be outdated.
 </tbody>
 </table>
 
-<button type="button" class="btn btn-primary" id="confirm-button" data-target="{{ url_for('main.confirm_section_selection') }}" data-project_name="{{ project_name }}" disabled>Confirm Selection</button>
+<button type="button" class="btn btn-primary" id="confirm-button" data-target="{{ url_for('main.confirm_section_selection') }}" data-project_name="{{ project_name }}" data-success_url="{{ url_for('main.index') }}" disabled>Confirm Selection</button>
 
 {% endblock %}
 

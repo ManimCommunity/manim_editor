@@ -8,7 +8,12 @@ from . import bp
 @bp.route("/")
 @bp.route("/index")
 def index():
-    return render_template("index.html", title="Index", cwd=os.getcwd())
+    return redirect(url_for("main.project_selection"))
+
+
+@bp.route("/project_selection")
+def project_selection():
+    return render_template("project_selection.html", title="Project Selection", cwd=os.getcwd())
 
 
 @bp.route("/create_project")
@@ -45,4 +50,9 @@ def confirm_section_selection():
     project_name = project["name"]
     sections = [SectionId(section["scene_id"], section["section_id"]) for section in project["sections"]]
     success = populate_project(project_name, sections)
-    return jsonify(success=success)
+    if success:
+        flash(f"The project '{project_name}' has successfully been populated.", "success")
+        return jsonify(success=True)
+    else:
+        # the flash will be taken care of by the client
+        return jsonify(success=False)

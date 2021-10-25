@@ -1,5 +1,6 @@
 import os
-from typing import Tuple, List
+import json
+from typing import Any, Dict, Tuple, List
 
 from .loader import get_scenes, Section
 
@@ -37,12 +38,17 @@ def populate_project(project_name: str, section_ids: List[SectionId]) -> bool:
     for section in section_ids:
         sections.append(scenes[section.scene_id].sections[section.section_id])
 
+    project: List[Dict[str, Any]] = []
+
+    # prepare section
     for id, section in enumerate(sections):
         section.set_project(project_name, id)
         section.copy_video()
         if not section.create_thumbnail():
             return False
+        project.append(section.get_dict())
 
-        # with open(os.path.join(project_name, "project.json"), "w") as file:
-
+    # write project file
+    with open(os.path.join(project_name, "project.json"), "w") as file:
+        json.dump(project, file, indent=4)
     return True
