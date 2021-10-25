@@ -6,7 +6,7 @@ from fractions import Fraction
 from enum import Enum
 from typing import List
 
-from .utils import run_ffmpeg
+from .commands import run_ffmpeg
 
 
 class PresentationSectionType(str, Enum):
@@ -96,10 +96,11 @@ class Section:
         """Copy video to project dir."""
         shutil.copyfile(self.video, self.get_in_project_video_abs())
 
-    def create_thumbnail(self) -> None:
-        """Create thumbnail for section in project dir."""
+    def create_thumbnail(self) -> bool:
+        """Create thumbnail for section in project dir.
+        Retrun False at failure."""
         print(f"extracting '{self.in_project_thumbnail}' from '{self.video}'")
-        if run_ffmpeg([
+        return run_ffmpeg([
             "-sseof",
             "-3",
             "-i",
@@ -110,8 +111,7 @@ class Section:
             "1",
             self.get_in_project_thumbnail_abs(),
             "-y",
-        ])[2] != 0:
-            raise RuntimeError(f"FFmpeg failed to create thumbnail '{self.in_project_thumbnail}' for video '{self.video}'.")
+        ])
 
 
 class Scene:

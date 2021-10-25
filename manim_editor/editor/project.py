@@ -29,7 +29,8 @@ class SectionId:
 
 
 def populate_project(project_name: str, section_ids: List[SectionId]) -> bool:
-    """Create project JSON file, copy selected section video files and create thumbnails."""
+    """Create project JSON file, copy selected section video files and create thumbnails.
+    Return False at failure."""
     print(f"Populating project '{project_name}'.")
     scenes = get_scenes()
     sections: List[Section] = []
@@ -39,8 +40,9 @@ def populate_project(project_name: str, section_ids: List[SectionId]) -> bool:
     for id, section in enumerate(sections):
         section.set_project(project_name, id)
         section.copy_video()
-        section.create_thumbnail()
+        if not section.create_thumbnail():
+            return False
 
         # with open(os.path.join(project_name, "project.json"), "w") as file:
 
-    return False
+    return True

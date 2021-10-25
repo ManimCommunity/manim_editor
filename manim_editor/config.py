@@ -1,9 +1,15 @@
-from dotenv import load_dotenv
 import os
-
-basedir = os.path.abspath(os.path.dirname(__file__))
-load_dotenv(os.path.join(basedir, ".env"))
+from typing import Any
 
 
 class Config:
-    SECRET_KEY = os.environ.get("SECRET_KEY")
+    # don't use this in an online environment, it invalidates all sessions when restarting
+    SECRET_KEY = os.urandom(16)
+    # one of: quiet, panic, fatal, error, warning, info, verbose, debug, trace
+    FFMPEG_LOGLEVEL = "error"
+
+    @staticmethod
+    def set(key: str, value: Any):
+        if getattr(Config, key) is None:
+            raise ValueError(f"Key '{key}' doesn't exist in config")
+        setattr(Config, key, value)

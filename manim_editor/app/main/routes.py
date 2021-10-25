@@ -44,5 +44,5 @@ def confirm_section_selection():
         abort(400)
     project_name = project["name"]
     sections = [SectionId(section["scene_id"], section["section_id"]) for section in project["sections"]]
-    populate_project(project_name, sections)
-    return jsonify(success=True)
+    success = populate_project(project_name, sections)
+    return jsonify(success=success)
