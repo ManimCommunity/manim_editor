@@ -84,6 +84,7 @@ class Section:
         self.in_project_id = in_project_id
 
     def set_project(self, project_name: str, in_project_id: int) -> None:
+        """Hand this video over to a project"""
         self.project_name = project_name
         self.in_project_id = in_project_id
         # TODO support other filetypes as well
@@ -102,7 +103,7 @@ class Section:
 
     def create_thumbnail(self) -> bool:
         """Create thumbnail for section in project dir.
-        Retrun False at failure."""
+        Return False at failure."""
         print(f"extracting '{self.in_project_thumbnail}' from '{self.original_video}'")
         if not run_ffmpeg([
             "-sseof",

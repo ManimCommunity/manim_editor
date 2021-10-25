@@ -1,3 +1,4 @@
+"""Main backend file."""
 import os
 from flask import render_template, flash, redirect, url_for, request, jsonify, abort
 from ...editor import get_scenes, create_project_dir, SectionId, populate_project, get_projects

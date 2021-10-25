@@ -25,7 +25,7 @@ def run_debug() -> None:
 
 
 @click.command()
-@click.option("--debug", is_flag=True, help="Launch Flask in Debug mode.")
+@click.option("--debug", is_flag=True, help="Launch in Debug mode.")
 def main(debug) -> None:
     if (debug):
         run_debug()

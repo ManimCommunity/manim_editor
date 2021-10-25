@@ -1,5 +1,6 @@
 import { send_json, flash, spin_button } from "./utils";
 
+// check or uncheck all sections in scene
 function set_scene_status(scene: HTMLTableRowElement, status: boolean): void {
     let scene_check_box = scene.getElementsByClassName("scene-check-box")[0] as HTMLInputElement;
     scene_check_box.checked = status;
@@ -9,7 +10,7 @@ function set_scene_status(scene: HTMLTableRowElement, status: boolean): void {
         section.checked = status;
 }
 
-// check if entire scene got turned on or off
+// check if entire scene got turned on or off and update scene status accordingly
 function update_scene(scene: HTMLTableRowElement): void {
     let section_check_boxes = scene.getElementsByClassName("section-check-box") as HTMLCollectionOf<HTMLInputElement>;
     let new_status = section_check_boxes[0].checked;
@@ -20,21 +21,8 @@ function update_scene(scene: HTMLTableRowElement): void {
     set_scene_status(scene, new_status);
 }
 
-// activate button when at least one section is selected
-function update_button(): void {
-    let section_check_boxes = document.getElementsByClassName("section-check-box") as HTMLCollectionOf<HTMLInputElement>;
-    let button = document.getElementById("confirm-button") as HTMLButtonElement;
-    for (let section_check_box of section_check_boxes) {
-        if (section_check_box.checked) {
-            button.disabled = false;
-            return;
-        }
-    }
-    button.disabled = true;
-}
-
 // set click callbacks for scenes and sections
-function watch_indices(): void {
+function watch_check_boxes(): void {
     // scenes
     let scenes = document.getElementsByClassName("scene-select") as HTMLCollectionOf<HTMLTableRowElement>;
     for (let scene of scenes) {
@@ -55,6 +43,20 @@ function watch_indices(): void {
     }
 }
 
+// activate button when at least one section is selected
+// has to be executed every time the selections get clicked
+function update_button(): void {
+    let section_check_boxes = document.getElementsByClassName("section-check-box") as HTMLCollectionOf<HTMLInputElement>;
+    let button = document.getElementById("confirm-button") as HTMLButtonElement;
+    for (let section_check_box of section_check_boxes) {
+        if (section_check_box.checked) {
+            button.disabled = false;
+            return;
+        }
+    }
+    button.disabled = true;
+}
+
 type Section = {
     scene_id: number;
     section_id: number;
@@ -66,20 +68,20 @@ function get_scene_priorities(): number[] {
     let scene_priorities = document.getElementsByClassName("scene-priority") as HTMLCollectionOf<HTMLSelectElement>;
     let priorities: number[] = [];
     // used to check if priority is used twice
-    let used_priorities: boolean[] = Array(scene_priorities.length).fill(false);
+    let used: boolean[] = Array(scene_priorities.length).fill(false);
     for (let i = 0; i < scene_priorities.length; ++i) {
         let priority = parseInt(scene_priorities[i].value);
-        if (used_priorities[priority]) {
+        if (used[priority]) {
             flash(`The priority ${priority} can't be used twice.`, "danger");
             return [];
         }
-        used_priorities[priority] = true;
+        used[priority] = true;
         priorities.push(priority);
     }
     return priorities;
 }
 
-// return list of sections in order of priority of scenes
+// return list of selected sections in order of priority of scenes
 function get_selected_sections(): Section[] {
     // used as lookup table
     let priorities = get_scene_priorities();
@@ -109,7 +111,7 @@ function get_selected_sections(): Section[] {
         for (let section of selected_scene_sections[i])
             sections.push(section);
     }
-    // log debug
+    // log order of scenes used
     let last_scene_id = -1;
     let scene_log = "Used scene order: ";
     for (let section of sections) {
@@ -122,7 +124,7 @@ function get_selected_sections(): Section[] {
     return sections;
 }
 
-function set_button(): void {
+function watch_button(): void {
     let button = document.getElementById("confirm-button") as HTMLButtonElement;
     let target = button.dataset.target as string;
     let project_name = button.dataset.project_name as string;
@@ -148,6 +150,8 @@ function set_button(): void {
 }
 
 document.body.onload = () => {
-    watch_indices();
-    set_button();
+    watch_check_boxes();
+    watch_button();
+    // first update is for when the browser remembered some selections but the button stays inactive
+    update_button();
 };

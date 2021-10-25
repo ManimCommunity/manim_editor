@@ -1,18 +1,8 @@
-export function select_file(id: string): void {
-    let selector = document.getElementById(id) as HTMLInputElement;
-    selector.addEventListener("change", (file) => {
-        console.log(file);
-    });
-}
-
 // send json via POST and parse json resonse
 export function send_json(url: string, payload: any, callback: { (response: any): void; }): void {
     let request = new XMLHttpRequest();
     request.onload = () => {
         if (request.status == 200)
-            // if (request.responseType != "json")
-            //     console.error(`Failed POST to '${url}' with type ${request.responseType}.`);
-            // else
             callback(JSON.parse(request.responseText));
         else
             console.error(`Failed POST to '${url}' with status ${request.status}.`);
@@ -30,9 +20,6 @@ export function get_json(url: string, callback: { (response: any): void; }): voi
     let request = new XMLHttpRequest();
     request.onload = () => {
         if (request.status == 200)
-            // if (request.responseType != "json")
-            //     console.error(`Failed to load json '${url}' with type ${request.responseType}.`);
-            // else
             callback(JSON.parse(request.responseText));
         else
             console.error(`Failed to load json '${url}' with status ${request.status}`);
@@ -44,6 +31,7 @@ export function get_json(url: string, callback: { (response: any): void; }): voi
     request.send();
 }
 
+// front end implementation of flasks flash function
 export function flash(message: string, category: string): void {
     let flashes = document.getElementById("flashes") as HTMLDivElement;
     let wrapper = document.createElement("div");
