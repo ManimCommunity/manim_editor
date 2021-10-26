@@ -12,6 +12,37 @@
     cursor: pointer;
 }
 
+#videos-div {
+    position: relative;
+}
+
+.main-video {
+    top: 0;
+    left: 0;
+}
+
+:fullscreen {
+    cursor: none;
+}
+
+:fullscreen .main-video {
+    width: 100vw;
+    height: 100vh;
+    min-width: 100vw;
+    min-height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+}
+
+// second video overlaps first -> size of videos is still respected
+#video0 {
+    position: relative;
+}
+
+#video1 {
+    position: absolute;
+}
+
 // // Required
 // @import "~bootstrap/scss/functions";
 // @import "~bootstrap/scss/variables";
