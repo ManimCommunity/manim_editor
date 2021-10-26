@@ -7,7 +7,7 @@ BASE_DIR = pathlib.Path(__file__).parent.absolute()
 
 
 class Config:
-    # don't use this in an online environment, it invalidates all sessions when restarting
+    # NOTE: don't use this in an online environment, it invalidates all sessions when restarting
     SECRET_KEY = os.urandom(16)
     # one of: quiet, panic, fatal, error, warning, info, verbose, debug, trace
     FFMPEG_LOGLEVEL = "error"

@@ -1,4 +1,5 @@
 from manim import *
+from manim_editor import *
 
 
 class Test(Scene):
@@ -18,116 +19,309 @@ class Test(Scene):
         self.wait()
 
 
-class SquareToCircle(Scene):
+class Tutorial(Scene):
     def construct(self):
-        square = Square()
-        circle = Circle()
-        self.play(Transform(square, circle))
+        #########
+        # title #
+        #########
+        self.next_section("title", PresentationSectionType.NORMAL)
+        banner = ManimBanner()
+        self.play(banner.create())
+        self.play(banner.expand())
+        self.wait()
+        self.play(Unwrite(banner))
 
-
-class SceneWithMultipleCalls(Scene):
-    def construct(self):
-        number = Integer(0)
-        self.add(number)
-        for _i in range(10):
-            self.play(Animation(Square()))
-
-
-class SceneWithMultipleWaitCalls(Scene):
-    def construct(self):
-        self.play(Create(Square()))
-        self.wait(1)
-        self.play(Create(Square().shift(DOWN)))
-        self.wait(1)
-        self.play(Create(Square().shift(2 * DOWN)))
-        self.wait(1)
-        self.play(Create(Square().shift(3 * DOWN)))
-        self.wait(1)
-
-
-class NoAnimations(Scene):
-    def construct(self):
-        dot = Dot().set_color(GREEN)
-        self.add(dot)
-        self.wait(1)
-
-
-class SceneWithStaticWait(Scene):
-    def construct(self):
-        self.add(Square())
+        title = Text("Manim CE Web Presenter", font_size=60).shift(2*UP)
+        title_ul = Underline(title)
+        self.play(Write(title), run_time=0.5)
+        text = VGroup(
+            Text("Press any of the usual \"next slide\"-keys"),
+            Text("like RightArrow or PageUp"),
+            Text("to go to the next slide."),
+            Text("You can also use the > button above."),
+        ).arrange(DOWN).shift(DOWN)
+        self.play(Write(text), Write(title_ul), run_time=0.5)
         self.wait()
 
+        ################
+        # normal slide #
+        ################
+        self.next_section("normal slide", PresentationSectionType.NORMAL)
+        self.remove(title, title_ul, text)
 
-class SceneWithNonStaticWait(Scene):
-    def construct(self):
-        s = Square()
-        # Non static wait are triggered by mobject with time based updaters.
-        s.add_updater(lambda mob, dt: None)
-        self.add(s)
+        dot = Dot([-4, -2, 0]).scale(3)
+        text = VGroup(
+            Text("There are four different types of slides."),
+            MarkupText("This is the first type, a <b>normal slide</b>."),
+            Text("The animation plays and patiently waits"),
+            Text("for the speaker to finally"),
+            Text("get their point across."),
+        ).arrange(DOWN).shift(UP)
+        self.play(FadeIn(dot), Write(text), run_time=0.5)
+        self.play(dot.animate.shift(8*RIGHT), run_time=2)
         self.wait()
 
+        ################
+        # back in time #
+        ################
+        self.next_section("back in time", PresentationSectionType.NORMAL)
+        self.remove(text)
 
-class StaticScene(Scene):
-    def construct(self):
-        dot = Dot().set_color(GREEN)
-        self.add(dot)
-
-
-class InteractiveStaticScene(Scene):
-    def construct(self):
-        dot = Dot().set_color(GREEN)
-        self.add(dot)
-        self.interactive_mode = True
-
-
-class SceneWithSections(Scene):
-    def construct(self):
-        # this would be defined in a third party application using the segmented video API
-        class PresentationSectionType(str, Enum):
-            # start, end, wait for continuation by user
-            NORMAL = "presentation.normal"
-            # start, end, immediately continue to next section
-            SKIP = "presentation.skip"
-            # start, end, restart, immediately continue to next section when continued by user
-            LOOP = "presentation.loop"
-            # start, end, restart, finish animation first when user continues
-            COMPLETE_LOOP = "presentation.complete_loop"
-
-        # this animation is part of the first, automatically created section
+        text = VGroup(
+            Text("You can go back in time as well. Try it!"),
+            Text("Don't expect any smooth"),
+            Text("transitions though."),
+            Text("If you want to start from the beginning,"),
+            Text("reload the page."),
+        ).arrange(DOWN).shift(UP)
+        self.play(Write(text), run_time=0.5)
+        self.play(dot.animate.shift(4*LEFT))
         self.wait()
 
-        self.next_section()
+        ##############
+        # fullscreen #
+        ##############
+        self.next_section("fullscreen", PresentationSectionType.NORMAL)
+        self.remove(text)
+
+        text = VGroup(
+            Text("Your eyes hurt from the tiny video?"),
+            Text("Stop whining!"),
+            Text("Or press F to enter fullscreen."),
+        ).arrange(DOWN)
+        self.play(FadeOut(dot), Write(text), run_time=0.5)
+        self.wait()
+
+        ####################
+        # loop slide intro #
+        ####################
+        self.next_section("loop slide intro", PresentationSectionType.NORMAL)
+        self.remove(text)
+
+        text = VGroup(
+            Text("Let's do something different now."),
+            Text("What follows is an animation from the"),
+            Text("Manim CE Gallery"),
+            Text("that I ruthlessly stole :)"),
+        ).arrange(DOWN)
+        self.play(Write(text), run_time=0.5)
+        self.wait()
+
+        ##############
+        # loop slide #
+        ##############
+        self.next_section("loop slide", PresentationSectionType.LOOP)
+        self.remove(text)
+
+        text = VGroup(
+            Text("This is the second type,"),
+            MarkupText("a <b>loop slide</b>."),
+        ).arrange(DOWN).shift(2*UP)
+        self.play(Write(text), run_time=0.5)
+
+        circle = Circle(arc_center=[0, -2, 0], radius=1, color=YELLOW)
+        dot = Dot([0, -2, 0])
+        self.add(dot)
+
+        line = Line([3, -2, 0], [5, -2, 0])
+        self.add(line)
+
+        self.play(GrowFromCenter(circle))
+        self.play(dot.animate.shift(RIGHT))
+        self.play(MoveAlongPath(dot, circle), run_time=2)
+
+        ####################
+        # skip slide intro #
+        ####################
+        self.next_section("skip slide intro", PresentationSectionType.NORMAL)
+        self.remove(text, dot, line, circle)
+
+        text = VGroup(
+            Text("If you payed close attention,"),
+            Text("you might have noticed that"),
+            Text("the animation is...fucked."),
+            Text("It just cuts at the end."),
+            Text("Smooth transitions look different!"),
+            Text("Let me show you how it's done."),
+        ).arrange(DOWN)
+        self.play(Write(text), run_time=0.5)
+        self.wait()
+
+        ##############
+        # skip slide #
+        ##############
+        self.next_section("skip slide", PresentationSectionType.SKIP)
+        self.remove(text)
+
+        text = VGroup(
+            MarkupText("This is a <b>skip slide</b>"),
+            Text("It functions just like a normal slide"),
+            Text("with the difference that it immediately"),
+            Text("continues with the next slide"),
+            Text("once it's finished."),
+        ).arrange(DOWN).shift(1.5*UP)
+
+        self.play(Write(text), run_time=0.5)
+
+        dot.move_to([0, -2, 0])
+        self.add(line)
+        self.play(GrowFromCenter(circle))
+        self.play(dot.animate.shift(RIGHT))
+
+        self.next_section("loop slide after skip slide", PresentationSectionType.LOOP)
+        self.play(MoveAlongPath(dot, circle), run_time=2)
+
+        #########################
+        # animation fucked again#
+        #########################
+        self.next_section("animation fucked again", PresentationSectionType.NORMAL)
+        self.remove(text)
+
+        text = VGroup(
+            Text("Let's finish the animation. Here we"),
+            Text("encounter another problem: The dot"),
+            Text("teleports when progressing to the"),
+            Text("next slide. You didn't see it?"),
+            Text("Go back in time and try again."),
+        ).arrange(DOWN).shift(1.5*UP)
+
+        self.play(Write(text), Rotating(dot, about_point=[2, -2, 0]), run_time=1.5)
+        self.wait()
+
+        #############################
+        # complete loop slide intro #
+        #############################
+        self.next_section("complete loop slide intro", PresentationSectionType.NORMAL)
+        self.remove(text, dot, circle, line)
+
+        text = VGroup(
+            Text("This is where"),
+            MarkupText("<b>complete loop slides</b> come in."),
+            Text("They are just like loop slides."),
+            Text("But when the speaker continues to"),
+            Text("the next slide, the complete loop"),
+            Text("slide finishes before continuing."),
+            Text("Third time's the charm:"),
+        ).arrange(DOWN)
+        self.play(Write(text), run_time=0.5)
+        self.wait()
+
+        #######################
+        # complete loop slide #
+        #######################
+        self.next_section("before complete loop slide", PresentationSectionType.SKIP)
+        self.remove(text)
+
+        text = VGroup(
+            Text("When you go to the next slide,"),
+            Text("the animation finishes first."),
+            Text("Enjoy some smooth transitions"),
+        ).arrange(DOWN).shift(2*UP)
+
+        dot.move_to([0, -2, 0])
+        self.add(line)
+        self.play(Write(text), GrowFromCenter(circle), run_time=0.5)
+        self.play(dot.animate.shift(RIGHT))
+
+        self.next_section("complete loop slide", PresentationSectionType.COMPLETE_LOOP)
+        self.play(MoveAlongPath(dot, circle), run_time=2)
+
+        self.next_section("after complete loop slide", PresentationSectionType.NORMAL)
+        self.play(Rotating(dot, about_point=[2, -2, 0]), run_time=1.5)
+        self.wait()
+
+        ############
+        # timeline #
+        ############
+        self.next_section("timeline", PresentationSectionType.NORMAL)
+        self.remove(text, dot, circle, line)
+
+        text = VGroup(
+            Text("On the left you can see the"),
+            Text("timeline. If you're in fullscreen,"),
+            Text("you have to exit it first."),
+            Text("To do that you can use Escape or F."),
+            Text("The timeline shows the names"),
+            Text("and types of all slides. When"),
+            Text("you click on a slide on the timeline,"),
+            Text("that slide plays immediately."),
+        ).arrange(DOWN)
+        self.play(Write(text), run_time=0.5)
+        self.wait()
+
+        self.next_section("skip slides and the timeline", PresentationSectionType.NORMAL)
+        self.remove(text)
+
+        text = VGroup(
+            Text("This shows another use case for"),
+            Text("skip slides:"),
+            Text("Splitting up bigger animations."),
+            Text("With the timeline"),
+            Text("you can skip to any part of it."),
+        ).arrange(DOWN)
+        self.play(Write(text), run_time=0.5)
+        self.wait()
+
+        ##########
+        # github #
+        ##########
+        self.next_section("active development", PresentationSectionType.NORMAL)
+        self.remove(text)
+
+        text = VGroup(
+            Text("This project is still under"),
+            Text("active development."),
+            Text("If you encounter any problems"),
+            Text("or have good ideas for new features,"),
+            MarkupText("please open an <b>Issue on GitHub</b>."),
+        ).arrange(DOWN)
+        self.play(Write(text), run_time=0.5)
+        self.wait()
+
+        self.next_section("docs", PresentationSectionType.NORMAL)
+        self.remove(text)
+
+        text = VGroup(
+            Text("On GitHub you'll find a more in-depth"),
+            Text("documentation. It explains some nerdy"),
+            Text("details about how the videos are"),
+            Text("being played, buffered and cached."),
+            Text("It also shows how to use the"),
+            Text("presentation API."),
+            Text("If you have any questions,"),
+            Text("this is where you should look first."),
+        ).arrange(DOWN)
+        self.play(Write(text), run_time=0.5)
+        self.wait()
+
+        ##########
+        # ending #
+        ##########
+        self.next_section("ending", PresentationSectionType.NORMAL)
+        self.remove(text)
+
+        text = VGroup(
+            Text("You can find the code here:"),
+            Text("github.com/christopher-besch/"),
+            Text("manim_web_presenter"),
+            Text("And as always, thanks for watching!"),
+        ).arrange(DOWN).shift(1*DOWN)
+        end = Text("The End", font_size=60).shift(2*UP)
+        end_ul = Underline(end)
+        self.play(Write(text), run_time=0.5)
+        self.wait()
+        self.play(Write(end), run_time=0.5)
+        self.play(Write(end_ul), run_time=0.5)
+        self.wait()
+
+        ############
+        # fade out #
+        ############
+        self.next_section("heli flying into the sunset; fade out", PresentationSectionType.NORMAL)
+        self.play(Unwrite(text), Unwrite(end), Unwrite(end_ul))
         self.wait(2)
 
-        self.next_section(name="test")
-        self.wait()
-
-        self.next_section(
-            "Prepare For Unforeseen Consequences.", DefaultSectionType.NORMAL
-        )
-        self.wait(2)
-
-        self.next_section(type=PresentationSectionType.SKIP)
-        self.wait()
-
-        self.next_section(
-            name="this section should be removed as it doesn't contain any animations"
-        )
-
-
-class ElaborateSceneWithSections(Scene):
-    def construct(self):
-        # the first automatically created section should be deleted <- it's empty
-        self.next_section("create square")
-        square = Square()
-        self.play(FadeIn(square))
-        self.wait()
-
-        self.next_section("transform to circle")
-        circle = Circle()
-        self.play(Transform(square, circle))
-        self.wait()
-
-        self.next_section("fade out")
-        self.play(FadeOut(square))
+        image = ImageMobject("img.jpg")
+        image.height = 9
+        self.play(FadeIn(image))
         self.wait()

@@ -1,4 +1,12 @@
 @import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.timeline {
+    min-height: 80vh;
+    max-height: 80vh;
+    position: relative;
+    overflow-y: scroll;
+}
 
 // // Required
 // @import "~bootstrap/scss/functions";

@@ -2,17 +2,11 @@
 import os
 import pathlib
 from fractions import Fraction
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 from .manim_loader import Section, valid_json_load
 from .commands import walk
 from .config import get_config
-
-
-class Project:
-    def __init__(self, name: str, sections: List[Section]):
-        self.name = name
-        self.sections = sections
 
 
 def get_project_section(raw_section: Dict[str, Any]) -> Section:
@@ -35,21 +29,21 @@ def get_project_section(raw_section: Dict[str, Any]) -> Section:
     )
 
 
-def get_project(path: str) -> Optional[Project]:
+def get_project(path: str) -> Tuple[Optional[str], List[Section]]:
     """Parse project json file if valid.
-    Otherwise return ``None``.
+    Otherwise return ``None`` as name.
     """
     raw_sections = valid_json_load(path, get_config().PROJECT_SCHEMA)
     if raw_sections is None:
-        return None
+        return None, []
     name = os.path.basename(pathlib.Path(path).parent)
     sections: List[Section] = []
     for raw_section in raw_sections:
         sections.append(get_project_section(raw_section))
-    return Project(name, sections)
+    return name, sections
 
 
-def get_projects() -> List[Project]:
+def get_projects() -> Dict[str, List[Section]]:
     """Get all projects in the current working directory.
     No recursive search will be applied."""
     # get all projects in this dir
@@ -58,10 +52,10 @@ def get_projects() -> List[Project]:
         for file in files:
             if file == "project.json":
                 project_paths.append(os.path.join(root, file))
-    projects: List[Project] = []
+    projects: Dict[str, List[Section]] = {}
     for project_path in project_paths:
-        project = get_project(project_path)
+        name, sections = get_project(project_path)
         # don't include invalid
-        if project is not None:
-            projects.append(project)
+        if name is not None:
+            projects[name] = sections
     return projects

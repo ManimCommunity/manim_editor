@@ -1,7 +1,7 @@
 {
     "definitions": {},
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://example.com/object1635164654.json",
+    "$id": "https://example.com/object1635244814.json",
     "title": "Root",
     "type": "array",
     "default": [],
@@ -39,7 +39,7 @@
                 "type": "string",
                 "default": "",
                 "examples": [
-                    "create square"
+                    "title"
                 ],
                 "pattern": "^.*$"
             },
@@ -49,7 +49,7 @@
                 "type": "string",
                 "default": "",
                 "examples": [
-                    "default.normal"
+                    "presentation.normal"
                 ],
                 "pattern": "^.*$"
             },
@@ -59,7 +59,7 @@
                 "type": "string",
                 "default": "",
                 "examples": [
-                    "/home/chris/files/python/manim/editor/media/videos/example/1080p60/sections/ElaborateSceneWithSections_0000.mp4"
+                    "/home/chris/files/python/manim/editor/media/videos/example/1080p60/sections/Tutorial_0000.mp4"
                 ],
                 "pattern": "^.*$"
             },
@@ -94,11 +94,11 @@
             "duration": {
                 "$id": "#root/items/duration",
                 "title": "Duration",
-                "type": "integer",
+                "type": "number",
                 "examples": [
-                    2
+                    7.5
                 ],
-                "default": 0
+                "default": 0.0
             },
             "project_name": {
                 "$id": "#root/items/project_name",

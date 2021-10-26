@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block fluid_content %}
+
+<div class="row">
+    <div class="col-2 gx-5">
+        <h1 class="text-center">Timeline</h1>
+        <div class="timeline row g-2">
+            {% for section in sections %}
+            <div class="card" class="pt-5">
+                <img src="{{ url_for('main.serve_project_static', name=name, path=section.in_project_thumbnail) }}" class="card-img-top" alt="couldn't load thumbnail">
+                <div class="card-body">
+                    <p class="card-text">
+                    {% if section.type == "presentation.normal" %}
+                    <i class="bi-chevron-bar-down" role="img"></i>
+                    {% elif section.type == "presentation.skip" %}
+                    <i class="bi-double-down" role="img"></i>
+                    {% elif section.type == "presentation.loop" %}
+                    <i class="bi-" role="img"></i>
+                    {% elif section.type == "presentation.complete_loop" %}
+                    <i class="bi-" role="img"></i>
+                    {% endif %}
+                    {{ section.name }}
+                    </p>
+                    <p class="card-text">{{ section.type }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-8 gx-5">
+        <h1>Project {{ name }}</h1>
+        <div class="btn-toolbar" role="toolbar">
+            <div class="btn-group me-2 btn-group-lg" role="group">
+                <button type="button" class="btn btn-secondary"><i class="bi-caret-left"></i></button>
+                <button type="button" class="btn btn-secondary"><i class="bi-arrow-counterclockwise"></i></button>
+                <button type="button" class="btn btn-secondary"><i class="bi-caret-right"></i></button>
+            </div>
+            <div class="btn-group btn-group-lg me-3" role="group">
+                <button type="button" class="btn btn-secondary"><i class="bi-arrows-fullscreen"></i></button>
+            </div>
+            <div class="btn-group btn-group-lg" role="group">
+                <button type="button" class="btn btn-primary">Player Settings</button>
+            </div>
+            <div class="btn-group btn-group-lg" role="group">
+                <button type="button" class="btn btn-primary">Player Settings</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

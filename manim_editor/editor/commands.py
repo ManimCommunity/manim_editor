@@ -46,6 +46,8 @@ def valid_json_load(path: str, schema: Any) -> Optional[Any]:
     """Load json file from path and validate with schema.
     Return ``None`` when json is invalid.
     """
+    if not os.path.isfile(path):
+        return None
     with open(path, "r") as file:
         try:
             data = json.load(file)

@@ -20,7 +20,12 @@
                 <div class="navbar-nav">
                     <a class="nav-link {% if title == 'Project Selection' %}active{% endif %}" aria-current="page" href="{{ url_for('main.project_selection') }}">Project Selection</a>
                     <a class="nav-link {% if title == 'Create New Project' %}active{% endif %}" aria-current="page" href="{{ url_for('main.create_project') }}">Create New Project</a>
-                    <a class="nav-link" aria-current="page" href="https://manim-editor.readthedocs.io/en/latest/">Docs</a>
+                    <div class="nav-link {% if title == 'Edit Project' %}active{% endif %}" aria-current="page">Edit Project</div>
+                    <a class="nav-link" aria-current="page" href="https://manim-editor.readthedocs.io/en/latest">Docs</a>
+                    <a class="nav-link" aria-current="page" href="https://github.com/ManimEditorProject/manim_editor">
+                        <i class="bi bi-github" role="img"></i>
+                        GitHub
+                    </a>
                 </div>
             </div>
         </div>
@@ -36,15 +41,19 @@
             {% endfor %}
             {% endwith %}
         </div>
-
         {% block content %}{% endblock %}
+    </div>
 
+    <div class="container-fluid">
+        {% block fluid_content %}{% endblock %}
     </div>
 
     <footer class="page-footer font-small mt-auto">
-        <div class="footer-copyright text-center py-3">
-            Made by the Manim Editor Project
-            <a class="ms-2" href="https://github.com/ManimEditorProject/manim_editor">Source on GitHub</a>
+        <div class="footer-copyright text-center pb-3 fs-6 text-muted">
+            Pre-Alpha v0.1.0
+            <a class="ms-2" href="https://github.com/ManimEditorProject/manim_editor">
+                Source on GitHub
+            </a>
         </div>
     </footer>
 
