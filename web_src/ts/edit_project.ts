@@ -72,7 +72,7 @@ function attach_ui(presentation: Presentation): void {
     cache_batch_size.value = CACHE_BATCH_SIZE.toString();
     past_sections_to_buffer.value = PAST_SECTIONS_TO_BUFFER.toString();
     future_sections_to_buffer.value = FUTURE_SECTIONS_TO_BUFFER.toString();
-    use_buffer_loader.checked = !USE_FALLBACK_LOADER;
+    // use_buffer_loader.checked = !USE_FALLBACK_LOADER;
     use_fallback_loader.checked = USE_FALLBACK_LOADER;
 
     // set callback
