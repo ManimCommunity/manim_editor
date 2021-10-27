@@ -29,9 +29,7 @@ def edit_project(name: str):
 @bp.route("/serve_project_static/<name>/<path>")
 def serve_project_static(name: str, path: str):
     """Since the projects are not in the Flask static folder, this function serves the videos and thumbnails instead."""
-    print(name)
     abspath = os.path.abspath(os.path.join(name, path))
-    print(abspath)
     # NOTE: this should never be used in an online environment, for a local one it's fine
     return send_file(abspath)
 

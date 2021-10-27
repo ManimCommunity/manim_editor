@@ -31,7 +31,7 @@
             </div>
         </div>
         <!-- future sections to buffer -->
-        <div class="row g-3 align-items-center mt-2">
+        <div class="row g-3 align-items-center mt-1">
             <div class="col">
                 <label for="future-sections-to-buffer" class="col-form-label">Future Sections to Buffer</label>
             </div>
@@ -47,14 +47,14 @@
             </div>
             <div class="col">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="loader-selection" id="loader-selection0" checked>
-                    <label class="form-check-label" for="loader-selection0">
+                    <input class="form-check-input" type="radio" name="loader-selection" id="buffer-loader-selected" checked>
+                    <label class="form-check-label" for="buffer-loader-selected">
                     Buffer Loader
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="loader-selection" id="loader-selection1">
-                    <label class="form-check-label" for="loader-selection1">
+                    <input class="form-check-input" type="radio" name="loader-selection" id="fallback-loader-selected">
+                    <label class="form-check-label" for="fallback-loader-selected">
                         Fallback Loader
                     </label>
                 </div>
@@ -64,7 +64,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Apply and Reload</button>
+        <button id="update-settings" type="button" class="btn btn-primary">Apply and Reload</button>
     </div>
 </div>
 </div>
@@ -74,6 +74,7 @@
     <!-- timeline -->
     <div class="col-2">
         <h1 class="text-center">Timeline</h1>
+        <!-- project json file needs to be accessible from TypeScript -->
         <div class="timeline row g-2">
             {% for section in sections %}
             <div class="card timeline-element">
@@ -89,11 +90,13 @@
                             <i class="bi-arrow-clockwise" role="img"></i>
                             {% elif section.type == "presentation.complete_loop" %}
                             <i class="bi-arrow-repeat" role="img"></i>
+                            {% else %}
+                            [unsupported type]
                             {% endif %}
                             {{ section.name }}
                         </div>
                         <div class="col-auto text-right">
-                            <i id="indicator-{{ section.in_project_id }}" class="bi-circle" role="img"></i>
+                            <i class="timeline-indicators bi-circle" role="img"></i>
                             <!-- one of -->
                             <!-- <i class="bi-circle" role="img"></i> -->
                             <!-- <i class="bi-circle-fill" role="img"></i> -->
@@ -109,7 +112,7 @@
     <div class="col">
         <h1>Project {{ name }}</h1>
 
-        <div id="videos-div">
+        <div id="videos-div" data-project-file="{{ url_for('main.serve_project_static', name=name, path='project.json') }}">
             <video id="video0" class="main-video" muted width="1280" height="720">
                 Your browser doesn't support HTML5 videos.
             </video>
@@ -139,4 +142,8 @@
     </div>
 </div>
 
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='build/edit_project.js') }}"></script>
 {% endblock %}
