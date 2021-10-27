@@ -32,11 +32,12 @@ export abstract class Section {
     protected id: number;
     protected video: string;
 
-    public constructor(section: SectionJson) {
+    public constructor(section: SectionJson, video: string) {
         this.type = get_section_type(section.type);
         this.name = section.name;
         this.id = section.in_project_id;
-        this.video = section.video;
+        // custom address from Flask
+        this.video = video;
     }
 
     public cache(on_cached: () => void): void {

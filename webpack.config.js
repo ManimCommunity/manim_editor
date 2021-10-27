@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = (env) => {
     return {
         mode: env["production"] ? "production" : "development",
-        devtool: env["production"] ? false : "eval-source-map",
+        devtool: env["production"] ? false : "eval-cheap-module-source-map",
         plugins: [new MiniCssExtractPlugin()],
         entry: {
             base: "./web_src/ts/base.ts",

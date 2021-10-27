@@ -1,10 +1,6 @@
 import { get_json } from "../utils";
 import { Section, SectionJson, SectionType } from "./section";
 
-export type PresentationJson = {
-    sections: SectionJson[];
-};
-
 export abstract class Presentation {
     // using two video elements for smooth transitions
     private video0: HTMLVideoElement;
@@ -36,11 +32,13 @@ export abstract class Presentation {
 
         // load_sections
         let project_file = this.videos_div.dataset.project_file as string;
-        get_json(project_file, (presentation_json: PresentationJson) => {
+        get_json(project_file, (sections: SectionJson[]) => {
             // construct sections from json response
-            let sections = presentation_json.sections;
-            for (let i = 0; i < sections.length; ++i)
-                this.add_section(sections[i]);
+            for (let i = 0; i < sections.length; ++i) {
+                // custom Flask url
+                let video = this.timeline_sections[i].dataset.video as string;
+                this.add_section(sections[i], video);
+            }
             console.log(`All ${sections.length} sections have been parsed successfully.`)
 
             this.attach_timeline();
@@ -119,7 +117,7 @@ export abstract class Presentation {
             console.error(`Trying to switch to invalid section index #${section}`)
             return;
         }
-        console.log(`Switching to section '${this.sections[section].get_name()} '`)
+        console.log(`Switching to section '${this.sections[section].get_name()}'`)
 
         if (this.current_section != -1 && this.sections[this.current_section].get_type() == SectionType.COMPLETE_LOOP && !skip_complete_loop) {
             // if current section is complete loop, wait until section finishes
@@ -154,8 +152,10 @@ export abstract class Presentation {
     }
 
     private update_timeline(): void {
-        this.timeline_indicators[this.previous_section].innerHTML = `<i class="timeline-indicators bi-check-circle" role="img"></i>`;
+        if (this.previous_section != -1)
+            this.timeline_indicators[this.previous_section].innerHTML = `<i class="timeline-indicators bi-check-circle" role="img"></i>`;
         this.timeline_indicators[this.current_section].innerHTML = `<i class="timeline-indicators bi-circle-fill" role="img"></i>`;
+        this.timeline_sections[this.current_section].scrollIntoView({ behavior: "smooth", block: "center" });
     }
 
     public get_current_section(): number { return this.current_section; }
@@ -230,7 +230,7 @@ export abstract class Presentation {
             this.enter_fullscreen();
     }
 
-    protected abstract add_section(section: SectionJson): void;
+    protected abstract add_section(section: SectionJson, video: string): void;
 
     // called after section changed
     // to be overwritten if required

@@ -23,7 +23,7 @@ export class BufferPresentation extends Presentation {
             (this.sections[i] as BufferSection).unload();
     }
 
-    protected override add_section(section: SectionJson): void {
-        this.sections.push(new BufferSection(section));
+    protected override add_section(section: SectionJson, video: string): void {
+        this.sections.push(new BufferSection(section, video));
     }
 }

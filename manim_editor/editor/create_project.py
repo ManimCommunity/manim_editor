@@ -3,7 +3,7 @@ import os
 import json
 from typing import Any, Dict, Tuple, List
 
-from .manim_loader import get_scenes, Section
+from .manim_loader import get_scenes
 
 
 def create_project_dir(project_name: str) -> Tuple[bool, str]:
@@ -44,9 +44,7 @@ def populate_project(project_name: str, section_ids: List[SectionId]) -> bool:
 
     # prepare section
     for id, section in enumerate(sections):
-        section.set_project(project_name, id)
-        section.copy_video()
-        if not section.create_thumbnail():
+        if not section.set_project(project_name, id):
             return False
         project.append(section.get_dict())
 

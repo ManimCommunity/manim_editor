@@ -34,11 +34,11 @@ function update_url_params(): void {
 
 function create_presentation(): Presentation {
     if (USE_FALLBACK_LOADER) {
-        console.log(`Using FallbackPresentation with a cache batch size of ${CACHE_BATCH_SIZE}`);
+        console.log(`Using FallbackPresentation with a cache batch size of ${CACHE_BATCH_SIZE}.`);
         return new FallbackPresentation(CACHE_BATCH_SIZE);
     }
     else {
-        console.log(`Using BufferPresentation with ${FUTURE_SECTIONS_TO_BUFFER} sections to auto load, ${PAST_SECTIONS_TO_BUFFER} sections to keep and a cache batch size of ${CACHE_BATCH_SIZE}`);
+        console.log(`Using BufferPresentation with ${FUTURE_SECTIONS_TO_BUFFER} sections to auto load, ${PAST_SECTIONS_TO_BUFFER} sections to keep and a cache batch size of ${CACHE_BATCH_SIZE}.`);
         return new BufferPresentation(CACHE_BATCH_SIZE, FUTURE_SECTIONS_TO_BUFFER, PAST_SECTIONS_TO_BUFFER);
     }
 }
@@ -49,7 +49,7 @@ function attach_ui(presentation: Presentation): void {
     let next = document.getElementById("next-section") as HTMLButtonElement;
     let fullscreen = document.getElementById("fullscreen") as HTMLButtonElement;
     let cache = document.getElementById("cache") as HTMLButtonElement;
-    let update_settings = document.getElementById("update_settings") as HTMLButtonElement;
+    let update_settings = document.getElementById("update-settings") as HTMLButtonElement;
 
     // add callbacks
     previous.addEventListener("click", presentation.play_previous_section.bind(presentation));

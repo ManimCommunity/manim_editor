@@ -83,28 +83,47 @@ class Section:
         self.in_project_thumbnail = in_project_thumbnail
         self.in_project_id = in_project_id
 
-    def set_project(self, project_name: str, in_project_id: int) -> None:
-        """Hand this video over to a project"""
-        self.project_name = project_name
-        self.in_project_id = in_project_id
-        # TODO support other filetypes as well
-        self.in_project_video = f"video_{in_project_id:04}.mp4"
-        self.in_project_thumbnail = f"thumb_{in_project_id:04}.jpg"
-
     def get_in_project_video_abs(self) -> str:
         return os.path.join(self.project_name, self.in_project_video)
 
     def get_in_project_thumbnail_abs(self) -> str:
         return os.path.join(self.project_name, self.in_project_thumbnail)
 
-    def copy_video(self) -> None:
-        """Copy original video to project dir."""
-        shutil.copyfile(self.original_video, self.get_in_project_video_abs())
+    def set_project(self, project_name: str, in_project_id: int) -> bool:
+        """Hand this video over to a project.
+        Update attributes and copy assets.
+        """
+        self.project_name = project_name
+        self.in_project_id = in_project_id
+        # TODO support other file types as well
+        self.in_project_video = f"video_{in_project_id:04}.mp4"
+        self.in_project_thumbnail = f"thumb_{in_project_id:04}.jpg"
 
-    def create_thumbnail(self) -> bool:
+        return self.convert_video() and self.extract_thumbnail()
+
+    def convert_video(self) -> bool:
+        """Convert original video into fragmented format that can be played by the video player.
+        Also copy it to project dir.
+        Return False at failure.
+        """
+        print(f"Converting video to '{self.in_project_video}' for section '{self.name}'.")
+        if not run_ffmpeg([
+            "-i",
+            self.original_video,
+            "-movflags",
+            "frag_keyframe+empty_moov+default_base_moof",
+            self.get_in_project_video_abs(),
+            "-y",
+        ]):
+            print("Video Conversion failed.")
+            return False
+        return True
+
+    def extract_thumbnail(self) -> bool:
         """Create thumbnail for section in project dir.
-        Return False at failure."""
-        print(f"extracting '{self.in_project_thumbnail}' from '{self.original_video}'")
+        Return False at failure.
+        """
+        print(f"Extracting thumbnail '{self.in_project_thumbnail}' from video for section '{self.name}'.")
         if not run_ffmpeg([
             "-sseof",
             "-3",
@@ -117,7 +136,7 @@ class Section:
             self.get_in_project_thumbnail_abs(),
             "-y",
         ]):
-            print(f"Thumbnail extraction failed.")
+            print("Thumbnail extraction failed.")
             return False
         return True
 

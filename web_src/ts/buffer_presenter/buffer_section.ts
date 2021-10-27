@@ -4,8 +4,8 @@ export class BufferSection extends Section {
     private media_source: MediaSource = new MediaSource();
     private media_buffer: BufferSource | null = null;
 
-    public constructor(section: SectionJson) {
-        super(section);
+    public constructor(section: SectionJson, video: string) {
+        super(section, video);
         // when setting url to video element
         this.media_source.onsourceopen = (_) => {
             // check if MIME codec is supported
