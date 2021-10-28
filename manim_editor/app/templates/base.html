@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/jpg" href="{{ url_for('static', filename='img/favicon.png') }}"/>
-    <link rel="stylesheet" href="{{ url_for('static', filename='build/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='webpack/base.css') }}">
     {% block stylesheets %}{% endblock %}
 </head>
 
@@ -18,11 +18,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="navbar-nav">
-                    <a class="nav-link {% if title == 'Project Selection' %}active{% endif %}" aria-current="page" href="{{ url_for('main.project_selection') }}">Project Selection</a>
-                    <a class="nav-link {% if title == 'Create New Project' %}active{% endif %}" aria-current="page" href="{{ url_for('main.create_project') }}">Create New Project</a>
-                    <div class="nav-link {% if title == 'Edit Project' %}active{% endif %}" aria-current="page">Edit Project</div>
-                    <a class="nav-link" aria-current="page" href="https://manim-editor.readthedocs.io/en/latest">Docs</a>
-                    <a class="nav-link" aria-current="page" href="https://github.com/ManimEditorProject/manim_editor">
+                    <a class="nav-link {% if title == 'Project Selection' %}active{% endif %}" href="{{ url_for('main.project_selection') }}">Project Selection</a>
+                    <a class="nav-link {% if title == 'Create New Project' %}active{% endif %}" href="{{ url_for('main.create_project') }}">Create New Project</a>
+                    <div class="nav-link {% if title == 'Edit Project' %}active{% endif %}">Edit Project</div>
+                    <a class="nav-link" target="_blank" href="https://manim-editor.readthedocs.io/en/latest">Docs</a>
+                    <a class="nav-link" target="_blank" href="https://github.com/ManimEditorProject/manim_editor">
                         <i class="bi bi-github" role="img"></i>
                         GitHub
                     </a>
@@ -50,14 +50,14 @@
 
     <footer class="page-footer font-small mt-auto">
         <div class="footer-copyright text-center pb-3 fs-6 text-muted">
-            Pre-Alpha v0.1.0
+            Version {{ version }}
             <a class="ms-2" href="https://github.com/ManimEditorProject/manim_editor">
                 Source on GitHub
             </a>
         </div>
     </footer>
 
-    <script src="{{ url_for('static', filename='build/base.js') }}"></script>
+    <script src="{{ url_for('static', filename='webpack/base.js') }}"></script>
     {% block scripts %}{% endblock scripts %}
 </body>
 </html>

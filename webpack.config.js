@@ -16,7 +16,7 @@ module.exports = (env) => {
         },
         output: {
             filename: "[name].js",
-            path: path.resolve(__dirname, "./manim_editor/app/static/build"),
+            path: path.resolve(__dirname, "./manim_editor/app/static/webpack"),
         },
         module: {
             rules: [

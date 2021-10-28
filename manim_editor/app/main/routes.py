@@ -1,6 +1,6 @@
 """Main backend file."""
 import os
-from flask import render_template, flash, redirect, url_for, request, jsonify, abort, send_file
+from flask import render_template, flash, redirect, url_for, request, jsonify, abort, send_file, current_app
 from ...editor import get_scenes, create_project_dir, SectionId, populate_project, get_projects, get_project
 
 from . import bp
@@ -15,7 +15,7 @@ def index():
 @bp.route("/project_selection")
 def project_selection():
     projects = get_projects()
-    return render_template("project_selection.html", title="Project Selection", cwd=os.getcwd(), projects=projects)
+    return render_template("project_selection.html", version=current_app.config["VERSION"], title="Project Selection", cwd=os.getcwd(), projects=projects)
 
 
 @bp.route("/edit_project/<name>")
@@ -23,7 +23,7 @@ def edit_project(name: str):
     project_name, sections = get_project(os.path.join(name, "project.json"))
     if project_name is None:
         abort(404)
-    return render_template("edit_project.html", title="Edit Project", name=name, sections=sections)
+    return render_template("edit_project.html", version=current_app.config["VERSION"], title="Edit Project", name=name, sections=sections)
 
 
 @bp.route("/serve_project_static/<name>/<path>")
@@ -41,7 +41,7 @@ def create_project():
 
 @ bp.route("/create_project1")
 def set_project_name():
-    return render_template("set_project_name.html", title="Create New Project")
+    return render_template("set_project_name.html", version=current_app.config["VERSION"], title="Create New Project")
 
 
 @ bp.route("/create_project2", methods=["POST"])
@@ -56,7 +56,7 @@ def section_selection():
     scenes = get_scenes()
     if len(scenes) == 0:
         flash("No sections were found. You must render you scene with the '--save_sections' flag. Refer to the documentation for more information.", "danger")
-    return render_template("section_selection.html", title="Create New Project", scenes=scenes, project_name=project_name)
+    return render_template("section_selection.html", version=current_app.config["VERSION"], title="Create New Project", scenes=scenes, project_name=project_name)
 
 
 # ajax
