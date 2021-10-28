@@ -4,9 +4,10 @@ version = "0.1.0"
 description = "Editor and Presenter for Manim Generated Content"
 authors = ["christopher-besch <christopher.besch@gmx.de>"]
 license = "MIT"
-packages = [
-    { include = "manim_editor" },
-]
+readme = "README.md"
+# include = [
+#     { path = "manim_editor", format = "sdist" }
+# ]
 
 [tool.poetry.dependencies]
 python = "^3.9"
