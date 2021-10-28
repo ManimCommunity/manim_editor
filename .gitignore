@@ -256,7 +256,7 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-manim_editor/app/static/webpack
+manim_editor/app/static/webpack/ 
 
 # early dev testing
 media/
