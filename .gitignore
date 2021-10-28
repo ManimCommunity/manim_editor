@@ -265,7 +265,7 @@ cython_debug/
 # End of https://www.toptal.com/developers/gitignore/api/node,python,web
 
 # files compiled by webpack
-manim_editor/app/static/js
+manim_editor/app/static/build
 
 media/
 test/

@@ -1,5 +1,5 @@
 from manim import *
-from manim_editor import *
+from manim_editor import PresentationSectionType
 
 
 class Test(Scene):
