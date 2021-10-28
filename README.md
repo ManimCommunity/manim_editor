@@ -1,5 +1,8 @@
 # Manim Editor
 
+[![PyPi version](https://pypip.in/v/manim_editor/badge.png)](https://crate.io/packages/manim_editor/)
+[![PyPi downloads](https://pypip.in/d/manim_editor/badge.png)](https://crate.io/packages/manim_editor/)
+
 Editor and Presenter for Manim Generated Content
 
 https://manim-editor.readthedocs.io/en/latest/
