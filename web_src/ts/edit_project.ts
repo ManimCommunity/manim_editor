@@ -77,9 +77,13 @@ function attach_ui(presentation: Presentation): void {
 
     // set callback
     update_settings.addEventListener("click", () => {
-        CACHE_BATCH_SIZE = parseInt(cache_batch_size.value);
-        PAST_SECTIONS_TO_BUFFER = parseInt(past_sections_to_buffer.value);
-        FUTURE_SECTIONS_TO_BUFFER = parseInt(future_sections_to_buffer.value);
+        // silently prevent invalid input
+        if (parseInt(cache_batch_size.value) > 0)
+            CACHE_BATCH_SIZE = parseInt(cache_batch_size.value);
+        if (parseInt(past_sections_to_buffer.value) > 0)
+            PAST_SECTIONS_TO_BUFFER = parseInt(past_sections_to_buffer.value);
+        if (parseInt(future_sections_to_buffer.value) > 0)
+            FUTURE_SECTIONS_TO_BUFFER = parseInt(future_sections_to_buffer.value);
         // buffer-loader-selected doesn't have to be worried about <- logically linked
         USE_FALLBACK_LOADER = use_fallback_loader.checked;
         update_url_params();

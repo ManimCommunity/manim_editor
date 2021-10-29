@@ -2,8 +2,8 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
 .timeline {
-    min-height: 80vh;
-    max-height: 80vh;
+    min-height: 75vh;
+    max-height: 75vh;
     position: relative;
     overflow-y: scroll;
 }
@@ -19,6 +19,9 @@
 .main-video {
     top: 0;
     left: 0;
+
+    min-width: 60vw;
+    max-width: 60vw;
 }
 
 :fullscreen {
@@ -26,8 +29,6 @@
 }
 
 :fullscreen .main-video {
-    width: 100vw;
-    height: 100vh;
     min-width: 100vw;
     min-height: 100vh;
     max-width: 100vw;
