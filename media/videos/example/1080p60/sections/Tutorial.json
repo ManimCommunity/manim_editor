@@ -1,0 +1,222 @@
+[
+    {
+        "name": "title",
+        "type": "presentation.normal",
+        "video": "Tutorial_0000.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "7.500000",
+        "nb_frames": "450"
+    },
+    {
+        "name": "normal section",
+        "type": "presentation.normal",
+        "video": "Tutorial_0001.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "3.500000",
+        "nb_frames": "210"
+    },
+    {
+        "name": "back in time",
+        "type": "presentation.normal",
+        "video": "Tutorial_0002.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "2.500000",
+        "nb_frames": "150"
+    },
+    {
+        "name": "fullscreen",
+        "type": "presentation.normal",
+        "video": "Tutorial_0003.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "1.500000",
+        "nb_frames": "90"
+    },
+    {
+        "name": "loop section intro",
+        "type": "presentation.normal",
+        "video": "Tutorial_0004.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "1.500000",
+        "nb_frames": "90"
+    },
+    {
+        "name": "loop section",
+        "type": "presentation.loop",
+        "video": "Tutorial_0005.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "4.500000",
+        "nb_frames": "270"
+    },
+    {
+        "name": "skip section intro",
+        "type": "presentation.normal",
+        "video": "Tutorial_0006.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "1.500000",
+        "nb_frames": "90"
+    },
+    {
+        "name": "skip section",
+        "type": "presentation.skip",
+        "video": "Tutorial_0007.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "2.500000",
+        "nb_frames": "150"
+    },
+    {
+        "name": "loop section after skip section",
+        "type": "presentation.loop",
+        "video": "Tutorial_0008.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "2.000000",
+        "nb_frames": "120"
+    },
+    {
+        "name": "animation fucked again",
+        "type": "presentation.normal",
+        "video": "Tutorial_0009.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "2.500000",
+        "nb_frames": "150"
+    },
+    {
+        "name": "complete loop section intro",
+        "type": "presentation.normal",
+        "video": "Tutorial_0010.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "1.500000",
+        "nb_frames": "90"
+    },
+    {
+        "name": "before complete loop section",
+        "type": "presentation.skip",
+        "video": "Tutorial_0011.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "1.500000",
+        "nb_frames": "90"
+    },
+    {
+        "name": "complete loop section",
+        "type": "presentation.complete_loop",
+        "video": "Tutorial_0012.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "2.000000",
+        "nb_frames": "120"
+    },
+    {
+        "name": "after complete loop section",
+        "type": "presentation.normal",
+        "video": "Tutorial_0013.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "2.500000",
+        "nb_frames": "150"
+    },
+    {
+        "name": "timeline",
+        "type": "presentation.normal",
+        "video": "Tutorial_0014.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "1.500000",
+        "nb_frames": "90"
+    },
+    {
+        "name": "skip sections and the timeline",
+        "type": "presentation.normal",
+        "video": "Tutorial_0015.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "1.500000",
+        "nb_frames": "90"
+    },
+    {
+        "name": "active development",
+        "type": "presentation.normal",
+        "video": "Tutorial_0016.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "1.500000",
+        "nb_frames": "90"
+    },
+    {
+        "name": "docs",
+        "type": "presentation.normal",
+        "video": "Tutorial_0017.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "1.500000",
+        "nb_frames": "90"
+    },
+    {
+        "name": "ending",
+        "type": "presentation.normal",
+        "video": "Tutorial_0018.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "3.500000",
+        "nb_frames": "210"
+    },
+    {
+        "name": "heli flying into the sunset; fade out",
+        "type": "presentation.normal",
+        "video": "Tutorial_0019.mp4",
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "60/1",
+        "duration": "6.000000",
+        "nb_frames": "360"
+    }
+]

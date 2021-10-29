@@ -1,0 +1,441 @@
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2021.9.22)  29 OCT 2021 20:02
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**media/Tex/6f25f4dafcf3ce9b.tex
+(./media/Tex/6f25f4dafcf3ce9b.tex
+LaTeX2e <2020-02-02> patch level 5
+L3 programming layer <2020-04-06> (/usr/share/texlive/texmf-dist/tex/latex/stan
+dalone/standalone.cls
+Document Class: standalone 2018/03/26 v1.3a Class to compile TeX sub-files stan
+dalone
+(/usr/share/texlive/texmf-dist/tex/latex/tools/shellesc.sty
+Package: shellesc 2019/11/08 v1.0c unified shell escape interface for LaTeX
+Package shellesc Info: Restricted shell escape enabled on input line 77.
+) (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+)) (/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/usr/share/texl
+ive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks15
+\XKV@tempa@toks=\toks16
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/keyval.tex))
+\XKV@depth=\count163
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+\sa@internal=\count164
+\c@sapage=\count165
+(/usr/share/texlive/texmf-dist/tex/latex/standalone/standalone.cfg
+File: standalone.cfg 2018/03/26 v1.3a Default configuration file for 'standalon
+e' class
+) (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
+)
+\c@part=\count166
+\c@section=\count167
+\c@subsection=\count168
+\c@subsubsection=\count169
+\c@paragraph=\count170
+\c@subparagraph=\count171
+\c@figure=\count172
+\c@table=\count173
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen134
+) (/usr/share/texlive/texmf-dist/tex/latex/preview/preview.sty
+Package: preview 2017/04/24 12.3 (AUCTeX/preview-latex)
+(/usr/share/texlive/texmf-dist/tex/generic/luatex85/luatex85.sty
+Package: luatex85 2016/06/15 v1.4 pdftex aliases for luatex
+) (/usr/share/texlive/texmf-dist/tex/latex/preview/prtightpage.def
+\PreviewBorder=\dimen135
+)
+\pr@snippet=\count174
+\pr@box=\box45
+\pr@output=\toks17
+)) (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2020/03/22 3.42 The Babel package
+(/usr/share/texlive/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2020/03/22 3.42 Babel switching mechanism
+) (/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2020/03/22 3.42 Babel common definitions
+\babel@savecnt=\count175
+\U@D=\dimen136
+(/usr/share/texlive/texmf-dist/tex/generic/babel/xebabel.def (/usr/share/texliv
+e/texmf-dist/tex/generic/babel/txtbabel.def))
+\bbl@readstream=\read2
+\bbl@dirlevel=\count176
+)
+Package babel Info: \l@canadian = using hyphenrules for english
+(babel)             (\language0) on input line 102.
+Package babel Info: \l@australian = using hyphenrules for ukenglish
+(babel)             (\language26) on input line 105.
+Package babel Info: \l@newzealand = using hyphenrules for ukenglish
+(babel)             (\language26) on input line 108.
+)) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2020/01/20 v2.17e AMS math features
+\@mathmargin=\skip49
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks18
+\ex@=\dimen137
+)) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen138
+) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count177
+LaTeX Info: Redefining \frac on input line 227.
+\uproot@=\count178
+\leftroot@=\count179
+LaTeX Info: Redefining \overline on input line 389.
+\classnum@=\count180
+\DOTSCASE@=\count181
+LaTeX Info: Redefining \ldots on input line 486.
+LaTeX Info: Redefining \dots on input line 489.
+LaTeX Info: Redefining \cdots on input line 610.
+\Mathstrutbox@=\box46
+\strutbox@=\box47
+\big@size=\dimen139
+LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
+\macc@depth=\count182
+\c@MaxMatrixCols=\count183
+\dotsspace@=\muskip16
+\c@parentequation=\count184
+\dspbrk@lvl=\count185
+\tag@help=\toks19
+\row@=\count186
+\column@=\count187
+\maxfields@=\count188
+\andhelp@=\toks20
+\eqnshift@=\dimen140
+\alignsep@=\dimen141
+\tagshift@=\dimen142
+\tagwidth@=\dimen143
+\totwidth@=\dimen144
+\lineht@=\dimen145
+\@envbody=\toks21
+\multlinegap=\skip50
+\multlinetaggap=\skip51
+\mathdisplay@stack=\toks22
+LaTeX Info: Redefining \[ on input line 2859.
+LaTeX Info: Redefining \] on input line 2860.
+) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (/usr/share/texlive/texmf-dist/tex/latex/fontspec/fontspec.sty (/usr/share/t
+exlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/usr/share/texlive/te
+xmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2020-04-06 L3 programming layer (loader) 
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-xdvipdfmx.def
+File: l3backend-xdvipdfmx.def 2020-03-12 L3 backend support: xdvipdfmx
+\g__graphics_track_int=\count189
+\l__pdf_internal_box=\box48
+\g__pdf_backend_object_int=\count190
+\g__pdf_backend_annotation_int=\count191
+))
+Package: xparse 2020-03-06 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count192
+\g__xparse_grabber_int=\count193
+\l__xparse_m_args_int=\count194
+\l__xparse_v_nesting_int=\count195
+)
+Package: fontspec 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTeX
+(/usr/share/texlive/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
+Package: fontspec-xetex 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTe
+X
+\l__fontspec_script_int=\count196
+\l__fontspec_language_int=\count197
+\l__fontspec_strnum_int=\count198
+\l__fontspec_tmp_int=\count199
+\l__fontspec_tmpa_int=\count266
+\l__fontspec_tmpb_int=\count267
+\l__fontspec_tmpc_int=\count268
+\l__fontspec_em_int=\count269
+\l__fontspec_emdef_int=\count270
+\l__fontspec_strong_int=\count271
+\l__fontspec_strongdef_int=\count272
+\l__fontspec_tmpa_dim=\dimen146
+\l__fontspec_tmpb_dim=\dimen147
+\l__fontspec_tmpc_dim=\dimen148
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/02/11 v2.0o Standard LaTeX package
+) (/usr/share/texlive/texmf-dist/tex/latex/fontspec/fontspec.cfg)))
+
+Package fontspec Info: Font family 'FreeSerif(0)' created for font 'FreeSerif'
+(fontspec)             with options
+(fontspec)             [Ligatures=TeX,ExternalLocation,Mapping=tex-text,BoldFon
+t=FreeSerifBold,ItalicFont=FreeSerifItalic,BoldItalicFont=FreeSerifBoldItalic].
+
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"[FreeSerif]/OT:script=latn;language=dflt;mapping=tex
+-text;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.:
+(fontspec)             <->"[FreeSerif]/OT:script=latn;language=dflt;+smcp;mappi
+ng=tex-text;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->"[FreeSerifBold]/OT:script=latn;language=dflt;mapping
+=tex-text;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.:
+(fontspec)             <->"[FreeSerifBold]/OT:script=latn;language=dflt;+smcp;m
+apping=tex-text;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.:
+(fontspec)             <->"[FreeSerifItalic]/OT:script=latn;language=dflt;mappi
+ng=tex-text;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.: 
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->"[FreeSerifBoldItalic]/OT:script=latn;language=dflt;m
+apping=tex-text;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
+
+
+Package fontspec Info: FreeSans scale = 0.8587752249497685.
+
+
+Package fontspec Info: FreeSans scale = 0.8587752249497685.
+
+
+Package fontspec Info: FreeSans scale = 0.8587752249497685.
+
+
+Package fontspec Info: FreeSansBold scale = 0.8333295657481294.
+
+
+Package fontspec Info: FreeSansBold scale = 0.8333295657481294.
+
+
+Package fontspec Info: FreeSansOblique scale = 0.8587752249497685.
+
+
+Package fontspec Info: FreeSansBoldOblique scale = 0.8333295657481294.
+
+
+Package fontspec Info: Font family 'FreeSans(0)' created for font 'FreeSans'
+(fontspec)             with options
+(fontspec)             [Ligatures=TeX,ExternalLocation,Mapping=tex-text,BoldFon
+t=FreeSansBold,ItalicFont=FreeSansOblique,BoldItalicFont=FreeSansBoldOblique,Sc
+ale=MatchLowercase].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->s*[0.8587752249497685]"[FreeSans]/OT:script=latn;lang
+uage=dflt;mapping=tex-text;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.:
+(fontspec)             <->s*[0.8587752249497685]"[FreeSans]/OT:script=latn;lang
+uage=dflt;+smcp;mapping=tex-text;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[0.8333295657481294]"[FreeSansBold]/OT:script=latn;
+language=dflt;mapping=tex-text;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.:
+(fontspec)             <->s*[0.8333295657481294]"[FreeSansBold]/OT:script=latn;
+language=dflt;+smcp;mapping=tex-text;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.:
+(fontspec)             <->s*[0.8587752249497685]"[FreeSansOblique]/OT:script=la
+tn;language=dflt;mapping=tex-text;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.: 
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->s*[0.8333295657481294]"[FreeSansBoldOblique]/OT:scrip
+t=latn;language=dflt;mapping=tex-text;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
+
+(/usr/share/texlive/texmf-dist/tex/latex/mathastext/mathastext.sty
+Package: mathastext 2019/11/16 v1.3w Use the text font in math mode (JFB)
+
+Package mathastext Warning: option `noasterisk' is deprecated.
+   Check the documentation.
+
+\mst@exists@muskip=\muskip17
+\mst@forall@muskip=\muskip18
+\mst@prime@muskip=\muskip19
+\mst@do@nonletters=\toks23
+\mst@do@easynonletters=\toks24
+\mst@do@az=\toks25
+\mst@do@AZ=\toks26
+\symmtoperatorfont=\mathgroup6
+\symmtletterfont=\mathgroup7
+\symmtlgrfontlower=\mathgroup8
+\symmtlgrfontupper=\mathgroup9
+** ! and ?
+** punctuation: , . : ; and \colon
+LaTeX Info: Redefining \rightarrowfill on input line 790.
+LaTeX Info: Redefining \leftarrowfill on input line 795.
+** + and =
+** adding = ; and + to \nfss@catcodes
+** parentheses ( ) [ ] and slash /
+** alldelims: < > \backslash \setminus | \vert \mid \{ and \}
+LaTeX Font Info:    Redeclaring math delimiter \backslash on input line 932.
+LaTeX Font Info:    Redeclaring math symbol \setminus on input line 944.
+LaTeX Info: Redefining \models on input line 953.
+** \# \mathdollar \% \& 
+** \imath and \jmath 
+LaTeX Font Info:    Overwriting math alphabet `\mathnormalbold' in version `nor
+mal'
+(Font)                  TU/lmss/b/n --> TU/lmss/b/n on input line 2140.
+LaTeX Font Info:    Overwriting math alphabet `\mathnormalbold' in version `bol
+d'
+(Font)                  TU/lmss/b/n --> TU/lmss/b/n on input line 2140.
+LaTeX Font Info:    Overwriting symbol font `mtletterfont' in version `normal'
+(Font)                  TU/lmss/m/n --> TU/lmss/m/n on input line 2140.
+LaTeX Font Info:    Overwriting symbol font `mtletterfont' in version `bold'
+(Font)                  TU/lmss/m/n --> TU/lmss/b/n on input line 2140.
+LaTeX Font Info:    Overwriting symbol font `mtoperatorfont' in version `normal
+'
+(Font)                  TU/lmss/m/n --> TU/lmss/m/n on input line 2140.
+LaTeX Font Info:    Overwriting symbol font `mtoperatorfont' in version `bold'
+(Font)                  TU/lmss/m/n --> TU/lmss/b/n on input line 2140.
+LaTeX Font Info:    Overwriting math alphabet `\Mathbf' in version `normal'
+(Font)                  TU/lmss/b/n --> TU/lmss/b/n on input line 2140.
+LaTeX Font Info:    Overwriting math alphabet `\Mathbf' in version `bold'
+(Font)                  TU/lmss/b/n --> TU/lmss/b/n on input line 2140.
+LaTeX Font Info:    Overwriting math alphabet `\Mathit' in version `normal'
+(Font)                  TU/lmss/m/it --> TU/lmss/m/it on input line 2140.
+LaTeX Font Info:    Overwriting math alphabet `\Mathit' in version `bold'
+(Font)                  TU/lmss/m/it --> TU/lmss/b/it on input line 2140.
+LaTeX Font Info:    Overwriting math alphabet `\Mathsf' in version `normal'
+(Font)                  TU/FreeSans(0)/m/n --> TU/FreeSans(0)/m/n on input line
+ 2140.
+LaTeX Font Info:    Overwriting math alphabet `\Mathsf' in version `bold'
+(Font)                  TU/FreeSans(0)/m/n --> TU/FreeSans(0)/b/n on input line
+ 2140.
+LaTeX Font Info:    Overwriting math alphabet `\Mathtt' in version `normal'
+(Font)                  TU/lmtt/m/n --> TU/lmtt/m/n on input line 2140.
+LaTeX Font Info:    Overwriting math alphabet `\Mathtt' in version `bold'
+(Font)                  TU/lmtt/m/n --> TU/lmtt/b/n on input line 2140.
+LaTeX Font Info:    Overwriting symbol font `mtlgrfontlower' in version `normal
+'
+(Font)                  LGR/lmss/m/n --> LGR/lmss/m/n on input line 2140.
+LaTeX Font Info:    Overwriting symbol font `mtlgrfontlower' in version `bold'
+(Font)                  LGR/lmss/m/n --> LGR/lmss/b/n on input line 2140.
+LaTeX Font Info:    Overwriting symbol font `mtlgrfontupper' in version `normal
+'
+(Font)                  LGR/lmss/m/n --> LGR/lmss/m/n on input line 2140.
+LaTeX Font Info:    Overwriting symbol font `mtlgrfontupper' in version `bold'
+(Font)                  LGR/lmss/m/n --> LGR/lmss/b/n on input line 2140.
+** Latin letters in the normal (resp. bold) math versions are now
+** set up to use the fonts TU/lmss/m(b)/n
+** Greek letters (n/n) will use LGR/lmss
+** Other characters (digits, ...) and \log-like names will be
+** typeset with the n shape.
+** \hbar
+** minus as endash
+)
+LaTeX Font Info:    Overwriting math alphabet `\mathnormalbold' in version `nor
+mal'
+(Font)                  TU/lmss/b/n --> TU/FreeSans(0)/b/n on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathnormalbold' in version `bol
+d'
+(Font)                  TU/lmss/b/n --> TU/FreeSans(0)/b/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `mtletterfont' in version `normal'
+(Font)                  TU/lmss/m/n --> TU/FreeSans(0)/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `mtletterfont' in version `bold'
+(Font)                  TU/lmss/b/n --> TU/FreeSans(0)/b/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `mtoperatorfont' in version `normal
+'
+(Font)                  TU/lmss/m/n --> TU/FreeSans(0)/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `mtoperatorfont' in version `bold'
+(Font)                  TU/lmss/b/n --> TU/FreeSans(0)/b/n on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\Mathbf' in version `normal'
+(Font)                  TU/lmss/b/n --> TU/FreeSans(0)/b/n on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\Mathbf' in version `bold'
+(Font)                  TU/lmss/b/n --> TU/FreeSans(0)/b/n on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\Mathit' in version `normal'
+(Font)                  TU/lmss/m/it --> TU/FreeSans(0)/m/it on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\Mathit' in version `bold'
+(Font)                  TU/lmss/b/it --> TU/FreeSans(0)/b/it on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\Mathsf' in version `normal'
+(Font)                  TU/FreeSans(0)/m/n --> TU/FreeSans(0)/m/n on input line
+ 24.
+LaTeX Font Info:    Overwriting math alphabet `\Mathsf' in version `bold'
+(Font)                  TU/FreeSans(0)/b/n --> TU/FreeSans(0)/b/n on input line
+ 24.
+LaTeX Font Info:    Overwriting math alphabet `\Mathtt' in version `normal'
+(Font)                  TU/lmtt/m/n --> TU/lmtt/m/n on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\Mathtt' in version `bold'
+(Font)                  TU/lmtt/b/n --> TU/lmtt/b/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `mtlgrfontlower' in version `normal
+'
+(Font)                  LGR/lmss/m/n --> LGR/lmss/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `mtlgrfontlower' in version `bold'
+(Font)                  LGR/lmss/b/n --> LGR/lmss/b/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `mtlgrfontupper' in version `normal
+'
+(Font)                  LGR/lmss/m/n --> LGR/lmss/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `mtlgrfontupper' in version `bold'
+(Font)                  LGR/lmss/b/n --> LGR/lmss/b/n on input line 24.
+** Latin letters in the normal (resp. bold) math versions are now
+** set up to use the fonts TU/FreeSans(0)/m(b)/n
+** Greek letters (n/n) will use LGR/lmss
+** Other characters (digits, ...) and \log-like names will be
+** typeset with the n shape.
+** \hbar
+** minus as endash
+No file 6f25f4dafcf3ce9b.aux.
+\openout1 = `6f25f4dafcf3ce9b.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 27.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 2
+7.
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for LGR/lmr/m/n on input line 27.
+LaTeX Font Info:    Trying to load font information for LGR+lmr on input line 2
+7.
+(/usr/share/texlive/texmf-dist/tex/latex/cbfonts-fd/lgrlmr.fd
+File: lgrlmr.fd 2017/07/29 v1.2 Scalable Greek Latin Modern Regular
+)
+LaTeX Font Info:    ... okay on input line 27.
+Preview: Fontsize 10pt
+Preview: PDFoutput 1
+Package mathastext Info: current meaning of amsmath \resetMathstrut@ saved on i
+nput line 27.
+Preview: Tightpage 0 0 0 0
+[1] (media/Tex/6f25f4dafcf3ce9b.aux) ) 
+Here is how much of TeX's memory you used:
+ 6439 strings out of 479430
+ 149167 string characters out of 5887454
+ 447311 words of memory out of 6000000
+ 23904 multiletter control sequences out of 15000+600000
+ 532466 words of font info for 40 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 47i,2n,119p,481b,278s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on media/Tex/6f25f4dafcf3ce9b.xdv (1 page, 400 bytes).

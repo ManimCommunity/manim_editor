@@ -1,0 +1,33 @@
+\documentclass[preview]{standalone}
+
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+\usepackage[no-math]{fontspec}
+\setmainfont[ExternalLocation,
+                Mapping=tex-text,
+                BoldFont=FreeSerifBold,
+                ItalicFont=FreeSerifItalic,
+                BoldItalicFont=FreeSerifBoldItalic]{FreeSerif}
+\setsansfont[ExternalLocation,
+                Mapping=tex-text,
+                BoldFont=FreeSansBold,
+                ItalicFont=FreeSansOblique,
+                BoldItalicFont=FreeSansBoldOblique,
+                Scale=MatchLowercase]{FreeSans}
+\renewcommand{\familydefault}{lmss}
+\usepackage[LGRgreek,defaultmathsizes,noasterisk]{mathastext}
+\renewcommand{\familydefault}{\sfdefault}
+\Mathastext
+\let\varphi\phi % no `var' phi in LGR encoding
+\renewcommand{\familydefault}{\rmdefault}
+
+\begin{document}
+
+\begin{center}
+\textbf{a}
+\end{center}
+
+\end{document}
