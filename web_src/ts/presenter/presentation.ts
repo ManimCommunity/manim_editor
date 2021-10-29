@@ -111,6 +111,14 @@ export abstract class Presentation {
         this.previous_section = this.current_section;
     }
 
+    public pause(): void {
+        this.get_current_video().pause();
+    }
+
+    public play(): void {
+        this.get_current_video().play();
+    }
+
     // skip_complete_loop can be used in the timeline or as a forced continue
     public play_section(section: number, skip_complete_loop = false): void {
         if (section < 0 || section >= this.sections.length) {

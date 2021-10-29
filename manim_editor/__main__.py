@@ -2,9 +2,20 @@ from .app import create_app
 import click
 import logging
 from waitress import serve
+import socket
 
 from .config import Config
 from .editor import set_config
+
+
+def find_open_port():
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.bind(("", 0))
+    sock.listen(1)
+    _, port = sock.getsockname()
+    sock.close()
+
+    return port
 
 
 def run_normal() -> None:
@@ -13,8 +24,9 @@ def run_normal() -> None:
     # disable logging for every get/post request
     log = logging.getLogger("werkzeug")
     log.setLevel(logging.ERROR)
-    print("Starting Manim Editor. Open http://localhost:5000 in a browser. (Press CTRL+C to quit)")
-    serve(app, host="0.0.0.0", port=5000)
+    port = find_open_port()
+    print(f"Starting Manim Editor. Open http://localhost:{port} in a browser. (Press CTRL+C to quit)")
+    serve(app, host="0.0.0.0", port=port)
 
 
 def run_debug() -> None:

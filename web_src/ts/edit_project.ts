@@ -47,6 +47,7 @@ function attach_ui(presentation: Presentation): void {
     let previous = document.getElementById("previous-section") as HTMLButtonElement;
     let restart = document.getElementById("restart-section") as HTMLButtonElement;
     let next = document.getElementById("next-section") as HTMLButtonElement;
+    let pause = document.getElementById("pause") as HTMLButtonElement;
     let fullscreen = document.getElementById("fullscreen") as HTMLButtonElement;
     let cache = document.getElementById("cache") as HTMLButtonElement;
     let update_settings = document.getElementById("update-settings") as HTMLButtonElement;
@@ -55,6 +56,7 @@ function attach_ui(presentation: Presentation): void {
     previous.addEventListener("click", presentation.play_previous_section.bind(presentation));
     restart.addEventListener("click", presentation.restart_current_section.bind(presentation));
     next.addEventListener("click", presentation.play_next_section.bind(presentation));
+    pause.addEventListener("click", presentation.pause.bind(presentation));
     fullscreen.addEventListener("click", presentation.enter_fullscreen.bind(presentation));
     cache.addEventListener("click", () => {
         spin_button(cache);
@@ -106,6 +108,9 @@ function attach_keyboard_ui(presentation: Presentation): void {
         "Enter",
         "Space",
     ];
+    const pause_keys = [
+        "P",
+    ];
     const fullscreen_keys = [
         "KeyF",
     ];
@@ -117,6 +122,8 @@ function attach_keyboard_ui(presentation: Presentation): void {
             presentation.play_previous_section();
         else if (next_keys.includes(e.code))
             presentation.play_next_section();
+        else if (pause_keys.includes(e.code))
+            presentation.pause();
         else if (fullscreen_keys.includes(e.code))
             presentation.toggle_fullscreen();
     });
