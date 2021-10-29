@@ -34,18 +34,21 @@ def serve_project_static(name: str, path: str):
     return send_file(abspath)
 
 
-@ bp.route("/create_project")
+@bp.route("/create_project")
 def create_project():
     return redirect(url_for("main.set_project_name"))
 
 
-@ bp.route("/create_project1")
+@bp.route("/create_project1")
 def set_project_name():
     return render_template("set_project_name.html", version=current_app.config["VERSION"], title="Create New Project")
 
 
-@ bp.route("/create_project2", methods=["POST"])
+@bp.route("/create_project2", methods=["GET", "POST"])
 def section_selection():
+    # when users play around with the address bar
+    if request.method == "GET":
+        return redirect(url_for("main.set_project_name"))
     project_name = request.form["project_name"].strip()
     success, message = create_project_dir(project_name)
     if not success:
@@ -60,7 +63,7 @@ def section_selection():
 
 
 # ajax
-@ bp.route("/create_project3", methods=["POST"])
+@bp.route("/create_project3", methods=["POST"])
 def confirm_section_selection():
     project = request.json
     if project is None:

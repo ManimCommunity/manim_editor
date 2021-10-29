@@ -26,8 +26,12 @@ def run_debug() -> None:
 
 @click.command()
 @click.option("--debug", is_flag=True, help="Launch in Debug mode.")
-def main(debug) -> None:
-    if (debug):
+@click.option("--version", is_flag=True, help="Print version and exit.")
+def main(debug: bool, version: bool) -> None:
+    if version:
+        print(f"Manim Editor v{Config.VERSION}")
+        return
+    if debug:
         run_debug()
     else:
         run_normal()

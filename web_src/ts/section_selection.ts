@@ -130,9 +130,13 @@ function watch_button(): void {
     let project_name = button.dataset.project_name as string;
     let success_url = button.dataset.success_url as string;
     button.addEventListener("click", () => {
-        spin_button(button);
         let selected_sections = get_selected_sections();
+        // show flashes
+        window.scrollTo(0, 0);
+        // selection valid?
         if (selected_sections.length) {
+            flash("The project is being populated, this might take a few minutes. Open the terminal for more info.", "info");
+            spin_button(button);
             let payload = {
                 "name": project_name,
                 "sections": selected_sections,
