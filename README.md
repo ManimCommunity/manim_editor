@@ -1,7 +1,6 @@
 # Manim Editor
 
-[![PyPi version](https://pypip.in/v/manim_editor/badge.png)](https://crate.io/packages/manim_editor/)
-[![PyPi downloads](https://pypip.in/d/manim_editor/badge.png)](https://crate.io/packages/manim_editor/)
+## [Working Example](https://manimeditorproject.github.io/manim_editor/tutorial/)
 
 Editor and Presenter for Manim Generated Content
 
