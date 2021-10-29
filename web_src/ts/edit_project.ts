@@ -2,6 +2,7 @@ import { spin_button } from "./utils"
 import { Presentation } from "./presenter/presentation";
 import { BufferPresentation } from "./buffer_presenter/buffer_presentation";
 import { FallbackPresentation } from "./fallback_presenter/fallback_presentation";
+import { send_json, flash } from "./utils";
 
 // used to load and update player settings
 let CACHE_BATCH_SIZE = 5;
@@ -90,6 +91,25 @@ function attach_ui(presentation: Presentation): void {
         USE_FALLBACK_LOADER = use_fallback_loader.checked;
         update_url_params();
     });
+
+    // export
+    let export_presentation = document.getElementById("export-presentation") as HTMLButtonElement | null;
+    if (export_presentation !== null) {
+        let target = export_presentation.dataset.target as string;
+        let project_name = export_presentation.dataset.name as string;
+        export_presentation.addEventListener("click", () => {
+            // flash("The project is being exported as a presentation, this might take a few seconds. Open the terminal for more info.", "info");
+            spin_button(export_presentation as HTMLButtonElement);
+            send_json(target, { "name": project_name }, (response: any) => {
+                if (response.success) {
+                    export_presentation?.remove();
+                    flash("The project has been exported, copy the project directory into a web server to serve it. More information can be found in the documentation.", "success");
+                }
+                else
+                    flash(`The editor unexpectedly failed to export the project '${project_name}' as a presentation. For more information see the console log. Please consider opening an Issue on GitHub if this problem persists.`, "danger");
+            });
+        });
+    }
 }
 
 // ignore keyboard layout

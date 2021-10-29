@@ -31,12 +31,13 @@ def get_project_section(raw_section: Dict[str, Any]) -> Section:
 
 def get_project(path: str) -> Tuple[Optional[str], List[Section]]:
     """Parse project json file if valid.
+    ``path`` is path to prject dir, not to the json index file.
     Otherwise return ``None`` as name.
     """
-    raw_sections = valid_json_load(path, get_config().PROJECT_SCHEMA)
+    raw_sections = valid_json_load(os.path.join(path, "project.json"), get_config().PROJECT_SCHEMA)
     if raw_sections is None:
         return None, []
-    name = os.path.basename(pathlib.Path(path).parent)
+    name = os.path.basename(path)
     sections: List[Section] = []
     for raw_section in raw_sections:
         sections.append(get_project_section(raw_section))
@@ -51,7 +52,7 @@ def get_projects() -> Dict[str, List[Section]]:
     for root, _, files in walk(".", 1):
         for file in files:
             if file == "project.json":
-                project_paths.append(os.path.join(root, file))
+                project_paths.append(root)
     projects: Dict[str, List[Section]] = {}
     for project_path in project_paths:
         name, sections = get_project(project_path)

@@ -35,24 +35,24 @@ class Tutorial(Scene):
         title_ul = Underline(title)
         self.play(Write(title), run_time=0.5)
         text = VGroup(
-            Text("Press any of the usual \"next slide\"-keys"),
+            Text("Press any of the usual \"next\"-keys"),
             Text("like RightArrow or PageUp"),
-            Text("to go to the next slide."),
+            Text("to go to the next section."),
             Text("You can also use the > button above."),
         ).arrange(DOWN).shift(DOWN)
         self.play(Write(text), Write(title_ul), run_time=0.5)
         self.wait()
 
-        ################
-        # normal slide #
-        ################
-        self.next_section("normal slide", PresentationSectionType.NORMAL)
+        ##################
+        # normal section #
+        ##################
+        self.next_section("normal section", PresentationSectionType.NORMAL)
         self.remove(title, title_ul, text)
 
         dot = Dot([-4, -2, 0]).scale(3)
         text = VGroup(
-            Text("There are four different types of slides."),
-            MarkupText("This is the first type, a <b>normal slide</b>."),
+            Text("There are four different types of sections."),
+            MarkupText("This is the first type, a <b>normal section</b>."),
             Text("The animation plays and patiently waits"),
             Text("for the speaker to finally"),
             Text("get their point across."),
@@ -92,10 +92,10 @@ class Tutorial(Scene):
         self.play(FadeOut(dot), Write(text), run_time=0.5)
         self.wait()
 
-        ####################
-        # loop slide intro #
-        ####################
-        self.next_section("loop slide intro", PresentationSectionType.NORMAL)
+        ######################
+        # loop section intro #
+        ######################
+        self.next_section("loop section intro", PresentationSectionType.NORMAL)
         self.remove(text)
 
         text = VGroup(
@@ -107,15 +107,15 @@ class Tutorial(Scene):
         self.play(Write(text), run_time=0.5)
         self.wait()
 
-        ##############
-        # loop slide #
-        ##############
-        self.next_section("loop slide", PresentationSectionType.LOOP)
+        ################
+        # loop section #
+        ################
+        self.next_section("loop section", PresentationSectionType.LOOP)
         self.remove(text)
 
         text = VGroup(
             Text("This is the second type,"),
-            MarkupText("a <b>loop slide</b>."),
+            MarkupText("a <b>loop section</b>."),
         ).arrange(DOWN).shift(2*UP)
         self.play(Write(text), run_time=0.5)
 
@@ -130,10 +130,10 @@ class Tutorial(Scene):
         self.play(dot.animate.shift(RIGHT))
         self.play(MoveAlongPath(dot, circle), run_time=2)
 
-        ####################
-        # skip slide intro #
-        ####################
-        self.next_section("skip slide intro", PresentationSectionType.NORMAL)
+        ######################
+        # skip section intro #
+        ######################
+        self.next_section("skip section intro", PresentationSectionType.NORMAL)
         self.remove(text, dot, line, circle)
 
         text = VGroup(
@@ -147,17 +147,17 @@ class Tutorial(Scene):
         self.play(Write(text), run_time=0.5)
         self.wait()
 
-        ##############
-        # skip slide #
-        ##############
-        self.next_section("skip slide", PresentationSectionType.SKIP)
+        ################
+        # skip section #
+        ################
+        self.next_section("skip section", PresentationSectionType.SKIP)
         self.remove(text)
 
         text = VGroup(
-            MarkupText("This is a <b>skip slide</b>"),
-            Text("It functions just like a normal slide"),
+            MarkupText("This is a <b>skip section</b>"),
+            Text("It functions just like a normal section"),
             Text("with the difference that it immediately"),
-            Text("continues with the next slide"),
+            Text("continues with the next section"),
             Text("once it's finished."),
         ).arrange(DOWN).shift(1.5*UP)
 
@@ -168,7 +168,7 @@ class Tutorial(Scene):
         self.play(GrowFromCenter(circle))
         self.play(dot.animate.shift(RIGHT))
 
-        self.next_section("loop slide after skip slide", PresentationSectionType.LOOP)
+        self.next_section("loop section after skip section", PresentationSectionType.LOOP)
         self.play(MoveAlongPath(dot, circle), run_time=2)
 
         #########################
@@ -181,39 +181,39 @@ class Tutorial(Scene):
             Text("Let's finish the animation. Here we"),
             Text("encounter another problem: The dot"),
             Text("teleports when progressing to the"),
-            Text("next slide. You didn't see it?"),
+            Text("next section. You didn't see it?"),
             Text("Go back in time and try again."),
         ).arrange(DOWN).shift(1.5*UP)
 
         self.play(Write(text), Rotating(dot, about_point=[2, -2, 0]), run_time=1.5)
         self.wait()
 
-        #############################
-        # complete loop slide intro #
-        #############################
-        self.next_section("complete loop slide intro", PresentationSectionType.NORMAL)
+        ###############################
+        # complete loop section intro #
+        ###############################
+        self.next_section("complete loop section intro", PresentationSectionType.NORMAL)
         self.remove(text, dot, circle, line)
 
         text = VGroup(
             Text("This is where"),
-            MarkupText("<b>complete loop slides</b> come in."),
-            Text("They are just like loop slides."),
+            MarkupText("<b>complete loop section</b> come in."),
+            Text("They are just like loop sections."),
             Text("But when the speaker continues to"),
-            Text("the next slide, the complete loop"),
-            Text("slide finishes before continuing."),
+            Text("the next section, the complete loop"),
+            Text("section finishes before continuing."),
             Text("Third time's the charm:"),
         ).arrange(DOWN)
         self.play(Write(text), run_time=0.5)
         self.wait()
 
-        #######################
-        # complete loop slide #
-        #######################
-        self.next_section("before complete loop slide", PresentationSectionType.SKIP)
+        #########################
+        # complete loop section #
+        #########################
+        self.next_section("before complete loop section", PresentationSectionType.SKIP)
         self.remove(text)
 
         text = VGroup(
-            Text("When you go to the next slide,"),
+            Text("When you go to the next section,"),
             Text("the animation finishes first."),
             Text("Enjoy some smooth transitions"),
         ).arrange(DOWN).shift(2*UP)
@@ -223,10 +223,10 @@ class Tutorial(Scene):
         self.play(Write(text), GrowFromCenter(circle), run_time=0.5)
         self.play(dot.animate.shift(RIGHT))
 
-        self.next_section("complete loop slide", PresentationSectionType.COMPLETE_LOOP)
+        self.next_section("complete loop section", PresentationSectionType.COMPLETE_LOOP)
         self.play(MoveAlongPath(dot, circle), run_time=2)
 
-        self.next_section("after complete loop slide", PresentationSectionType.NORMAL)
+        self.next_section("after complete loop section", PresentationSectionType.NORMAL)
         self.play(Rotating(dot, about_point=[2, -2, 0]), run_time=1.5)
         self.wait()
 
@@ -242,19 +242,19 @@ class Tutorial(Scene):
             Text("you have to exit it first."),
             Text("To do that you can use Escape or F."),
             Text("The timeline shows the names"),
-            Text("and types of all slides. When"),
-            Text("you click on a slide on the timeline,"),
-            Text("that slide plays immediately."),
+            Text("and types of all section. When"),
+            Text("you click on a section on the timeline,"),
+            Text("that section plays immediately."),
         ).arrange(DOWN)
         self.play(Write(text), run_time=0.5)
         self.wait()
 
-        self.next_section("skip slides and the timeline", PresentationSectionType.NORMAL)
+        self.next_section("skip sections and the timeline", PresentationSectionType.NORMAL)
         self.remove(text)
 
         text = VGroup(
             Text("This shows another use case for"),
-            Text("skip slides:"),
+            Text("skip sections:"),
             Text("Splitting up bigger animations."),
             Text("With the timeline"),
             Text("you can skip to any part of it."),

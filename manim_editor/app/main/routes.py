@@ -1,7 +1,8 @@
 """Main backend file."""
 import os
 from flask import render_template, flash, redirect, url_for, request, jsonify, abort, send_file, current_app
-from ...editor import get_scenes, create_project_dir, SectionId, populate_project, get_projects, get_project
+
+from ...editor import get_scenes, create_project_dir, SectionId, populate_project, get_projects, get_project, export_presentation
 
 from . import bp
 
@@ -20,10 +21,24 @@ def project_selection():
 
 @bp.route("/edit_project/<name>")
 def edit_project(name: str):
-    project_name, sections = get_project(os.path.join(name, "project.json"))
+    project_name, sections = get_project(name)
     if project_name is None:
         abort(404)
-    return render_template("edit_project.html", version=current_app.config["VERSION"], title="Edit Project", name=name, sections=sections)
+    return render_template("edit_project.html", version=current_app.config["VERSION"], title="Edit Project", name=name, sections=sections, present_export=False)
+
+
+# ajax
+@bp.route("/export_presentation", methods=["POST"])
+def export_presenter():
+    project = request.json
+    if project is None:
+        abort(400)
+    project_name, sections = get_project(project["name"])
+    if project_name is None:
+        print(f"Project '{project['name']}' couldn't be found.")
+        return jsonify(success=False)
+    export_presentation(project_name, sections)
+    return jsonify(success=True)
 
 
 @bp.route("/serve_project_static/<name>/<path>")
@@ -68,7 +83,7 @@ def confirm_section_selection():
     project = request.json
     if project is None:
         abort(400)
-    project_name = project["name"]
+    project_name: str = project["name"]
     sections = [SectionId(section["scene_id"], section["section_id"]) for section in project["sections"]]
     success = populate_project(project_name, sections)
     if success:

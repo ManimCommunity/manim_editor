@@ -112,7 +112,7 @@
     </div>
     <!-- video player -->
     <div class="col">
-        <h1>Project {{ name }}</h1>
+        <h1>{{ name }}</h1>
 
         <div id="videos-div" data-project_file="{{ url_for('main.serve_project_static', name=name, path='project.json') }}">
             <video id="video0" class="main-video" muted>
@@ -126,21 +126,26 @@
     <!-- buttons -->
     <div class="col">
         <div class="btn-toolbar mt-4" role="toolbar">
-            <div class="btn-group me-2 btn-group-lg mt-3" role="group">
+            <div class="btn-group me-2 btn-group mt-3" role="group">
                 <button id="previous-section" type="button" class="btn btn-secondary"><i class="bi-caret-left"></i></button>
                 <button id="restart-section" type="button" class="btn btn-secondary"><i class="bi-arrow-counterclockwise"></i></button>
                 <button id="pause" type="button" class="btn btn-secondary"><i class="bi-pause"></i></button>
                 <button id="next-section" type="button" class="btn btn-secondary"><i class="bi-caret-right"></i></button>
             </div>
-            <div class="btn-group btn-group-lg me-3 mt-3" role="group">
+            <div class="btn-group btn-group me-3 mt-3" role="group">
                 <button id="fullscreen" type="button" class="btn btn-secondary"><i class="bi-arrows-fullscreen"></i></button>
             </div>
-            <div class="btn-group btn-group-lg me-2 mt-3" role="group">
+            <div class="btn-group btn-group me-2 mt-3" role="group">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#settings-modal"><i class="bi-gear me-1"></i>Player Settings</button>
             </div>
-            <div class="btn-group btn-group-lg me-3 mt-3" role="group">
+            <div class="btn-group btn-group me-3 mt-3" role="group">
                 <button id="cache" type="button" class="btn btn-secondary"><i class="bi-download me-1"></i>Cache Videos</button>
             </div>
+            {% if not present_export %}
+            <div class="btn-group btn-group me-3 mt-3" role="group">
+                <button id="export-presentation" type="button" class="btn btn-danger" data-name="{{ name }}" data-target="{{ url_for('main.export_presenter') }}"><i class="bi-download me-1"></i>Export Presentation</button>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
