@@ -40,4 +40,4 @@ def export_presentation(project_name: str, sections: List[Section]) -> None:
     with open(os.path.join(project_name, "index.html"), "w") as file:
         file.write(html)
     copy_tree(os.path.join(BASE_DIR, "..", "app", "static", "webpack"), os.path.join(project_name, "webpack"))
-    copy_tree(os.path.join(BASE_DIR, "..", "app", "static", "img"), project_name)
+    copy_tree(os.path.join(BASE_DIR, "..", "app", "static", "img"), os.path.join(project_name, "img"))

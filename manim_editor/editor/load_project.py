@@ -1,6 +1,5 @@
 """Load a Manim Editor project."""
 import os
-import pathlib
 from fractions import Fraction
 from typing import Any, Dict, List, Optional, Tuple
 
