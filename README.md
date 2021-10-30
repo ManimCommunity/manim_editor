@@ -8,5 +8,5 @@
 Editor and Presenter for Manim Generated Content.
 <hr/>
 
-Take a look at the [Working Example](https://manimeditorproject.github.io/manim_editor/tutorial/).
+Take a look at the [Working Example](https://manimeditorproject.github.io/manim_editor/).
 More information can be found on the [documentation](https://manim-editor.readthedocs.io/en/stable/).
