@@ -3,7 +3,7 @@ import click
 import logging
 from waitress import serve
 import socket
-
+ 
 from .config import Config
 from .editor import set_config
 
