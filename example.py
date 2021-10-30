@@ -31,7 +31,7 @@ class Tutorial(Scene):
         self.wait()
         self.play(Unwrite(banner))
 
-        title = Text("Manim CE Web Presenter", font_size=60).shift(2*UP)
+        title = Text("Manim Editor", font_size=60).shift(2*UP)
         title_ul = Underline(title)
         self.play(Write(title), run_time=0.5)
         text = VGroup(
@@ -324,4 +324,6 @@ class Tutorial(Scene):
         image = ImageMobject("img.jpg")
         image.height = 9
         self.play(FadeIn(image))
+        self.wait(4)
+        self.remove(image)
         self.wait()
