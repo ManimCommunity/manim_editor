@@ -20,7 +20,7 @@ First you have to `install Manim <https://docs.manim.community/en/stable/install
 
 Once your Python environment is functioning and populated with Manim and its requirements you can run this command:
 
-.. code-block::
+.. code-block:: bash
 
     python -m pip install manim-editor
 
