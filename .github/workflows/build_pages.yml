@@ -1,0 +1,80 @@
+name: build pages
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    env:
+      DISPLAY: :0
+      PYTEST_ADDOPTS: "--color=yes" # colors in pytest
+      GLCONTEXT_WIN_LIBGL: C:\msys64\mingw64\bin\opengl32.dll
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        python: [3.9]
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Setup Python ${{ matrix.python }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install Poetry
+        run: |
+          pip install wheel
+          curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+      - name: Setup cache variables
+        shell: bash
+        id: cache-vars
+        run: |
+          export PATH="$HOME/.poetry/bin:$PATH"
+          echo "::set-output name=poetry-venv-dir::$(poetry config virtualenvs.path)"
+          echo "::set-output name=date::$(/bin/date -u "+%m%w%Y")"
+      - name: Setup Poetry cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.cache-vars.outputs.poetry-venv-dir }}
+          key: ${{ runner.os }}-poetry-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-${{ hashFiles('poetry.lock') }}
+
+      - name: Install and cache ffmpeg (all OS)
+        uses: FedericoCarboni/setup-ffmpeg@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+        id: setup-ffmpeg
+
+      - name: Install system dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt update
+          sudo apt-get -y install texlive texlive-latex-extra texlive-fonts-extra texlive-latex-recommended texlive-science texlive-fonts-extra tipa python-opengl libpango1.0-dev xvfb
+          echo "$HOME/.poetry/bin" >> $GITHUB_PATH
+          # start xvfb in the background
+          sudo /usr/bin/Xvfb $DISPLAY -screen 0 1280x1024x24 &
+
+      - name: Install Poetry Dev Environment
+        run: |
+          poetry install
+      - name: Run Manim
+        run: poetry run manim -qh --save_sections example.py Tutorial
+
+      - name: Run manim
+        run: poetry run manedit --quick_present_export media/videos/example/1080p60/sections/Tutorial.json 
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: pages
+          folder: Tutorial
+
