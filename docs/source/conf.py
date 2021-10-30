@@ -15,7 +15,7 @@
 # sys.path.insert(0, os.path.abspath('.'))
 from pathlib import Path
 
-import manim_editor
+# import manim_editor
 
 
 # -- Project information -----------------------------------------------------
@@ -25,7 +25,7 @@ copyright = '2021, Christopher Besch'
 author = 'Christopher Besch'
 
 # The full version, including alpha/beta/rc tags
-release = manim_editor.get_config().VERSION
+release = "v0.1.2"
 
 
 # -- General configuration ---------------------------------------------------
@@ -53,7 +53,7 @@ exclude_patterns = []
 html_theme = 'furo'
 html_favicon = str(Path("_static/favicon.png"))
 
-html_title = f"Manim Editor v{manim_editor.get_config().VERSION}"
+html_title = f"Manim Editor v0.1.2"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
