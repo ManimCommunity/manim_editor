@@ -1,7 +1,7 @@
 # Manim Editor
 
 [![PyPI version](https://badge.fury.io/py/manim-editor.svg)](https://badge.fury.io/py/manim-editor)
-[![Documentation Status](https://readthedocs.org/projects/manim-editor/badge/?version=latest)](https://manim-editor.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/manim-editor/badge/?version=stable)](https://manim-editor.readthedocs.io/en/stable/?badge=stable)
 
 ## [Working Example](https://manimeditorproject.github.io/manim_editor/tutorial/)
 
