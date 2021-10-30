@@ -10,7 +10,7 @@ The first thing you have to take care of is your ``Manim`` scene.
 What you have to take care of is the type of each section.
 The ``Manim Editor`` defines four types, which can be imported using ``from manim_editor import PresentationSectionType``.
 
-These types are explained in the `interactive tutorial <https://manimeditorproject.github.io/manim_editor/tutorial/>`_.
+These types are explained in the `interactive tutorial <https://manimeditorproject.github.io/manim_editor/>`_.
 
 .. table:: Types defined by the ``Manim Editor``
 
@@ -81,4 +81,4 @@ Simply run this in the projects directory:
 
 Instead of running a local web server you can host the project on an online web server (e.g. GitHub Pages).
 That way you can access it from anywhere.
-This is how the `example <https://manimeditorproject.github.io/manim_editor/tutorial/>`_ has been created.
+This is how the `example <https://manimeditorproject.github.io/manim_editor/>`_ has been created.
