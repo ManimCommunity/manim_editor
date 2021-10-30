@@ -28,3 +28,4 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.plugins]
 [tool.poetry.plugins."console_scripts"]
 "manedit" = "manim_editor.__main__:main"
+"manim_editor" = "manim_editor.__main__:main"
