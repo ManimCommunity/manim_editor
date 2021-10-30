@@ -26,7 +26,7 @@ def run_normal() -> None:
     log.setLevel(logging.ERROR)
     port = find_open_port()
     url = f"http://localhost:{port}"
-    print(f"Starting Manim Editor. Open {url} in a browser. (Press CTRL+C to quit)")
+    print(f"Starting Manim Editor v{Config.VERSION}. Open {url} in a browser. (Press CTRL+C to quit)")
     serve(app, host="0.0.0.0", port=port)
 
 

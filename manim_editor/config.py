@@ -13,7 +13,10 @@ class Config:
     FFMPEG_LOGLEVEL = "error"
     # protect user from scanning entire system when run in root
     RECURSION_DEPTH = 10
-    VERSION = "0.1.1"
+
+    # load version from package.json for npm package
+    with open(os.path.join(BASE_DIR, "..", "package.json"), "r") as file:
+        VERSION = json.load(file)["version"]
 
     with open(os.path.join(BASE_DIR, "section_index.schema.json"), "r") as file:
         SECTION_INDEX_SCHEMA = json.load(file)

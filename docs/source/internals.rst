@@ -1,2 +1,2 @@
-Infos for Contributors
-======================
+Internals
+=========
