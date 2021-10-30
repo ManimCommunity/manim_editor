@@ -4,7 +4,7 @@
 
 ## [Working Example](https://manimeditorproject.github.io/manim_editor/tutorial/)
 
-Editor and Presenter for Manim Generated Content
+Editor and Presenter for Manim Generated Content:
 
 https://manim-editor.readthedocs.io/en/latest/
 
