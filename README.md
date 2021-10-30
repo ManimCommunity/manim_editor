@@ -1,5 +1,7 @@
 # Manim Editor
 
+[![Documentation Status](https://readthedocs.org/projects/manim-editor/badge/?version=latest)](https://manim-editor.readthedocs.io/en/latest/?badge=latest)
+
 ## [Working Example](https://manimeditorproject.github.io/manim_editor/tutorial/)
 
 Editor and Presenter for Manim Generated Content
