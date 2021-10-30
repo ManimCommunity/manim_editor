@@ -20,6 +20,9 @@ jsonschema = "^4.1.2"
 
 [tool.poetry.dev-dependencies]
 manim = { git = "https://github.com/ManimCommunity/manim", branch = "main" }
+Sphinx = "^4"
+myst-parser = "^0.15.2"
+furo = "^2021.10.9"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

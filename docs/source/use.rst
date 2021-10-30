@@ -46,7 +46,7 @@ Otherwise the Manim Editor won't find anything to work with.
 This creates a ``media`` directory in the current working directory (CWD).
 
 Launching the Manim Editor
-==========================
+..........................
 
 The Manim Editor searches the current working directory (CWD) for Manim scenes.
 Therefore you should run the ``manedit`` command where your ``media`` folder has been created.

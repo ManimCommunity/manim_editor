@@ -261,3 +261,6 @@ manim_editor/app/static/webpack/
 # early dev testing
 media/
 test/
+
+# Sphinx docs build
+docs/build/

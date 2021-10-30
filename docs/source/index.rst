@@ -25,7 +25,7 @@ If you don't know how to use Manim, `it's documentation <https://docs.manim.comm
 Come back once you've familiarised yourself with the core concepts.
 
 Main Idea
-=========
+.........
 
 The Manim Editor is using the `Manim Section API <https://docs.manim.community/en/stable/tutorials/a_deeper_look.html#sections>`_.
 In addition to separating a scene into multiple sections and optionally storing names, types for each section are also supported.
@@ -42,7 +42,7 @@ Multiple sections (possibly from different Manim scenes) build one project that 
     thus you can't use an older version than that.
 
 Why the Manim Editor has Value
-==============================
+..............................
 
 Manim is one of the best ways of explaining complicated concepts with the precision of a programmatic approach.
 This precision has value not just for videos with a voice over but also for presentations.
@@ -58,9 +58,6 @@ Or what if it simply refuses to open your application of choice because it's suf
 
 In a situation like this the Manim Editor allows you to use any other non-dead internet-capable device.
 After all the presenter is running on the web, the software required to give your presentation is already installed on most devices, a modern web browser.
-
-Table of Content
-================
 
 .. toctree::
    :maxdepth: 2
