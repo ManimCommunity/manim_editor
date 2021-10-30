@@ -4,11 +4,13 @@ import json
 from typing import Any, Dict, Tuple, List
 
 from .manim_loader import get_scenes
+from .scene import Section
 
 
 def create_project_dir(project_name: str) -> Tuple[bool, str]:
     """Ensure existence of project dir.
-    Return True if success and message for the user."""
+    Return True if success and message for the user.
+    """
     print(f"Creating project '{project_name}'.")
     # TODO: valid dir name check for Windows
     if project_name == "":
@@ -31,15 +33,7 @@ class SectionId:
         self.section_id = section_id
 
 
-def populate_project(project_name: str, section_ids: List[SectionId]) -> bool:
-    """Create project JSON file, copy selected section video files and create thumbnails.
-    Return False at failure."""
-    print(f"Populating project '{project_name}'.")
-    # TODO: could theoretically be cached
-    scenes = get_scenes()
-    # select sections according to ids set by frontend
-    sections = [scenes[section.scene_id].sections[section.section_id] for section in section_ids]
-
+def populate_project_with_loaded_sections(project_name: str, sections: List[Section]) -> bool:
     project: List[Dict[str, Any]] = []
 
     # prepare section
@@ -52,3 +46,16 @@ def populate_project(project_name: str, section_ids: List[SectionId]) -> bool:
     with open(os.path.join(project_name, "project.json"), "w") as file:
         json.dump(project, file, indent=4)
     return True
+
+
+def populate_project(project_name: str, section_ids: List[SectionId]) -> bool:
+    """Create project JSON file, copy selected section video files and create thumbnails.
+    Return False at failure.
+    """
+    print(f"Populating project '{project_name}'.")
+    # TODO: could theoretically be cached
+    scenes = get_scenes()
+    # select sections according to ids set by frontend
+    sections = [scenes[section.scene_id].sections[section.section_id] for section in section_ids]
+
+    return populate_project_with_loaded_sections(project_name, sections)

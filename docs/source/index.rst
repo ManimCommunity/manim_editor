@@ -13,8 +13,8 @@ The ``Manim Editor`` is a tool for post-processing animations generated via ``Ma
     -- The `Manim Documentation <https://docs.manim.community/en/stable>`_
 
 The ``Manim Editor`` offers two main functions:
-- Reliable web presentations for technical concepts.
-- Automated video editing (not yet implemented).
+* Reliable web presentations for technical concepts.
+* Automated video editing (not yet implemented).
 
 .. tip::
 
