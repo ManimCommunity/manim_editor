@@ -1,6 +1,6 @@
 .. warning::
 
-    This documentation is a work in progress and is lacking in many ways.
+    This documentation is a work in progress and is in many ways lacking.
 
 Manim Editor Overview
 =====================
