@@ -1,16 +1,18 @@
 [tool.poetry]
 name = "manim_editor"
-version = "0.1.2"
+version = "0.2.1"
 description = "Editor and Presenter for Manim Generated Content"
 authors = ["christopher-besch <christopher.besch@gmx.de>"]
 license = "MIT"
 readme = "README.md"
+repository = "https://github.com/ManimEditorProject/manim_editor"
+documentation = "https://manim-editor.readthedocs.io"
 include = [
     "manim_editor/app/static/webpack/*"
 ]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.7"
 Flask = "^2.0.2"
 click = "^8.0.3"
 # TODO: uncomment once released
