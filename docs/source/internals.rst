@@ -13,6 +13,13 @@ Build from Source
 * compile web files: ``npm run build_debug` or `npm run build_release``
 * start editor in debug mode: ``manedit --debug``
 
+Files to be Updated when Bumping Version
+****************************************
+
+* ``pyproject.toml``
+* ``package.json``
+* ``docs/source/conf.py``
+
 
 History
 *******
