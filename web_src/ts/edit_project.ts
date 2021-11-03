@@ -44,6 +44,23 @@ function create_presentation(): Presentation {
     }
 }
 
+function toggle_pause(presentation: Presentation): void {
+    let button = document.getElementById("pause") as HTMLButtonElement;
+    let status = button.dataset.status as string;
+    if (status == "pause") {
+        presentation.pause();
+        button.dataset.status = "play";
+        button.innerHTML = '<i class="bi-play"></i>';
+    } else if (status == "play") {
+        presentation.play();
+        button.dataset.status = "pause";
+        button.innerHTML = '<i class="bi-pause"></i>';
+    }
+    else {
+        console.error(`Broken status '${status}' in dataset of pause button.`);
+    }
+}
+
 function attach_ui(presentation: Presentation): void {
     let previous = document.getElementById("previous-section") as HTMLButtonElement;
     let restart = document.getElementById("restart-section") as HTMLButtonElement;
@@ -57,7 +74,9 @@ function attach_ui(presentation: Presentation): void {
     previous.addEventListener("click", presentation.play_previous_section.bind(presentation));
     restart.addEventListener("click", presentation.restart_current_section.bind(presentation));
     next.addEventListener("click", presentation.play_next_section.bind(presentation));
-    pause.addEventListener("click", presentation.pause.bind(presentation));
+    pause.addEventListener("click", () => {
+        toggle_pause(presentation);
+    });
     fullscreen.addEventListener("click", presentation.enter_fullscreen.bind(presentation));
     cache.addEventListener("click", () => {
         spin_button(cache);
@@ -70,7 +89,6 @@ function attach_ui(presentation: Presentation): void {
     let cache_batch_size = document.getElementById("cache-batch-size") as HTMLInputElement;
     let past_sections_to_buffer = document.getElementById("past-sections-to-buffer") as HTMLInputElement;
     let future_sections_to_buffer = document.getElementById("future-sections-to-buffer") as HTMLInputElement;
-    let use_buffer_loader = document.getElementById("fallback-loader-selected") as HTMLInputElement;
     let use_fallback_loader = document.getElementById("fallback-loader-selected") as HTMLInputElement;
     cache_batch_size.value = CACHE_BATCH_SIZE.toString();
     past_sections_to_buffer.value = PAST_SECTIONS_TO_BUFFER.toString();
@@ -126,10 +144,9 @@ function attach_keyboard_ui(presentation: Presentation): void {
         "ArrowUp",
         "PageUp",
         "Enter",
-        "Space",
     ];
     const pause_keys = [
-        "P",
+        "Space",
     ];
     const fullscreen_keys = [
         "KeyF",
@@ -143,7 +160,7 @@ function attach_keyboard_ui(presentation: Presentation): void {
         else if (next_keys.includes(e.code))
             presentation.play_next_section();
         else if (pause_keys.includes(e.code))
-            presentation.pause();
+            toggle_pause(presentation);
         else if (fullscreen_keys.includes(e.code))
             presentation.toggle_fullscreen();
     });

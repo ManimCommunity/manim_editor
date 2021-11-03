@@ -112,10 +112,12 @@ export abstract class Presentation {
     }
 
     public pause(): void {
+        console.log("Stopped.");
         this.get_current_video().pause();
     }
 
     public play(): void {
+        console.log("Started.");
         this.get_current_video().play();
     }
 
