@@ -25,7 +25,7 @@ copyright = '2021, Christopher Besch'
 author = 'Christopher Besch'
 
 # The full version, including alpha/beta/rc tags
-release = "v0.2.3"
+release = "v0.2.4"
 
 
 # -- General configuration ---------------------------------------------------
