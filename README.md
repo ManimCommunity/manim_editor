@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="#"><img src="banner.png"></a>
+    <a href="#"><img src="https://raw.githubusercontent.com/ManimEditorProject/manim_editor/main/banner.png"></a>
     <br />
     <br />
     <a href="https://pypi.org/project/manim-editor/"><img src="https://img.shields.io/pypi/v/manim-editor.svg?style=flat&logo=pypi" alt="PyPI Latest Release"></a>
