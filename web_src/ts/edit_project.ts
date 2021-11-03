@@ -1,4 +1,4 @@
-import { spin_button } from "./utils"
+import { spin_button } from "./utils";
 import { Presentation } from "./presenter/presentation";
 import { BufferPresentation } from "./buffer_presenter/buffer_presentation";
 import { FallbackPresentation } from "./fallback_presenter/fallback_presentation";
@@ -44,56 +44,17 @@ function create_presentation(): Presentation {
     }
 }
 
-function toggle_pause(presentation: Presentation): void {
-    let button = document.getElementById("pause") as HTMLButtonElement;
-    let status = button.dataset.status as string;
-    if (status == "pause") {
-        presentation.pause();
-        button.dataset.status = "play";
-        button.innerHTML = '<i class="bi-play"></i>';
-    } else if (status == "play") {
-        presentation.play();
-        button.dataset.status = "pause";
-        button.innerHTML = '<i class="bi-pause"></i>';
-    }
-    else {
-        console.error(`Broken status '${status}' in dataset of pause button.`);
-    }
-}
-
-function attach_ui(presentation: Presentation): void {
-    let previous = document.getElementById("previous-section") as HTMLButtonElement;
-    let restart = document.getElementById("restart-section") as HTMLButtonElement;
-    let next = document.getElementById("next-section") as HTMLButtonElement;
-    let pause = document.getElementById("pause") as HTMLButtonElement;
-    let fullscreen = document.getElementById("fullscreen") as HTMLButtonElement;
-    let cache = document.getElementById("cache") as HTMLButtonElement;
-    let update_settings = document.getElementById("update-settings") as HTMLButtonElement;
-
-    // add callbacks
-    previous.addEventListener("click", presentation.play_previous_section.bind(presentation));
-    restart.addEventListener("click", presentation.restart_current_section.bind(presentation));
-    next.addEventListener("click", presentation.play_next_section.bind(presentation));
-    pause.addEventListener("click", () => {
-        toggle_pause(presentation);
-    });
-    fullscreen.addEventListener("click", presentation.enter_fullscreen.bind(presentation));
-    cache.addEventListener("click", () => {
-        spin_button(cache);
-        presentation.cache(() => {
-            cache.remove();
-        });
-    });
-
-    // set player setting values
+function attach_settings(): void {
     let cache_batch_size = document.getElementById("cache-batch-size") as HTMLInputElement;
     let past_sections_to_buffer = document.getElementById("past-sections-to-buffer") as HTMLInputElement;
     let future_sections_to_buffer = document.getElementById("future-sections-to-buffer") as HTMLInputElement;
     let use_fallback_loader = document.getElementById("fallback-loader-selected") as HTMLInputElement;
+    let update_settings = document.getElementById("update-settings") as HTMLButtonElement;
+
     cache_batch_size.value = CACHE_BATCH_SIZE.toString();
     past_sections_to_buffer.value = PAST_SECTIONS_TO_BUFFER.toString();
     future_sections_to_buffer.value = FUTURE_SECTIONS_TO_BUFFER.toString();
-    // use_buffer_loader.checked = !USE_FALLBACK_LOADER;
+    // automatically set use_buffer_loader
     use_fallback_loader.checked = USE_FALLBACK_LOADER;
 
     // set callback
@@ -109,8 +70,9 @@ function attach_ui(presentation: Presentation): void {
         USE_FALLBACK_LOADER = use_fallback_loader.checked;
         update_url_params();
     });
+}
 
-    // export
+function attach_export(): void {
     let export_presentation = document.getElementById("export-presentation") as HTMLButtonElement | null;
     if (export_presentation !== null) {
         let target = export_presentation.dataset.target as string;
@@ -160,7 +122,7 @@ function attach_keyboard_ui(presentation: Presentation): void {
         else if (next_keys.includes(e.code))
             presentation.play_next_section();
         else if (pause_keys.includes(e.code))
-            toggle_pause(presentation);
+            presentation.toggle_pause();
         else if (fullscreen_keys.includes(e.code))
             presentation.toggle_fullscreen();
     });
@@ -169,6 +131,7 @@ function attach_keyboard_ui(presentation: Presentation): void {
 document.body.onload = () => {
     load_url_params();
     let presentation = create_presentation();
-    attach_ui(presentation);
+    attach_settings();
+    attach_export();
     attach_keyboard_ui(presentation);
 }

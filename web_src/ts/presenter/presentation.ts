@@ -1,4 +1,4 @@
-import { get_json } from "../utils";
+import { spin_button, get_json } from "../utils";
 import { Section, SectionJson, SectionType } from "./section";
 
 export abstract class Presentation {
@@ -8,6 +8,10 @@ export abstract class Presentation {
     private videos_div: HTMLDivElement;
     private timeline_sections: HTMLCollectionOf<HTMLDivElement>;
     private timeline_indicators: HTMLCollectionOf<HTMLElement>;
+    private pause_button: HTMLButtonElement;
+
+    // switch between play and pause
+    private button_should_pause = true;
 
     private cache_batch_size: number;
     // gets flipped when displaying first video
@@ -29,6 +33,7 @@ export abstract class Presentation {
         this.videos_div = document.getElementById("videos-div") as HTMLDivElement;
         this.timeline_sections = document.getElementsByClassName("timeline-element") as HTMLCollectionOf<HTMLDivElement>;
         this.timeline_indicators = document.getElementsByClassName("timeline-indicator") as HTMLCollectionOf<HTMLDivElement>;
+        this.pause_button = document.getElementById("pause") as HTMLButtonElement;
 
         // load_sections
         let project_file = this.videos_div.dataset.project_file as string;
@@ -42,12 +47,15 @@ export abstract class Presentation {
             console.log(`All ${sections.length} sections have been parsed successfully.`)
 
             this.attach_timeline();
+            this.attach_buttons();
             // start the action
             this.play_section(0);
         });
     }
 
+    // update currently playing video in html video element
     private update_video(): void {
+        this.set_button_pause();
         // correct section already current
         if (this.current_section == this.previous_section) {
             // restart video
@@ -111,16 +119,6 @@ export abstract class Presentation {
         this.previous_section = this.current_section;
     }
 
-    public pause(): void {
-        console.log("Stopped.");
-        this.get_current_video().pause();
-    }
-
-    public play(): void {
-        console.log("Started.");
-        this.get_current_video().play();
-    }
-
     // skip_complete_loop can be used in the timeline or as a forced continue
     public play_section(section: number, skip_complete_loop = false): void {
         if (section < 0 || section >= this.sections.length) {
@@ -153,21 +151,6 @@ export abstract class Presentation {
         this.play_section(this.current_section - 1, true);
     }
 
-    private attach_timeline(): void {
-        for (let i = 0; i < this.timeline_sections.length; ++i) {
-            this.timeline_sections[i].addEventListener("click", () => {
-                this.play_section(i, true);
-            });
-        }
-    }
-
-    private update_timeline(): void {
-        if (this.previous_section != -1)
-            this.timeline_indicators[this.previous_section].innerHTML = `<i class="timeline-indicators bi-check-circle" role="img"></i>`;
-        this.timeline_indicators[this.current_section].innerHTML = `<i class="timeline-indicators bi-circle-fill" role="img"></i>`;
-        this.timeline_sections[this.current_section].scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-
     public get_current_section(): number { return this.current_section; }
 
     private get_current_video(): HTMLVideoElement {
@@ -177,6 +160,9 @@ export abstract class Presentation {
             return this.video1;
     }
 
+    /////////////
+    // caching //
+    /////////////
     // asynchronous, recursive; downloads everything after offset in batches
     private cache_batch(offset: number, on_finished: { (): void; }): void {
         let finished = offset;
@@ -203,6 +189,9 @@ export abstract class Presentation {
         this.cache_batch(0, on_finished);
     }
 
+    ////////////////
+    // fullscreen //
+    ////////////////
     // TODO: doesn't work on safari
     public enter_fullscreen(): void {
         if (this.videos_div.requestFullscreen)
@@ -226,7 +215,7 @@ export abstract class Presentation {
         //     document.msExitFullscreen();
     }
 
-    public fullscreen_status(): boolean {
+    private fullscreen_status(): boolean {
         // return document.fullscreenElement != null ||
         //     document.webkitFullscreenElement != null ||
         //     document.mozFullScreenElement != null;
@@ -240,6 +229,76 @@ export abstract class Presentation {
             this.enter_fullscreen();
     }
 
+    ////////////////////
+    // user interface //
+    ////////////////////
+    private attach_timeline(): void {
+        for (let i = 0; i < this.timeline_sections.length; ++i) {
+            this.timeline_sections[i].addEventListener("click", () => {
+                this.play_section(i, true);
+            });
+        }
+    }
+
+    private update_timeline(): void {
+        if (this.previous_section != -1)
+            this.timeline_indicators[this.previous_section].innerHTML = `<i class="timeline-indicators bi-check-circle" role="img"></i>`;
+        this.timeline_indicators[this.current_section].innerHTML = `<i class="timeline-indicators bi-circle-fill" role="img"></i>`;
+        this.timeline_sections[this.current_section].scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    // update icon on button
+    private set_button_play(): void {
+        this.button_should_pause = false;
+        this.pause_button.innerHTML = '<i class="bi-play"></i>';
+    }
+    private set_button_pause(): void {
+        this.button_should_pause = true;
+        this.pause_button.innerHTML = '<i class="bi-pause"></i>';
+    }
+
+    public pause(): void {
+        console.log("Stopped.");
+        this.get_current_video().pause();
+        this.set_button_play();
+    }
+    public play(): void {
+        console.log("Started.");
+        this.get_current_video().play();
+        this.set_button_pause();
+    }
+    public toggle_pause(): void {
+        if (this.button_should_pause)
+            this.pause();
+        else
+            this.play();
+    }
+
+    public attach_buttons(): void {
+        let previous = document.getElementById("previous-section") as HTMLButtonElement;
+        let restart = document.getElementById("restart-section") as HTMLButtonElement;
+        let next = document.getElementById("next-section") as HTMLButtonElement;
+        let pause = document.getElementById("pause") as HTMLButtonElement;
+        let fullscreen = document.getElementById("fullscreen") as HTMLButtonElement;
+        let cache = document.getElementById("cache") as HTMLButtonElement;
+
+        // add callbacks
+        previous.addEventListener("click", this.play_previous_section.bind(this));
+        restart.addEventListener("click", this.restart_current_section.bind(this));
+        next.addEventListener("click", this.play_next_section.bind(this));
+        pause.addEventListener("click", this.toggle_pause.bind(this));
+        fullscreen.addEventListener("click", this.enter_fullscreen.bind(this));
+        cache.addEventListener("click", () => {
+            spin_button(cache);
+            this.cache(() => {
+                cache.remove();
+            });
+        });
+    }
+
+    ////////////////////////////////
+    // to be defined by inheritor //
+    ////////////////////////////////
     protected abstract add_section(section: SectionJson, video: string): void;
 
     // called after section changed

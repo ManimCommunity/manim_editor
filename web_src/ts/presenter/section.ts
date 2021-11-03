@@ -43,15 +43,24 @@ export abstract class Section {
     public cache(on_cached: () => void): void {
         let request = new XMLHttpRequest();
         request.onload = () => {
-            if (request.status == 200) {
+            if (request.status == 200 || request.status == 206) {
                 console.log(`Cached section '${this.name}'`)
                 on_cached();
             }
-            else
+            else {
                 console.error(`Section '${this.name}' failed to be cached with status ${request.status}`);
+                // another attempt in 10 sec
+                window.setTimeout(() => {
+                    this.cache(on_cached);
+                }, 10000);
+            }
         };
         request.onerror = () => {
             console.error(`Section '${this.name}' failed to be cached`);
+            // another attempt in 10 sec
+            window.setTimeout(() => {
+                this.cache(on_cached);
+            }, 10000);
         };
         request.open("GET", this.video, true);
         request.send();
