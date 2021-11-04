@@ -192,34 +192,33 @@ export abstract class Presentation {
     ////////////////
     // fullscreen //
     ////////////////
-    // TODO: doesn't work on safari
     public enter_fullscreen(): void {
-        if (this.videos_div.requestFullscreen)
+        // conversion to any required because WebKit API not known to TypeScript
+        if ((this.videos_div as any).requestFullscreen)
             this.videos_div.requestFullscreen();
-        // // safari
-        // else if (this.videos_div.webkitRequestFullscreen)
-        //     this.videos_div.webkitRequestFullscreen();
-        // // ie11
-        // else if (this.videos_div.msRequestFullscreen)
-        //     this.videos_div.msRequestFullscreen();
+        // safari
+        else if ((this.videos_div as any).webkitRequestFullscreen)
+            (this.videos_div as any).webkitRequestFullscreen();
+        // ie11
+        else if ((this.videos_div as any).msRequestFullscreen)
+            (this.videos_div as any).msRequestFullscreen();
     }
 
     public exit_fullscreen(): void {
-        if (document.exitFullscreen)
-            document.exitFullscreen();
-        // // safari
-        // else if (document.webkitExitFullscreen)
-        //     document.webkitExitFullscreen();
-        // // ie11
-        // else if (document.msExitFullscreen)
-        //     document.msExitFullscreen();
+        if ((document as any).exitFullscreen)
+            (document as any).exitFullscreen();
+        // safari
+        else if ((document as any).webkitExitFullscreen)
+            (document as any).webkitExitFullscreen();
+        // ie11
+        else if ((document as any).msExitFullscreen)
+            (document as any).msExitFullscreen();
     }
 
     private fullscreen_status(): boolean {
-        // return document.fullscreenElement != null ||
-        //     document.webkitFullscreenElement != null ||
-        //     document.mozFullScreenElement != null;
-        return document.fullscreenElement != null;
+        return (document as any).fullscreenElement != null ||
+            (document as any).webkitFullscreenElement != null ||
+            (document as any).mozFullScreenElement != null;
     }
 
     public toggle_fullscreen(): void {
