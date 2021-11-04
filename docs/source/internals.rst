@@ -18,7 +18,7 @@ Files to be Updated when Bumping Version
 
 * ``pyproject.toml``
 * ``package.json``
-  * ``manim_editor/config.py``
+* ``manim_editor/config.py``
 * ``docs/source/conf.py``
 
 
