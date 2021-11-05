@@ -14,3 +14,8 @@
 
 Take a look at the [Working Example](https://manimeditorproject.github.io/manim_editor/).
 More information can be found on the [documentation](https://manim-editor.readthedocs.io/en/stable/).
+
+These Browsers are supported:
+- Firefox
+- Chrome
+- Edge
