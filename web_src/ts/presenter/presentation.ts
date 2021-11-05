@@ -238,7 +238,9 @@ export abstract class Presentation {
         if (this.previous_section != -1)
             this.timeline_indicators[this.previous_section].innerHTML = `<i class="timeline-indicators bi-check-circle" role="img"></i>`;
         this.timeline_indicators[this.current_section].innerHTML = `<i class="timeline-indicators bi-circle-fill" role="img"></i>`;
+        console.error("scrollinto");
         this.timeline_sections[this.current_section].scrollIntoView({ behavior: "smooth", block: "center" });
+        // this.timeline_sections[this.current_section].scrollIntoView();
     }
 
     // update icon on button
