@@ -193,32 +193,27 @@ export abstract class Presentation {
     // fullscreen //
     ////////////////
     public enter_fullscreen(): void {
+        console.log("Entering fullscreen.");
         // conversion to any required because WebKit API not known to TypeScript
         if ((this.videos_div as any).requestFullscreen)
             this.videos_div.requestFullscreen();
         // safari
         else if ((this.videos_div as any).webkitRequestFullscreen)
             (this.videos_div as any).webkitRequestFullscreen();
-        // ie11
-        else if ((this.videos_div as any).msRequestFullscreen)
-            (this.videos_div as any).msRequestFullscreen();
     }
 
     public exit_fullscreen(): void {
+        console.log("Exiting fullscreen.");
         if ((document as any).exitFullscreen)
             (document as any).exitFullscreen();
         // safari
         else if ((document as any).webkitExitFullscreen)
             (document as any).webkitExitFullscreen();
-        // ie11
-        else if ((document as any).msExitFullscreen)
-            (document as any).msExitFullscreen();
     }
 
     private fullscreen_status(): boolean {
         return (document as any).fullscreenElement != null ||
-            (document as any).webkitFullscreenElement != null ||
-            (document as any).mozFullScreenElement != null;
+            (document as any).webkitFullscreenElement != null;
     }
 
     public toggle_fullscreen(): void {
