@@ -28,7 +28,7 @@
     cursor: none;
 }
 
-:fullscreen .main-video {
+.main-video:fullscreen {
     min-width: 100vw;
     min-height: 100vh;
     max-width: 100vw;
