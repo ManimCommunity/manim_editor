@@ -14,6 +14,9 @@ class Config:
     # protect user from scanning entire system when run in root
     RECURSION_DEPTH = 10
 
+    ROOT_DIR = BASE_DIR
+    STATIC_DIR = os.path.join(BASE_DIR, "app", "static")
+
     VERSION = "v0.2.5"
 
     with open(os.path.join(BASE_DIR, "section_index.schema.json"), "r") as file:

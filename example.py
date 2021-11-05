@@ -1,7 +1,12 @@
 from manim import *
 from manim.mobject.geometry import ArrowTriangleFilledTip
 
-from manim_editor import PresentationSectionType
+from manim_editor import PresentationSectionType, IconNormal, IconSkip, IconLoop, IconCompleteLoop
+
+
+class IconTest(Scene):
+    def construct(self):
+        self.add(VGroup(IconNormal(), IconSkip(), IconLoop(), IconCompleteLoop()).arrange(RIGHT))
 
 
 class ManimEditorSquareLogo(ZoomedScene):
