@@ -17,5 +17,5 @@ More information can be found on the [documentation](https://manim-editor.readth
 
 These Browsers are supported:
 - Firefox
-- Chrome
+- Chrome/Chromium
 - Edge
