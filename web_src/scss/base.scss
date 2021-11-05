@@ -28,7 +28,7 @@
     cursor: none;
 }
 
-.main-video:fullscreen {
+:fullscreen .main-video {
     min-width: 100vw;
     min-height: 100vh;
     max-width: 100vw;
@@ -36,7 +36,7 @@
 }
 
 // Apple needs a special favour...again
-.main-video:-webkit-full-screen {
+:-webkit-full-screen .main-video {
     min-width: 100vw;
     min-height: 100vh;
     max-width: 100vw;
