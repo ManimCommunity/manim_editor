@@ -6,9 +6,16 @@ export abstract class Presentation {
     private video0: HTMLVideoElement;
     private video1: HTMLVideoElement;
     private videos_div: HTMLDivElement;
+
     private timeline_sections: HTMLCollectionOf<HTMLDivElement>;
     private timeline_indicators: HTMLCollectionOf<HTMLElement>;
+
     private pause_button: HTMLButtonElement;
+
+    private normal_legend: HTMLTableRowElement;
+    private skip_legend: HTMLTableRowElement;
+    private loop_legend: HTMLTableRowElement;
+    private complete_loop_legend: HTMLTableRowElement;
 
     // switch between play and pause
     private button_should_pause = true;
@@ -34,6 +41,10 @@ export abstract class Presentation {
         this.timeline_sections = document.getElementsByClassName("timeline-element") as HTMLCollectionOf<HTMLDivElement>;
         this.timeline_indicators = document.getElementsByClassName("timeline-indicator") as HTMLCollectionOf<HTMLDivElement>;
         this.pause_button = document.getElementById("pause") as HTMLButtonElement;
+        this.normal_legend = document.getElementById("normal-legend") as HTMLTableRowElement;
+        this.skip_legend = document.getElementById("skip-legend") as HTMLTableRowElement;
+        this.loop_legend = document.getElementById("loop-legend") as HTMLTableRowElement;
+        this.complete_loop_legend = document.getElementById("complete-loop-legend") as HTMLTableRowElement;
 
         // load_sections
         let project_file = this.videos_div.dataset.project_file as string;
@@ -235,11 +246,43 @@ export abstract class Presentation {
     }
 
     private update_timeline(): void {
+        // deselect old section in timeline, select current and scroll to
         if (this.previous_section != -1)
             this.timeline_indicators[this.previous_section].innerHTML = `<i class="timeline-indicators bi-check-circle" role="img"></i>`;
         this.timeline_indicators[this.current_section].innerHTML = `<i class="timeline-indicators bi-circle-fill" role="img"></i>`;
         // TODO: sometimes doesn't work on Chromium
         this.timeline_sections[this.current_section].scrollIntoView({ behavior: "smooth", block: "center" });
+
+        // remove old type in legend and select current
+        if (this.previous_section != -1)
+            switch (this.sections[this.previous_section].get_type()) {
+                case SectionType.NORMAL:
+                    this.normal_legend.classList.remove("table-active");
+                    break;
+                case SectionType.SKIP:
+                    this.skip_legend.classList.remove("table-active");
+                    break;
+                case SectionType.LOOP:
+                    this.loop_legend.classList.remove("table-active");
+                    break;
+                case SectionType.COMPLETE_LOOP:
+                    this.complete_loop_legend.classList.remove("table-active");
+                    break;
+            }
+        switch (this.sections[this.current_section].get_type()) {
+            case SectionType.NORMAL:
+                this.normal_legend.classList.add("table-active");
+                break;
+            case SectionType.SKIP:
+                this.skip_legend.classList.add("table-active");
+                break;
+            case SectionType.LOOP:
+                this.loop_legend.classList.add("table-active");
+                break;
+            case SectionType.COMPLETE_LOOP:
+                this.complete_loop_legend.classList.add("table-active");
+                break;
+        }
     }
 
     // update icon on button

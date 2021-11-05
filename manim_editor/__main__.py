@@ -28,7 +28,7 @@ def run_normal() -> None:
     log.setLevel(logging.ERROR)
     port = find_open_port()
     url = f"http://localhost:{port}"
-    print(f"Starting Manim Editor v{Config.VERSION}. Open {url} in a browser. (Press CTRL+C to quit)")
+    print(f"Starting Manim Editor {Config.VERSION}. Open {url} in a browser. (Press CTRL+C to quit)")
     serve(app, host="0.0.0.0", port=port)
 
 
@@ -63,7 +63,7 @@ def run_quick_present_export(section_index_path: str) -> None:
 @click.option("--quick_present_export", help="Create a project from a scene and export the presentation. The path to the section index file must be provided as the argument.")
 def main(debug: bool, version: bool, quick_present_export: Optional[str]) -> None:
     if version:
-        print(f"Manim Editor v{Config.VERSION}")
+        print(f"Manim Editor {Config.VERSION}")
         return
     if quick_present_export is not None:
         run_quick_present_export(quick_present_export)

@@ -71,8 +71,8 @@
 </div>
 
 <div class="row gx-4">
-    <!-- timeline -->
     <div class="col-2">
+        <!-- timeline -->
         <h1 class="text-center">Timeline</h1>
         <!-- project json file needs to be accessible from TypeScript -->
         <div class="timeline row g-2">
@@ -83,9 +83,9 @@
                     <div class="row card-text">
                         <div class="col">
                             {% if section.type == "presentation.normal" %}
-                            <i class="bi-chevron-bar-down" role="img"></i>
+                            <i class="bi-play-btn" role="img"></i>
                             {% elif section.type == "presentation.skip" %}
-                            <i class="bi-chevron-double-down" role="img"></i>
+                            <i class="bi-wind" role="img"></i>
                             {% elif section.type == "presentation.loop" %}
                             <i class="bi-arrow-clockwise" role="img"></i>
                             {% elif section.type == "presentation.complete_loop" %}
@@ -109,9 +109,36 @@
             </div>
             {% endfor %}
         </div>
+        <!-- legend -->
+        <table class="table table-sm mt-2">
+            <thead>
+                <tr>
+                    <th scope="col-2"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="normal-legend" class="table-active">
+                    <td scope="col-2"><i class="bi-play-btn" role="img"></i></td>
+                    <td scope="col">Normal</td>
+                </tr>
+                <tr id="skip-legend">
+                    <td scope="col-2"><i class="bi-wind" role="img"></i></td>
+                    <td scope="col">Skip</td>
+                </tr>
+                <tr id="loop-legend">
+                    <td scope="col-2"><i class="bi-arrow-clockwise" role="img"></i></td>
+                    <td scope="col">Loop</td>
+                </tr>
+                <tr id="complete-loop-legend">
+                    <td scope="col-2"><i class="bi-hourglass-split" role="img"></i></td>
+                    <td scope="col">Complete Loop</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <!-- video player -->
     <div class="col">
+        <!-- video player -->
         <h1>{{ name }}</h1>
 
         <div id="videos-div" data-project_file="{{ url_for('main.serve_project_static', name=name, path='project.json') }}">
@@ -123,8 +150,8 @@
             </video>
         </div>
     </div>
-    <!-- buttons -->
     <div class="col">
+        <!-- buttons -->
         <div class="btn-toolbar mt-4" role="toolbar">
             <div class="btn-group me-2 btn-group mt-3" role="group">
                 <button id="previous-section" type="button" class="btn btn-secondary"><i class="bi-caret-left"></i></button>
