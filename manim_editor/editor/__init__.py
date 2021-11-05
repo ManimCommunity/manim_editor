@@ -5,3 +5,4 @@ from .load_project import *
 from .commands import *
 from .config import *
 from .edit_project import *
+from .manim_assets import IconNormal, IconSkip, IconLoop,IconCompleteLoop

@@ -1,6 +1,6 @@
 from .editor import PresentationSectionType, get_config, set_config
+from .editor import IconNormal, IconSkip, IconLoop,IconCompleteLoop
 from .config import Config
-
 set_config(Config)
 
 # NORMAL = PresentationSectionType.NORMAL
