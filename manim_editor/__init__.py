@@ -1,7 +1,7 @@
 from .editor import set_config
 from .config import Config
 
-from .editor import IconNormal, IconSkip, IconLoop, IconCompleteLoop
+from .editor import IconNormal, IconSkip, IconLoop, IconCompleteLoop, EditorLogo, EditorBanner
 from .editor import PresentationSectionType, get_config, set_config
 
 set_config(Config)
