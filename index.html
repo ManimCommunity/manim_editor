@@ -93,8 +93,8 @@
 </div>
 
 <div class="row gx-4">
-    <!-- timeline -->
     <div class="col-2">
+        <!-- timeline -->
         <h1 class="text-center">Timeline</h1>
         <!-- project json file needs to be accessible from TypeScript -->
         <div class="timeline row g-2">
@@ -105,7 +105,7 @@
                     <div class="row card-text">
                         <div class="col">
                             
-                            <i class="bi-chevron-bar-down" role="img"></i>
+                            <i class="bi-play-btn" role="img"></i>
                             
                             title
                         </div>
@@ -128,7 +128,7 @@
                     <div class="row card-text">
                         <div class="col">
                             
-                            <i class="bi-chevron-bar-down" role="img"></i>
+                            <i class="bi-play-btn" role="img"></i>
                             
                             normal section
                         </div>
@@ -151,7 +151,7 @@
                     <div class="row card-text">
                         <div class="col">
                             
-                            <i class="bi-chevron-bar-down" role="img"></i>
+                            <i class="bi-play-btn" role="img"></i>
                             
                             back in time
                         </div>
@@ -174,7 +174,7 @@
                     <div class="row card-text">
                         <div class="col">
                             
-                            <i class="bi-chevron-bar-down" role="img"></i>
+                            <i class="bi-play-btn" role="img"></i>
                             
                             fullscreen
                         </div>
@@ -197,7 +197,7 @@
                     <div class="row card-text">
                         <div class="col">
                             
-                            <i class="bi-chevron-bar-down" role="img"></i>
+                            <i class="bi-play-btn" role="img"></i>
                             
                             loop section intro
                         </div>
@@ -243,7 +243,7 @@
                     <div class="row card-text">
                         <div class="col">
                             
-                            <i class="bi-chevron-bar-down" role="img"></i>
+                            <i class="bi-play-btn" role="img"></i>
                             
                             skip section intro
                         </div>
@@ -266,7 +266,7 @@
                     <div class="row card-text">
                         <div class="col">
                             
-                            <i class="bi-chevron-double-down" role="img"></i>
+                            <i class="bi-wind" role="img"></i>
                             
                             skip section
                         </div>
@@ -312,7 +312,7 @@
                     <div class="row card-text">
                         <div class="col">
                             
-                            <i class="bi-chevron-bar-down" role="img"></i>
+                            <i class="bi-play-btn" role="img"></i>
                             
                             animation fucked again
                         </div>
@@ -335,7 +335,7 @@
                     <div class="row card-text">
                         <div class="col">
                             
-                            <i class="bi-chevron-bar-down" role="img"></i>
+                            <i class="bi-play-btn" role="img"></i>
                             
                             complete loop section intro
                         </div>
@@ -358,7 +358,7 @@
                     <div class="row card-text">
                         <div class="col">
                             
-                            <i class="bi-chevron-double-down" role="img"></i>
+                            <i class="bi-wind" role="img"></i>
                             
                             before complete loop section
                         </div>
@@ -404,7 +404,7 @@
                     <div class="row card-text">
                         <div class="col">
                             
-                            <i class="bi-chevron-bar-down" role="img"></i>
+                            <i class="bi-play-btn" role="img"></i>
                             
                             after complete loop section
                         </div>
@@ -427,7 +427,7 @@
                     <div class="row card-text">
                         <div class="col">
                             
-                            <i class="bi-chevron-bar-down" role="img"></i>
+                            <i class="bi-play-btn" role="img"></i>
                             
                             timeline
                         </div>
@@ -450,7 +450,7 @@
                     <div class="row card-text">
                         <div class="col">
                             
-                            <i class="bi-chevron-bar-down" role="img"></i>
+                            <i class="bi-play-btn" role="img"></i>
                             
                             skip sections and the timeline
                         </div>
@@ -473,7 +473,7 @@
                     <div class="row card-text">
                         <div class="col">
                             
-                            <i class="bi-chevron-bar-down" role="img"></i>
+                            <i class="bi-play-btn" role="img"></i>
                             
                             active development
                         </div>
@@ -496,7 +496,7 @@
                     <div class="row card-text">
                         <div class="col">
                             
-                            <i class="bi-chevron-bar-down" role="img"></i>
+                            <i class="bi-play-btn" role="img"></i>
                             
                             docs
                         </div>
@@ -519,7 +519,7 @@
                     <div class="row card-text">
                         <div class="col">
                             
-                            <i class="bi-chevron-bar-down" role="img"></i>
+                            <i class="bi-play-btn" role="img"></i>
                             
                             ending
                         </div>
@@ -542,7 +542,7 @@
                     <div class="row card-text">
                         <div class="col">
                             
-                            <i class="bi-chevron-bar-down" role="img"></i>
+                            <i class="bi-play-btn" role="img"></i>
                             
                             heli flying into the sunset; fade out
                         </div>
@@ -560,9 +560,36 @@
             </div>
             
         </div>
+        <!-- legend -->
+        <table class="table table-sm mt-2">
+            <thead>
+                <tr>
+                    <th scope="col-2"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="normal-legend" class="table-active">
+                    <td scope="col-2"><i class="bi-play-btn" role="img"></i></td>
+                    <td scope="col">Normal</td>
+                </tr>
+                <tr id="skip-legend">
+                    <td scope="col-2"><i class="bi-wind" role="img"></i></td>
+                    <td scope="col">Skip</td>
+                </tr>
+                <tr id="loop-legend">
+                    <td scope="col-2"><i class="bi-arrow-clockwise" role="img"></i></td>
+                    <td scope="col">Loop</td>
+                </tr>
+                <tr id="complete-loop-legend">
+                    <td scope="col-2"><i class="bi-hourglass-split" role="img"></i></td>
+                    <td scope="col">Complete Loop</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <!-- video player -->
     <div class="col">
+        <!-- video player -->
         <h1>Tutorial</h1>
 
         <div id="videos-div" data-project_file="project.json">
@@ -574,8 +601,8 @@
             </video>
         </div>
     </div>
-    <!-- buttons -->
     <div class="col">
+        <!-- buttons -->
         <div class="btn-toolbar mt-4" role="toolbar">
             <div class="btn-group me-2 btn-group mt-3" role="group">
                 <button id="previous-section" type="button" class="btn btn-secondary"><i class="bi-caret-left"></i></button>
