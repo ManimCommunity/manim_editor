@@ -1,7 +1,6 @@
 import os
-from manim import VGroup, SVGMobject
-from manim.mobject.geometry import ArrowTriangleFilledTip
-from manim import *
+from manim import VGroup, SVGMobject, ORIGIN, RIGHT, UP, LEFT, WHITE, DEGREES, DOWN, PI, MathTex, Tex, TexFontTemplates
+from manim.mobject.geometry import ArrowTriangleFilledTip, Triangle, Square, Circle, Rectangle, Sector, RoundedRectangle
 from .config import get_config
 
 
