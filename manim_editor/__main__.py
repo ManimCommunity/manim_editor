@@ -71,7 +71,7 @@ def main(debug: bool, version: bool, quick_present_export: List[str], project_na
     if version:
         print(f"Manim Editor {Config.VERSION}")
         return
-    if quick_present_export is not None:
+    if len(quick_present_export):
         run_quick_present_export([Path(section_index_path) for section_index_path in quick_present_export], project_name)
         return
     if debug:

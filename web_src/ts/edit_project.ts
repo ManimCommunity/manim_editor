@@ -5,9 +5,9 @@ import { FallbackPresentation } from "./fallback_presenter/fallback_presentation
 import { send_json, flash } from "./utils";
 
 // used to load and update player settings
-let CACHE_BATCH_SIZE = 5;
-let PAST_SECTIONS_TO_BUFFER = 2;
-let FUTURE_SECTIONS_TO_BUFFER = 5;
+let CACHE_BATCH_SIZE = 3;
+let PAST_SECTIONS_TO_BUFFER = 10;
+let FUTURE_SECTIONS_TO_BUFFER = 20;
 let USE_FALLBACK_LOADER = false;
 let url_search_params = new URLSearchParams(location.search);
 
