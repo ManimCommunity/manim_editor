@@ -107,6 +107,10 @@ dist
 # TernJS port file
 .tern-port
 
+#no vscode settings:
+.vscode
+
+
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
@@ -264,3 +268,6 @@ test/
 
 # Sphinx docs build
 docs/build/
+
+# Notebooks
+notebooks/
