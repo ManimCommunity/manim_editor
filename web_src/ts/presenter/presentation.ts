@@ -332,6 +332,7 @@ export abstract class Presentation {
                 cache.remove();
             });
         });
+        this.videos_div.addEventListener("touchstart", this.play_next_section.bind(this));
     }
 
     ////////////////////////////////
