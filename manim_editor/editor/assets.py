@@ -5,28 +5,28 @@ from .config import get_config
 class IconNormal(manim.VGroup):
     def __init__(self):
         manim.VGroup.__init__(self)
-        icon_normal = manim.SVGMobject(get_config().STATIC_DIR / "img" / "play_btn.svg")
+        icon_normal = manim.SVGMobject(str(get_config().STATIC_DIR / "img" / "play_btn.svg"))
         self.add(icon_normal)
 
 
 class IconSkip(manim.VGroup):
     def __init__(self):
         manim.VGroup.__init__(self)
-        icon_skip = manim.SVGMobject(get_config().STATIC_DIR / "img" / "wind.svg")
+        icon_skip = manim.SVGMobject(str(get_config().STATIC_DIR / "img" / "wind.svg"))
         self.add(icon_skip)
 
 
 class IconLoop(manim.VGroup):
     def __init__(self):
         manim.VGroup.__init__(self)
-        icon_loop = manim.SVGMobject(get_config().STATIC_DIR / "img" / "arrow_clockwise.svg")
+        icon_loop = manim.SVGMobject(str(get_config().STATIC_DIR / "img" / "arrow_clockwise.svg"))
         self.add(icon_loop)
 
 
 class IconCompleteLoop(manim.VGroup):
     def __init__(self):
         manim.VGroup.__init__(self)
-        icon_completeloop = manim.SVGMobject(get_config().STATIC_DIR / "img" / "hourglass_split.svg")
+        icon_completeloop = manim.SVGMobject(str(get_config().STATIC_DIR / "img" / "hourglass_split.svg"))
         self.add(icon_completeloop)
 
 
@@ -82,4 +82,3 @@ class EditorBanner(manim.VGroup):
         self.add(manim.RoundedRectangle(fill_color="#ece6e2", height=banner.get_height()+1, width=banner.get_width()+1.5, fill_opacity=1, stroke_width=0, z_index=0))
         self.add(banner)
         self.scale(0.3)
-
