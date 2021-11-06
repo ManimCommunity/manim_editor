@@ -1,7 +1,6 @@
+from pathlib import Path
 import os
-import shutil
 import time
-import pathlib
 from fractions import Fraction
 from enum import Enum
 from typing import List, Dict, Any
@@ -59,15 +58,15 @@ class Section:
                  id: int,
                  name: str,
                  type: PresentationSectionType,
-                 original_video: str,
+                 original_video: Path,
                  width: int,
                  height: int,
                  fps: Fraction,
                  duration: float,
                  # only to be used when loading from project file
                  project_name: str = "",
-                 in_project_video: str = "",
-                 in_project_thumbnail: str = "",
+                 in_project_video: Path = Path(),
+                 in_project_thumbnail: Path = Path(),
                  in_project_id: int = -1):
         self.id = id
         self.name = name
@@ -83,11 +82,11 @@ class Section:
         self.in_project_thumbnail = in_project_thumbnail
         self.in_project_id = in_project_id
 
-    def get_in_project_video_abs(self) -> str:
-        return os.path.join(self.project_name, self.in_project_video)
+    def get_in_project_video_abs(self) -> Path:
+        return Path(self.project_name) / self.in_project_video
 
-    def get_in_project_thumbnail_abs(self) -> str:
-        return os.path.join(self.project_name, self.in_project_thumbnail)
+    def get_in_project_thumbnail_abs(self) -> Path:
+        return Path(self.project_name) / self.in_project_thumbnail
 
     def set_project(self, project_name: str, in_project_id: int) -> bool:
         """Hand this video over to a project.
@@ -96,8 +95,8 @@ class Section:
         self.project_name = project_name
         self.in_project_id = in_project_id
         # TODO support other file types as well
-        self.in_project_video = f"video_{in_project_id:04}.mp4"
-        self.in_project_thumbnail = f"thumb_{in_project_id:04}.jpg"
+        self.in_project_video = Path(f"video_{in_project_id:04}.mp4")
+        self.in_project_thumbnail = Path(f"thumb_{in_project_id:04}.jpg")
 
         return self.convert_video() and self.extract_thumbnail()
 
@@ -109,10 +108,10 @@ class Section:
         print(f"Converting video to '{self.in_project_video}' for section '{self.name}'.")
         if not run_ffmpeg([
             "-i",
-            self.original_video,
+            str(self.original_video),
             "-movflags",
             "frag_keyframe+empty_moov+default_base_moof",
-            self.get_in_project_video_abs(),
+            str(self.get_in_project_video_abs()),
             "-y",
         ]):
             print("Video Conversion failed.")
@@ -128,12 +127,12 @@ class Section:
             "-sseof",
             "-3",
             "-i",
-            self.original_video,
+            str(self.original_video),
             "-update",
             "1",
             "-q:v",
             "1",
-            self.get_in_project_thumbnail_abs(),
+            str(self.get_in_project_thumbnail_abs()),
             "-y",
         ]):
             print("Thumbnail extraction failed.")
@@ -146,14 +145,14 @@ class Section:
             "id": self.id,
             "name": self.name,
             "type": self.type,
-            "original_video": self.original_video,
+            "original_video": str(self.original_video),
             "width": self.width,
             "height": self.height,
             "fps": str(self.fps),
             "duration": self.duration,
             "project_name": self.project_name,
-            "in_project_video": self.in_project_video,
-            "in_project_thumbnail": self.in_project_thumbnail,
+            "in_project_video": str(self.in_project_video),
+            "in_project_thumbnail": str(self.in_project_thumbnail),
             "in_project_id": self.in_project_id,
         }
 
@@ -175,7 +174,7 @@ class Scene:
         list of sections in scene
     """
 
-    def __init__(self, id: int, name: str, path: str, last_modified: float, sections: List[Section]):
+    def __init__(self, id: int, name: str, path: Path, last_modified: float, sections: List[Section]):
         self.id = id
         self.name = name
         self.path = path
@@ -185,6 +184,7 @@ class Scene:
     def get_last_modified(self) -> str:
         return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(self.last_modified))
 
-    def get_rel_dir_path(self) -> str:
-        parent_path = pathlib.Path(self.path).parent.absolute()
-        return os.path.relpath(parent_path)
+    def get_rel_dir_path(self) -> Path:
+        """Used to display location in frontend."""
+        parent_path = self.path.parent.absolute()
+        return parent_path.relative_to(os.getcwd())

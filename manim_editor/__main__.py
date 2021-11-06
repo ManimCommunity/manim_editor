@@ -1,6 +1,6 @@
-import os
 import click
 import logging
+from pathlib import Path
 from waitress import serve
 import socket
 from typing import Optional
@@ -40,11 +40,11 @@ def run_debug() -> None:
 
 
 # TODO: quick test, this is only for testing purposes
-def run_quick_present_export(section_index_path: str) -> None:
+def run_quick_present_export(section_index_path: Path) -> None:
     """Create a project form a single scene and export the presentation."""
     Config.set("FFMPEG_LOGLEVEL", "info")
     set_config(Config)
-    project_name = os.path.basename(section_index_path)[:-5]
+    project_name = section_index_path.name[:-5]
 
     success, msg = create_project_dir(project_name)
     if not success:
@@ -66,7 +66,7 @@ def main(debug: bool, version: bool, quick_present_export: Optional[str]) -> Non
         print(f"Manim Editor {Config.VERSION}")
         return
     if quick_present_export is not None:
-        run_quick_present_export(quick_present_export)
+        run_quick_present_export(Path(quick_present_export))
         return
     if debug:
         run_debug()

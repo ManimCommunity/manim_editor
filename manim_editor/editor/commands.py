@@ -1,5 +1,6 @@
 import subprocess
 import os
+from pathlib import Path
 import json
 import jsonschema
 from typing import List, Optional, Tuple, Generator, Any
@@ -8,7 +9,7 @@ from .config import get_config
 
 
 def capture(command: List[str],
-            cwd: Optional[str] = None,
+            cwd: Optional[Path] = None,
             command_input: Optional[str] = None) -> Tuple[str, str, int]:
     """Run command and capture standard output, standard error and return code."""
     p = subprocess.run(command, cwd=cwd, input=command_input, capture_output=True, text=True)
@@ -26,23 +27,23 @@ def run_ffmpeg(params: List[str]) -> bool:
     return subprocess.call(["ffmpeg", "-loglevel", get_config().FFMPEG_LOGLEVEL] + params) == 0
 
 
-def walk(top: str, maxdepth: int) -> Generator[Tuple[str, List[str], List[str]], None, None]:
+def walk(top: Path, maxdepth: int) -> Generator[Tuple[Path, List[str], List[str]], None, None]:
     """Reimplementation of os.walk with max recursion depth."""
     dirs: List[str] = []
     nondirs: List[str] = []
     for name in os.listdir(top):
-        if os.path.isdir(os.path.join(top, name)):
+        if os.path.isdir(top / name):
             dirs.append(name)
         else:
             nondirs.append(name)
     yield top, dirs, nondirs
     if maxdepth:
         for name in dirs:
-            for res in walk(os.path.join(top, name), maxdepth-1):
+            for res in walk(top / name, maxdepth-1):
                 yield res
 
 
-def valid_json_load(path: str, schema: Any) -> Optional[Any]:
+def valid_json_load(path: Path, schema: Any) -> Optional[Any]:
     """Load json file from path and validate with schema.
     Return ``None`` when json is invalid.
     """

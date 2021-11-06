@@ -1,5 +1,6 @@
 """Main backend file."""
 import os
+from pathlib import Path
 from flask import render_template, flash, redirect, url_for, request, jsonify, abort, send_file, current_app
 
 from ...editor import get_scenes, create_project_dir, populate_project, get_projects, get_project, export_presentation
@@ -44,7 +45,7 @@ def export_presenter():
 @bp.route("/serve_project_static/<name>/<path>")
 def serve_project_static(name: str, path: str):
     """Since the projects are not in the Flask static folder, this function serves the videos and thumbnails instead."""
-    abspath = os.path.abspath(os.path.join(name, path))
+    abspath = (Path(name) / path).absolute()
     # NOTE: this should never be used in an online environment, for a local one it's fine
     return send_file(abspath)
 

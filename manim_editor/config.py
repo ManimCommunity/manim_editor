@@ -1,9 +1,9 @@
 import os
-import pathlib
+from pathlib import Path
 import json
 from typing import Any
 
-BASE_DIR = pathlib.Path(__file__).parent.absolute()
+BASE_DIR = Path(__file__).parent.absolute()
 
 
 class Config:
@@ -15,13 +15,13 @@ class Config:
     RECURSION_DEPTH = 10
 
     ROOT_DIR = BASE_DIR
-    STATIC_DIR = os.path.join(BASE_DIR, "app", "static")
+    STATIC_DIR = BASE_DIR / "app" / "static"
 
     VERSION = "v0.2.5"
 
-    with open(os.path.join(BASE_DIR, "section_index.schema.json"), "r") as file:
+    with open(BASE_DIR / "section_index.schema.json", "r") as file:
         SECTION_INDEX_SCHEMA = json.load(file)
-    with open(os.path.join(BASE_DIR, "project.schema.json"), "r") as file:
+    with open(BASE_DIR / "project.schema.json", "r") as file:
         PROJECT_SCHEMA = json.load(file)
 
     @staticmethod

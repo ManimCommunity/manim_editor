@@ -1,6 +1,7 @@
 """Create Manim Editor project."""
 import os
 import json
+from pathlib import Path
 from typing import Any, Dict, Tuple, List
 
 from .manim_loader import get_scenes
@@ -37,7 +38,7 @@ def populate_project_with_loaded_sections(project_name: str, sections: List[Sect
         project.append(section.get_dict())
 
     # write project file
-    with open(os.path.join(project_name, "project.json"), "w") as file:
+    with open(Path(project_name) / "project.json", "w") as file:
         json.dump(project, file, indent=4)
     return True
 
