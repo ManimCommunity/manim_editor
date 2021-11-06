@@ -150,13 +150,14 @@ export abstract class Presentation {
     }
 
     public play_next_section(): void {
-        this.play_section(this.current_section + 1);
+        this.play_section(this.current_section + 1, false);
     }
-
+    public play_next_section_forced(): void {
+        this.play_section(this.current_section + 1, true);
+    }
     public restart_current_section(): void {
         this.play_section(this.current_section, true);
     }
-
     public play_previous_section(): void {
         // don't finish complete loops when going back
         this.play_section(this.current_section - 1, true);

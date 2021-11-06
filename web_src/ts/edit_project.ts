@@ -119,6 +119,8 @@ function attach_keyboard_ui(presentation: Presentation): void {
             return;
         if (prev_keys.includes(e.code))
             presentation.play_previous_section();
+        else if (next_keys.includes(e.code) && e.ctrlKey)
+            presentation.play_next_section_forced();
         else if (next_keys.includes(e.code))
             presentation.play_next_section();
         else if (pause_keys.includes(e.code))
