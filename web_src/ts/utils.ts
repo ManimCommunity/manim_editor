@@ -1,14 +1,21 @@
 // send json via POST and parse json resonse
-export function send_json(url: string, payload: any, callback: { (response: any): void; }): void {
+// optional onfailure callback
+export function send_json(url: string,
+    payload: any,
+    onsuccess: { (response: any): void; },
+    onfailure: { (): void } = () => { }): void {
     let request = new XMLHttpRequest();
     request.onload = () => {
         if (request.status == 200)
-            callback(JSON.parse(request.responseText));
-        else
+            onsuccess(JSON.parse(request.responseText));
+        else {
             console.error(`Failed POST to '${url}' with status ${request.status}.`);
+            onfailure();
+        }
     };
     request.onerror = () => {
         console.error(`Failed to POST to '${url}'.`);
+        onfailure();
     };
     request.open("POST", url, true);
     request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -16,16 +23,21 @@ export function send_json(url: string, payload: any, callback: { (response: any)
 }
 
 // download file and parse json
-export function get_json(url: string, callback: { (response: any): void; }): void {
+export function get_json(url: string,
+    callback: { (response: any): void; },
+    onfailure: { (): void } = () => { }): void {
     let request = new XMLHttpRequest();
     request.onload = () => {
         if (request.status == 200)
             callback(JSON.parse(request.responseText));
-        else
+        else {
             console.error(`Failed to load json '${url}' with status ${request.status}`);
+            onfailure();
+        }
     };
     request.onerror = () => {
         console.error(`Failed to load json '${url}'`);
+        onfailure();
     };
     request.open("GET", url, true);
     request.send();

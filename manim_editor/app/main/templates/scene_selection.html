@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Section Selection for Project {{ project_name }}</h1>
+<h1>Scene Selection for Project {{ project_name }}</h1>
 
 The priority of a scene defines its place in the final project.
 The scene with priority 0 will be the first, priority 1 will be the second and so on.
@@ -11,7 +11,7 @@ Every scene needs a unique priority.
 You have to refresh the page when you alter a scene with Manim.
 Otherwise the displayed data may be outdated.
 
-<table class="table">
+<table class="table mt-3">
 <thead>
     <tr>
         <th scope="col"></th>
@@ -53,6 +53,7 @@ Otherwise the displayed data may be outdated.
             </td>
             <!-- resolution -->
             <td>
+                <!-- the resolution is always the same -> only look at first -->
                 {{ scene.sections[0].width }}:{{ scene.sections[0].height }}
             </td>
             <!-- fps -->
@@ -69,5 +70,5 @@ Otherwise the displayed data may be outdated.
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ url_for('static', filename='webpack/section_selection.js') }}"></script>
+<script src="{{ url_for('static', filename='webpack/scene_selection.js') }}"></script>
 {% endblock %}

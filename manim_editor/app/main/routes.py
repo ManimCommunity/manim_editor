@@ -84,11 +84,11 @@ def confirm_scene_selection():
     if project is None:
         abort(400)
     project_name: str = project["name"]
-    sections = project["sections"]
-    success = populate_project(project_name, sections)
+    scene_ids = project["scene_ids"]
+    success = populate_project(project_name, scene_ids)
     if success:
         flash(f"The project '{project_name}' has successfully been populated.", "success")
         return jsonify(success=True)
     else:
         # the flash will be taken care of by the client
-        return jsonify(success=False)
+        abort(500)

@@ -9,7 +9,7 @@ module.exports = (env) => {
         entry: {
             base: "./web_src/ts/base.ts",
             edit_project: "./web_src/ts/edit_project.ts",
-            section_selection: "./web_src/ts/section_selection.ts",
+            scene_selection: "./web_src/ts/scene_selection.ts",
         },
         resolve: {
             extensions: [".ts", ".js"],

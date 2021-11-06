@@ -1,65 +1,26 @@
 import { send_json, flash, spin_button } from "./utils";
 
-// check or uncheck all sections in scene
-function set_scene_status(scene: HTMLTableRowElement, status: boolean): void {
-    let scene_check_box = scene.getElementsByClassName("scene-check-box")[0] as HTMLInputElement;
-    scene_check_box.checked = status;
-    // apply to all sections
-    let section_check_boxes = scene.getElementsByClassName("section-check-box") as HTMLCollectionOf<HTMLInputElement>;
-    for (let section of section_check_boxes)
-        section.checked = status;
-}
-
-// check if entire scene got turned on or off and update scene status accordingly
-function update_scene(scene: HTMLTableRowElement): void {
-    let section_check_boxes = scene.getElementsByClassName("section-check-box") as HTMLCollectionOf<HTMLInputElement>;
-    let new_status = section_check_boxes[0].checked;
-    // check if all sections have same status
-    for (let i = 1; i < section_check_boxes.length; ++i)
-        if (section_check_boxes[i].checked != new_status)
-            return;
-    set_scene_status(scene, new_status);
-}
-
-// set click callbacks for scenes and sections
-function watch_check_boxes(): void {
-    // scenes
+// set click callbacks
+function attach_check_boxes(): void {
     let scenes = document.getElementsByClassName("scene-select") as HTMLCollectionOf<HTMLTableRowElement>;
     for (let scene of scenes) {
         let scene_check_box = scene.getElementsByClassName("scene-check-box")[0] as HTMLInputElement;
-        scene_check_box.addEventListener("click", () => {
-            set_scene_status(scene, scene_check_box.checked);
-            update_button();
-        });
-        // sections
-        let sections = scene.getElementsByClassName("section-select") as HTMLCollectionOf<HTMLTableRowElement>;
-        for (let section of sections) {
-            let section_check_box = section.getElementsByClassName("section-check-box")[0] as HTMLInputElement;
-            section_check_box.addEventListener("click", () => {
-                update_scene(scene);
-                update_button();
-            })
-        }
+        scene_check_box.addEventListener("click", update_button);
     }
 }
 
-// activate button when at least one section is selected
-// has to be executed every time the selections get clicked
+// activate button when at least one scene is selected
+// has to be executed every time the check boxes get clicked
 function update_button(): void {
-    let section_check_boxes = document.getElementsByClassName("section-check-box") as HTMLCollectionOf<HTMLInputElement>;
+    let check_boxes = document.getElementsByClassName("scene-check-box") as HTMLCollectionOf<HTMLInputElement>;
     let button = document.getElementById("confirm-button") as HTMLButtonElement;
-    for (let section_check_box of section_check_boxes) {
-        if (section_check_box.checked) {
+    for (let check_box of check_boxes) {
+        if (check_box.checked) {
             button.disabled = false;
             return;
         }
     }
     button.disabled = true;
-}
-
-type Section = {
-    scene_id: number;
-    section_id: number;
 }
 
 // return list containing at index i the priority of the scene with priority i
@@ -81,81 +42,70 @@ function get_scene_priorities(): number[] {
     return priorities;
 }
 
-// return list of selected sections in order of priority of scenes
-function get_selected_sections(): Section[] {
+// return list of ids of selected scenes in order of their priority
+function get_selected_scene_ids(): number[] {
     // used as lookup table
     let priorities = get_scene_priorities();
     if (!priorities.length)
         return [];
 
-    let scenes = document.getElementsByClassName("scene-select") as HTMLCollectionOf<HTMLTableRowElement>;
+    let check_boxes = document.getElementsByClassName("scene-check-box") as HTMLCollectionOf<HTMLInputElement>;
     // list of selected sections for each scene in order of priority
-    let selected_scene_sections: Section[][] = [];
-    for (let i = 0; i < scenes.length; ++i)
-        selected_scene_sections.push([]);
+    // -1 means not selected
+    let selected_scene_ids: number[] = [];
+    for (let i = 0; i < check_boxes.length; ++i)
+        selected_scene_ids.push(-1);
     // go through scenes
-    for (let i = 0; i < scenes.length; ++i) {
-        let section_check_boxes = scenes[i].getElementsByClassName("section-check-box") as HTMLCollectionOf<HTMLInputElement>;
-        // go through selected check boxes in this scene
-        for (let section_check_box of section_check_boxes)
-            if (section_check_box.checked) {
-                // resolve priority
-                selected_scene_sections[priorities[i]].push({
-                    "scene_id": i,
-                    "section_id": parseInt(section_check_box.dataset.section_id as string),
-                });
-            }
-    }
-    let sections: Section[] = [];
-    for (let i = 0; i < scenes.length; ++i) {
-        for (let section of selected_scene_sections[i])
-            sections.push(section);
-    }
+    for (let i = 0; i < check_boxes.length; ++i)
+        if (check_boxes[i].checked)
+            // resolve priority
+            selected_scene_ids[priorities[i]] = i;
+
+    // filter out unselected -1
+    let scene_ids: number[] = [];
+    for (let id of selected_scene_ids)
+        if (id != -1)
+            scene_ids.push(id);
+
     // log order of scenes used
-    let last_scene_id = -1;
     let scene_log = "Used scene order: ";
-    for (let section of sections) {
-        if (section.scene_id != last_scene_id) {
-            scene_log += `${section.scene_id} `;
-            last_scene_id = section.scene_id;
-        }
-    }
+    for (let scene_id of scene_ids)
+        scene_log += `${scene_id} `;
     console.log(scene_log);
-    return sections;
+    return scene_ids;
 }
 
-function watch_button(): void {
+function attach_button(): void {
     let button = document.getElementById("confirm-button") as HTMLButtonElement;
     let target = button.dataset.target as string;
     let project_name = button.dataset.project_name as string;
     let success_url = button.dataset.success_url as string;
     button.addEventListener("click", () => {
-        let selected_sections = get_selected_sections();
+        let scene_ids = get_selected_scene_ids();
         // show flashes
         window.scrollTo(0, 0);
-        // selection valid?
-        if (selected_sections.length) {
+        // valid scene and priority selection?
+        if (scene_ids.length) {
             flash("The project is being populated, this might take a few minutes. Open the terminal for more info.", "info");
             spin_button(button);
             let payload = {
                 "name": project_name,
-                "sections": selected_sections,
+                "scene_ids": scene_ids,
             };
-            send_json(target as string, payload, (response: any) => {
+            send_json(target as string, payload, () => {
                 // redirect at success
-                if (response.success) {
-                    window.location.href = success_url;
-                }
-                else
-                    flash(`The editor unexpectedly failed to populate the project '${project_name}'. For more information see the console log. Please consider opening an Issue on GitHub if this problem persists.`, "danger");
+                window.location.href = success_url;
+            }, () => {
+                // failure
+                flash(`The editor unexpectedly failed to populate the project '${project_name}'. For more information see the console log. Please consider opening an Issue on GitHub if this problem persists.`, "danger");
             });
         }
     });
 }
 
 document.body.onload = () => {
-    watch_check_boxes();
-    watch_button();
+    attach_check_boxes();
+    attach_button();
     // first update is for when the browser remembered some selections but the button stays inactive
     update_button();
 };
