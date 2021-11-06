@@ -29,6 +29,8 @@ def create_project_dir(project_name: str) -> Tuple[bool, str]:
 
 
 def populate_project_with_loaded_sections(project_name: str, sections: List[Section]) -> bool:
+    if not len(sections):
+        raise RuntimeError(f"No sections given for project '{project_name}'.")
     project: List[Dict[str, Any]] = []
 
     # prepare section

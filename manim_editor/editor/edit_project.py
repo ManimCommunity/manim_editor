@@ -20,6 +20,7 @@ def emulate_url_for(endpoint: str, path: str = "", name: str = "", filename: str
 
 
 def export_presentation(project_name: str, sections: List[Section]) -> None:
+    print(f"Exporting Project {project_name} as presentation.")
     jinja2_env = jinja2.Environment(
         loader=jinja2.FileSystemLoader([
             get_config().ROOT_DIR / "app" / "templates",
