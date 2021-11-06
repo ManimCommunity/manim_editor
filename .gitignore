@@ -268,3 +268,6 @@ test/
 
 # Sphinx docs build
 docs/build/
+
+# Notebooks
+notebooks/
