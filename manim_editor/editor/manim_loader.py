@@ -45,7 +45,7 @@ def get_scene(path: str, new_id: int) -> Optional[Scene]:
 
 
 def get_scenes() -> List[Scene]:
-    """Search recursively in ``path`` for any valid JSON section index files."""
+    """Search recursively in CWD for any valid JSON section index files."""
     scene_index_paths: List[str] = []
     for root, _, files in walk(".", get_config().RECURSION_DEPTH):
         for file in files:
@@ -55,6 +55,7 @@ def get_scenes() -> List[Scene]:
     scenes: List[Scene] = []
     for scene_index_path in scene_index_paths:
         scene = get_scene(scene_index_path, len(scenes))
-        if scene is not None:
+        # valid scene with at least one section?
+        if scene is not None and len(scene.sections):
             scenes.append(scene)
     return scenes

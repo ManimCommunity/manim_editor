@@ -27,12 +27,6 @@ def create_project_dir(project_name: str) -> Tuple[bool, str]:
     return True, f"Created new project directory '{project_name}'."
 
 
-class SectionId:
-    def __init__(self, scene_id: int, section_id: int):
-        self.scene_id = scene_id
-        self.section_id = section_id
-
-
 def populate_project_with_loaded_sections(project_name: str, sections: List[Section]) -> bool:
     project: List[Dict[str, Any]] = []
 
@@ -48,14 +42,15 @@ def populate_project_with_loaded_sections(project_name: str, sections: List[Sect
     return True
 
 
-def populate_project(project_name: str, section_ids: List[SectionId]) -> bool:
+def populate_project(project_name: str, scene_ids: List[int]) -> bool:
     """Create project JSON file, copy selected section video files and create thumbnails.
     Return False at failure.
     """
     print(f"Populating project '{project_name}'.")
-    # TODO: could theoretically be cached
-    scenes = get_scenes()
-    # select sections according to ids set by frontend
-    sections = [scenes[section.scene_id].sections[section.section_id] for section in section_ids]
+    # select scenes according to ids set by frontend
+    scenes = [scene for scene in get_scenes() if scene.id in scene_ids]
+    sections: List[Section] = []
+    for scene in scenes:
+        sections += scene.sections
 
     return populate_project_with_loaded_sections(project_name, sections)
