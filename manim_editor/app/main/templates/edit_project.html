@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block fluid_content %}
+
+<!-- settings modal -->
+<div class="modal fade" id="settings-modal" tabindex="-1">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title">Player Settings</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    </div>
+    <div class="modal-body">
+
+        <!-- cache batch size -->
+        <div class="row g-3 align-items-center">
+            <div class="col">
+                <label for="cache-batch-size" class="col-form-label">Cache Batch Size</label>
+            </div>
+            <div class="col">
+                <input type="number" id="cache-batch-size" class="form-control">
+            </div>
+        </div>
+        <!-- past sections to buffer -->
+        <div class="row g-3 align-items-center mt-2">
+            <div class="col">
+                <label for="past-sections-to-buffer" class="col-form-label">Past Sections to Buffer</label>
+            </div>
+            <div class="col">
+                <input type="number" id="past-sections-to-buffer" class="form-control">
+            </div>
+        </div>
+        <!-- future sections to buffer -->
+        <div class="row g-3 align-items-center mt-1">
+            <div class="col">
+                <label for="future-sections-to-buffer" class="col-form-label">Future Sections to Buffer</label>
+            </div>
+            <div class="col">
+                <input type="number" id="future-sections-to-buffer" class="form-control">
+            </div>
+        </div>
+
+        <!-- loader -->
+        <div class="row g-3 align-items-center mt-2">
+            <div class="col">
+                Loader
+            </div>
+            <div class="col">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="loader-selection" id="buffer-loader-selected" checked>
+                    <label class="form-check-label" for="buffer-loader-selected">
+                    Buffer Loader
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="loader-selection" id="fallback-loader-selected">
+                    <label class="form-check-label" for="fallback-loader-selected">
+                        Fallback Loader
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button id="update-settings" type="button" class="btn btn-primary">Apply and Reload</button>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+        <!-- timeline -->
+        <h1 class="text-center">Timeline</h1>
+        <!-- project json file needs to be accessible from TypeScript -->
+        <div class="timeline row g-2">
+            {% for section in sections %}
+            <div class="card timeline-element" data-video="{{ url_for('main.serve_project_static', name=name, path=section.in_project_video) }}">
+                <img src="{{ url_for('main.serve_project_static', name=name, path=section.in_project_thumbnail) }}" class="card-img-top" alt="couldn't load thumbnail">
+                <div class="card-body">
+                    <div class="row card-text">
+                        <div class="col">
+                            {% if section.type == "presentation.normal" %}
+                            <i class="bi-play-btn" role="img"></i>
+                            {% elif section.type == "presentation.skip" %}
+                            <i class="bi-wind" role="img"></i>
+                            {% elif section.type == "presentation.loop" %}
+                            <i class="bi-arrow-clockwise" role="img"></i>
+                            {% elif section.type == "presentation.complete_loop" %}
+                            <i class="bi-hourglass-split" role="img"></i>
+                            {% else %}
+                            [unsupported type]
+                            {% endif %}
+                            {{ section.name }}
+                        </div>
+                        <div class="col-auto text-right">
+                            <div class="timeline-indicator">
+                                <!-- one of -->
+                                <!-- <i class="bi-circle" role="img"></i> -->
+                                <!-- <i class="bi-circle-fill" role="img"></i> -->
+                                <!-- <i class="bi-check-circle" role="img"></i> -->
+                                <i class=" bi-circle" role="img"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col">
+        <!-- heading -->
+        <h1>{{ name }}</h1>
+
+        <!-- video player -->
+        <div id="videos-div" data-project_file="{{ url_for('main.serve_project_static', name=name, path='project.json') }}">
+            <video id="video0" class="main-video" muted>
+                Your browser doesn't support HTML5 videos.
+            </video>
+            <video id="video1" class="main-video" muted>
+                Your browser doesn't support HTML5 videos.
+            </video>
+        </div>
+    </div>
+    <div class="col">
+        <div class="container">
+            <!-- buttons -->
+            <div class="btn-toolbar mt-4" role="toolbar">
+                <div class="btn-group me-2 btn-group mt-3" role="group">
+                    <button id="previous-section" type="button" class="btn btn-secondary"><i class="bi-caret-left"></i></button>
+                    <button id="restart-section" type="button" class="btn btn-secondary"><i class="bi-arrow-counterclockwise"></i></button>
+                    <button id="pause" type="button" class="btn btn-secondary"><i class="bi-pause"></i></button>
+                    <button id="next-section" type="button" class="btn btn-secondary"><i class="bi-caret-right"></i></button>
+                </div>
+                <div class="btn-group btn-group me-3 mt-3" role="group">
+                    <button id="fullscreen" type="button" class="btn btn-secondary"><i class="bi-arrows-fullscreen"></i></button>
+                </div>
+                <div class="btn-group btn-group me-2 mt-3" role="group">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#settings-modal"><i class="bi-gear me-1"></i>Player Settings</button>
+                </div>
+                <div class="btn-group btn-group me-3 mt-3" role="group">
+                    <button id="cache" type="button" class="btn btn-secondary"><i class="bi-download me-1"></i>Cache Videos</button>
+                </div>
+                {% if not present_export %}
+                <div class="btn-group btn-group me-3 mt-3" role="group">
+                    <button id="export-presentation" type="button" class="btn btn-danger" data-name="{{ name }}" data-target="{{ url_for('main.export_presenter') }}"><i class="bi-download me-1"></i>Export Presentation</button>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- legend -->
+            <table class="table table-sm mt-3">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="normal-legend" class="table-active">
+                        <td scope="col"><i class="bi-play-btn" role="img"></i></td>
+                        <td scope="col">Normal</td>
+                    </tr>
+                    <tr id="skip-legend">
+                        <td scope="col"><i class="bi-wind" role="img"></i></td>
+                        <td scope="col">Skip</td>
+                    </tr>
+                    <tr id="loop-legend">
+                        <td scope="col"><i class="bi-arrow-clockwise" role="img"></i></td>
+                        <td scope="col">Loop</td>
+                    </tr>
+                    <tr id="complete-loop-legend">
+                        <td scope="col"><i class="bi-hourglass-split" role="img"></i></td>
+                        <td scope="col">Complete Loop</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='webpack/edit_project.js') }}"></script>
+{% endblock %}

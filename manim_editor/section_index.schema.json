@@ -1,0 +1,114 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://example.com/object1635155581.json",
+    "title": "Root",
+    "type": "array",
+    "default": [],
+    "items": {
+        "$id": "#root/items",
+        "title": "Items",
+        "type": "object",
+        "required": [
+            "name",
+            "type",
+            "video",
+            "codec_name",
+            "width",
+            "height",
+            "avg_frame_rate",
+            "duration",
+            "nb_frames"
+        ],
+        "properties": {
+            "name": {
+                "$id": "#root/items/name",
+                "title": "Name",
+                "type": "string",
+                "default": "",
+                "examples": [
+                    "create square"
+                ],
+                "pattern": "^.*$"
+            },
+            "type": {
+                "$id": "#root/items/type",
+                "title": "Type",
+                "type": "string",
+                "default": "",
+                "examples": [
+                    "default.normal"
+                ],
+                "pattern": "^.*$"
+            },
+            "video": {
+                "$id": "#root/items/video",
+                "title": "Video",
+                "type": "string",
+                "default": "",
+                "examples": [
+                    "ElaborateSceneWithSections_0000.mp4"
+                ],
+                "pattern": "^.*$"
+            },
+            "codec_name": {
+                "$id": "#root/items/codec_name",
+                "title": "Codec_name",
+                "type": "string",
+                "default": "",
+                "examples": [
+                    "h264"
+                ],
+                "pattern": "^.*$"
+            },
+            "width": {
+                "$id": "#root/items/width",
+                "title": "Width",
+                "type": "integer",
+                "examples": [
+                    854
+                ],
+                "default": 0
+            },
+            "height": {
+                "$id": "#root/items/height",
+                "title": "Height",
+                "type": "integer",
+                "examples": [
+                    480
+                ],
+                "default": 0
+            },
+            "avg_frame_rate": {
+                "$id": "#root/items/avg_frame_rate",
+                "title": "Avg_frame_rate",
+                "type": "string",
+                "default": "",
+                "examples": [
+                    "15/1"
+                ],
+                "pattern": "^.*$"
+            },
+            "duration": {
+                "$id": "#root/items/duration",
+                "title": "Duration",
+                "type": "string",
+                "default": "",
+                "examples": [
+                    "2.000000"
+                ],
+                "pattern": "^.*$"
+            },
+            "nb_frames": {
+                "$id": "#root/items/nb_frames",
+                "title": "Nb_frames",
+                "type": "string",
+                "default": "",
+                "examples": [
+                    "30"
+                ],
+                "pattern": "^.*$"
+            }
+        }
+    }
+}

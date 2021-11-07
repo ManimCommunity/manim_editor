@@ -1,0 +1,65 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.timeline {
+    min-height: 75vh;
+    max-height: 75vh;
+    position: relative;
+    overflow-y: scroll;
+}
+
+.timeline-element {
+    cursor: pointer;
+}
+
+#videos-div {
+    position: relative;
+}
+
+.main-video {
+    top: 0;
+    left: 0;
+
+    min-width: 60vw;
+    max-width: 60vw;
+}
+
+:fullscreen {
+    cursor: none;
+}
+
+:fullscreen .main-video {
+    min-width: 100vw;
+    min-height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+}
+
+// Apple needs a special favour...again
+:-webkit-full-screen .main-video {
+    min-width: 100vw;
+    min-height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+}
+
+// second video overlaps first -> size of videos is still respected
+#video0 {
+    position: relative;
+}
+
+#video1 {
+    position: absolute;
+}
+
+// // Required
+// @import "~bootstrap/scss/functions";
+// @import "~bootstrap/scss/variables";
+// @import "~bootstrap/scss/mixins";
+
+// // Optional
+// @import "~bootstrap/scss/reboot";
+// @import "~bootstrap/scss/type";
+// @import "~bootstrap/scss/images";
+// @import "~bootstrap/scss/code";
+// @import "~bootstrap/scss/grid";

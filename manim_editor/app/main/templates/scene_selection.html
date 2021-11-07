@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Scene Selection for Project {{ project_name }}</h1>
+
+The priority of a scene defines its place in the final project.
+The scene with priority 0 will be the first, priority 1 will be the second and so on.
+Every scene needs a unique priority.
+<br/>
+You have to refresh the page when you alter a scene with Manim.
+Otherwise the displayed data may be outdated.
+
+<table class="table mt-3">
+<thead>
+    <tr>
+        <th scope="col"></th>
+        <th scope="col">Priority</th>
+        <th scope="col">Name</th>
+        <th scope="col">Last Modified</th>
+        <th scope="col">Sections</th>
+        <th scope="col">Resolution</th>
+        <th scope="col">FPS</th>
+    </tr>
+</thead>
+<tbody>
+    {% for scene in scenes %}
+        <tr class="scene-select">
+            <!-- select -->
+            <td>
+                <input class="form-check-input scene-check-box" type="checkbox" value="">
+            </td>
+            <!-- priority -->
+            <td>
+                <select id="{{ scene.id }}-priority" data-scene_id="{{ scene.id }}" class="form-select scene-priority">
+                    {% for scene_option in scenes %}
+                    <option value="{{ scene_option.id }}" {% if scene.id == scene_option.id %}selected{% endif %}>{{ scene_option.id }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+            <!-- name -->
+            <td>
+                <span class="fw-bold">#{{ scene.id }} {{ scene.name }}<br/></span>
+                In: {{ scene.get_rel_dir_path() }}
+            </td>
+            <!-- last modified -->
+            <td>
+                {{ scene.get_last_modified() }}
+            </td>
+            <!-- sections -->
+            <td>
+                {{ scene.sections | length }}
+            </td>
+            <!-- resolution -->
+            <td>
+                <!-- the resolution is always the same -> only look at first -->
+                {{ scene.sections[0].width }}:{{ scene.sections[0].height }}
+            </td>
+            <!-- fps -->
+            <td>
+                {{ scene.sections[0].fps }}
+            </td>
+        </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+<button type="button" class="btn btn-primary" id="confirm-button" data-target="{{ url_for('main.confirm_scene_selection') }}" data-project_name="{{ project_name }}" data-success_url="{{ url_for('main.index') }}" disabled>Confirm Selection</button>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='webpack/scene_selection.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Project Selection</h1>
+
+<p>
+    The Manim Editor has been launched in '{{ cwd }}'.
+    This is the current working directory (CWD).
+    If you want to change it, stop the editor and restart it in the right directory.
+    <br/>
+    You can find more information in the <a href="https://manim-editor.readthedocs.io/en/latest/">documentation</a>.
+</p>
+
+    {% if projects|length == 0 %}
+        <p>
+            No project was found in the CWD;
+            you can change the CWD or <a href="{{ url_for('main.create_project') }}">create a new project</a>.
+        </p>
+    {% else %}
+        <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Section Count</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for name in projects %}
+        <tr>
+            <th scope="row"><a href="{{ url_for('main.edit_project', name=name) }}">{{ name }}</a></th>
+            <td>{{ projects[name]|length }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    {% endif %}
+
+{% endblock %}

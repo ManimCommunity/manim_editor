@@ -1,0 +1,144 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://example.com/object1635244814.json",
+    "title": "Root",
+    "type": "array",
+    "default": [],
+    "items": {
+        "$id": "#root/items",
+        "title": "Items",
+        "type": "object",
+        "required": [
+            "id",
+            "name",
+            "type",
+            "original_video",
+            "width",
+            "height",
+            "fps",
+            "duration",
+            "project_name",
+            "in_project_video",
+            "in_project_thumbnail",
+            "in_project_id"
+        ],
+        "properties": {
+            "id": {
+                "$id": "#root/items/id",
+                "title": "Id",
+                "type": "integer",
+                "examples": [
+                    0
+                ],
+                "default": 0
+            },
+            "name": {
+                "$id": "#root/items/name",
+                "title": "Name",
+                "type": "string",
+                "default": "",
+                "examples": [
+                    "title"
+                ],
+                "pattern": "^.*$"
+            },
+            "type": {
+                "$id": "#root/items/type",
+                "title": "Type",
+                "type": "string",
+                "default": "",
+                "examples": [
+                    "presentation.normal"
+                ],
+                "pattern": "^.*$"
+            },
+            "original_video": {
+                "$id": "#root/items/original_video",
+                "title": "Original_video",
+                "type": "string",
+                "default": "",
+                "examples": [
+                    "/home/chris/files/python/manim/editor/media/videos/example/1080p60/sections/Tutorial_0000.mp4"
+                ],
+                "pattern": "^.*$"
+            },
+            "width": {
+                "$id": "#root/items/width",
+                "title": "Width",
+                "type": "integer",
+                "examples": [
+                    1920
+                ],
+                "default": 0
+            },
+            "height": {
+                "$id": "#root/items/height",
+                "title": "Height",
+                "type": "integer",
+                "examples": [
+                    1080
+                ],
+                "default": 0
+            },
+            "fps": {
+                "$id": "#root/items/fps",
+                "title": "Fps",
+                "type": "string",
+                "default": "",
+                "examples": [
+                    "60"
+                ],
+                "pattern": "^.*$"
+            },
+            "duration": {
+                "$id": "#root/items/duration",
+                "title": "Duration",
+                "type": "number",
+                "examples": [
+                    7.5
+                ],
+                "default": 0.0
+            },
+            "project_name": {
+                "$id": "#root/items/project_name",
+                "title": "Project_name",
+                "type": "string",
+                "default": "",
+                "examples": [
+                    "test"
+                ],
+                "pattern": "^.*$"
+            },
+            "in_project_video": {
+                "$id": "#root/items/in_project_video",
+                "title": "In_project_video",
+                "type": "string",
+                "default": "",
+                "examples": [
+                    "video_0000.mp4"
+                ],
+                "pattern": "^.*$"
+            },
+            "in_project_thumbnail": {
+                "$id": "#root/items/in_project_thumbnail",
+                "title": "In_project_thumbnail",
+                "type": "string",
+                "default": "",
+                "examples": [
+                    "thumb_0000.jpg"
+                ],
+                "pattern": "^.*$"
+            },
+            "in_project_id": {
+                "$id": "#root/items/in_project_id",
+                "title": "In_project_id",
+                "type": "integer",
+                "examples": [
+                    0
+                ],
+                "default": 0
+            }
+        }
+    }
+}

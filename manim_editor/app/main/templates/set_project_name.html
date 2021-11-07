@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Create New Project</h1>
+
+<form action="{{ url_for('main.scene_selection') }}" method="POST">
+    <div class="mb-3">
+        <label for="project-name" class="form-label" name="project_name">Project Name</label>
+        <input type="text" class="form-control" id="project-name" name="project_name">
+        <div id="project-help" class="form-text">An empty directory with that name must exist in the CWD. If no directory with that name exists, it will be created. Filled folders will not be overwritten.</div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}
