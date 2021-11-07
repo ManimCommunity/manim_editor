@@ -78,9 +78,12 @@ jobs:
       - name: Run the Manim Editor
         run: poetry run manedit --quick_present_export media/videos/example/1080p60/sections/Tutorial.json 
 
+      - name: Create Redirect
+        run: echo "<head><meta http-equiv='refresh' content='0; URL=Tutorial/index.html'></head>" > index.html
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: pages
-          folder: Tutorial
+          folder: .
 
