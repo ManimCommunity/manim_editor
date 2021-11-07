@@ -25,3 +25,15 @@ Simply run this in the projects directory:
 Instead of running a local web server you can host the project on an online web server (e.g. GitHub Pages).
 That way you can access it from anywhere.
 This is how the `example <https://manimeditorproject.github.io/manim_editor/Tutorial/index.html>`__ has been created.
+
+Supported Browsers
+******************
+
+These browsers are officially supported.
+Others may work as well but haven't been tested yet.
+
+* Firefox
+* Chrome/Chromium
+* Edge
+
+If you confirm another functioning browser, feel free to `open an issue <https://github.com/ManimEditorProject/manim_editor/issues>`__ and tell the devs.

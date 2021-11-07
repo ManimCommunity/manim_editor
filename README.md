@@ -19,3 +19,17 @@ These Browsers are supported:
 - Firefox
 - Chrome/Chromium
 - Edge
+
+## Create a Project
+
+<video muted autoplay loop width=1280 height=720>
+   <source src="docs/source/_static/export_presenter.mp4">
+   Your browser doesn't support embedded videos.
+</video>
+
+## Export a Project as a Presentation
+
+<video muted autoplay loop width=1280 height=720>
+   <source src="docs/source/_static/create_project.mp4">
+   Your browser doesn't support embedded videos.
+</video>
