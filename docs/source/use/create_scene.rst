@@ -2,7 +2,7 @@ Creating the Manim Scene
 ========================
 
 Basics
-------
+******
 
 The first thing you have to take care of is your ``Manim`` scene.
 You have to be aware of the different types each section can have.
@@ -13,14 +13,14 @@ Four types are provided:
 .. table:: Types defined by the ``Manim Editor``
    :widths: auto
 
-   =============  ==============================================================================
+   =============  ================================================================================
    Name           Function
-   =============  ==============================================================================
+   =============  ================================================================================
    NORMAL         start, end, wait for continuation by user
-   SKIP           start, end, immediately continue to next slide
-   LOOP           start, end, restart, immediately continue to next slide when continued by user
+   SKIP           start, end, immediately continue to next section
+   LOOP           start, end, restart, immediately continue to next section when continued by user
    COMPLETE_LOOP  start, end, restart, when user continues finish animation first
-   =============  ==============================================================================
+   =============  ================================================================================
 
 They are also explained in the `interactive tutorial <https://manimeditorproject.github.io/manim_editor/Tutorial/index.html>`__.
 
@@ -54,7 +54,7 @@ That way they can be used together for the same project.
 Once you're happy with your scene, you can `create the Manim Editor project <create_project>`__.
 
 Minimal Example
----------------
+***************
 
 You can run the following minimal example, to get your first presentation.
 It results in `this presentation <https://manimeditorproject.github.io/manim_editor/MinimalPresentationExample/index.html>`__.

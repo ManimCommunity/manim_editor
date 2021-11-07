@@ -23,7 +23,7 @@ If you've gotten stuck and don't know what to do, feel free to ask on the `Manim
 (The latter is preferred.)
 
 Working with The Manim Editor
-.............................
+*****************************
 
 Now you should be able to use the ``Manim Editor``.
 Now you can `get started with the Manim Editor <use>`__.
