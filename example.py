@@ -6,6 +6,7 @@ class IconTest(Scene):
     def construct(self):
         self.add(VGroup(IconNormal(), IconSkip(), IconLoop(), IconCompleteLoop()).arrange(RIGHT))
 
+
 class Test(Scene):
     def construct(self):
         circle = Circle()
@@ -22,6 +23,7 @@ class Test(Scene):
         self.remove(square)
         self.wait()
 
+
 def make_elements():  # only setting up the mobjects
     dots = VGroup(Dot(), Dot(), Dot(), Dot(), Dot(), Dot(), z_index=0)
     dots.arrange(buff=0.7).scale(2).set_color(BLUE)
@@ -36,6 +38,8 @@ def make_elements():  # only setting up the mobjects
         )
     )
     return dots, moving_dot, path
+
+
 class MinimalPresentationExample(Scene):
     def construct(self):
 
@@ -56,6 +60,7 @@ class MinimalPresentationExample(Scene):
 
         self.next_section("E", PresentationSectionType.NORMAL)
         self.play(moving_dot.animate.move_to(dots[5]), rate_func=linear)
+
 
 class Tutorial(Scene):
     def construct(self):
@@ -357,11 +362,4 @@ class Tutorial(Scene):
         ############
         self.next_section("heli flying into the sunset; fade out", PresentationSectionType.NORMAL)
         self.play(Unwrite(text), Unwrite(end), Unwrite(end_ul))
-        self.wait(2)
-
-        image = ImageMobject("img.jpg")
-        image.height = 9
-        self.play(FadeIn(image))
-        self.wait(4)
-        self.remove(image)
         self.wait()
