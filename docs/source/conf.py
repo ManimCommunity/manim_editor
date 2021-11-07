@@ -51,7 +51,8 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme = 'furo'
-html_favicon = str(Path("_static/favicon.png"))
+html_favicon = str(Path("_static")/"favicon.png")
+html_logo = str(Path("_static")/"logo.png")
 
 html_title = f"Manim Editor {release}"
 
