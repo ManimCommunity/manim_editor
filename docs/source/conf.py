@@ -21,8 +21,8 @@ from pathlib import Path
 # -- Project information -----------------------------------------------------
 
 project = 'Manim Editor'
-copyright = '2021, Christopher Besch'
-author = 'Christopher Besch'
+copyright = '2021, ManimEditorProject'
+author = 'ManimEditorProject'
 
 # The full version, including alpha/beta/rc tags
 release = "v0.2.5"
@@ -53,7 +53,7 @@ exclude_patterns = []
 html_theme = 'furo'
 html_favicon = str(Path("_static/favicon.png"))
 
-html_title = f"Manim Editor v0.1.2"
+html_title = f"Manim Editor {release}"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
