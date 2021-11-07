@@ -26,4 +26,4 @@ Working with The Manim Editor
 .............................
 
 Now you should be able to use the ``Manim Editor``.
-Get started with the 
+Now you can `get started with the Manim Editor <use>`_.
