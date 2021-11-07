@@ -57,6 +57,7 @@ Minimal Example
 ---------------
 
 You can run the follwing minimal example, to get your first presentation!
+A preview of the presentation of the following code block can be found `here <https://manimeditorproject.github.io/manim_editor/MinimalPresentationExample/index.html>`_. 
 
 .. code-block:: python
 
