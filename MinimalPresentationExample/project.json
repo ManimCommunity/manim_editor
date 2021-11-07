@@ -1,0 +1,72 @@
+[
+    {
+        "id": 0,
+        "name": "A",
+        "type": "presentation.normal",
+        "original_video": "/home/runner/work/manim_editor/manim_editor/pages/../media/videos/example/1080p60/sections/MinimalPresentationExample_0000.mp4",
+        "width": 1920,
+        "height": 1080,
+        "fps": "60",
+        "duration": 1.0,
+        "project_name": "MinimalPresentationExample",
+        "in_project_video": "video_0000.mp4",
+        "in_project_thumbnail": "thumb_0000.jpg",
+        "in_project_id": 0
+    },
+    {
+        "id": 1,
+        "name": "B",
+        "type": "presentation.skip",
+        "original_video": "/home/runner/work/manim_editor/manim_editor/pages/../media/videos/example/1080p60/sections/MinimalPresentationExample_0001.mp4",
+        "width": 1920,
+        "height": 1080,
+        "fps": "60",
+        "duration": 1.0,
+        "project_name": "MinimalPresentationExample",
+        "in_project_video": "video_0001.mp4",
+        "in_project_thumbnail": "thumb_0001.jpg",
+        "in_project_id": 1
+    },
+    {
+        "id": 2,
+        "name": "C",
+        "type": "presentation.loop",
+        "original_video": "/home/runner/work/manim_editor/manim_editor/pages/../media/videos/example/1080p60/sections/MinimalPresentationExample_0002.mp4",
+        "width": 1920,
+        "height": 1080,
+        "fps": "60",
+        "duration": 1.0,
+        "project_name": "MinimalPresentationExample",
+        "in_project_video": "video_0002.mp4",
+        "in_project_thumbnail": "thumb_0002.jpg",
+        "in_project_id": 2
+    },
+    {
+        "id": 3,
+        "name": "D",
+        "type": "presentation.complete_loop",
+        "original_video": "/home/runner/work/manim_editor/manim_editor/pages/../media/videos/example/1080p60/sections/MinimalPresentationExample_0003.mp4",
+        "width": 1920,
+        "height": 1080,
+        "fps": "60",
+        "duration": 1.0,
+        "project_name": "MinimalPresentationExample",
+        "in_project_video": "video_0003.mp4",
+        "in_project_thumbnail": "thumb_0003.jpg",
+        "in_project_id": 3
+    },
+    {
+        "id": 4,
+        "name": "E",
+        "type": "presentation.normal",
+        "original_video": "/home/runner/work/manim_editor/manim_editor/pages/../media/videos/example/1080p60/sections/MinimalPresentationExample_0004.mp4",
+        "width": 1920,
+        "height": 1080,
+        "fps": "60",
+        "duration": 1.0,
+        "project_name": "MinimalPresentationExample",
+        "in_project_video": "video_0004.mp4",
+        "in_project_thumbnail": "thumb_0004.jpg",
+        "in_project_id": 4
+    }
+]
