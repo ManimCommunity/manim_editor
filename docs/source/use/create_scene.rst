@@ -22,7 +22,7 @@ Four types are provided:
    COMPLETE_LOOP  start, end, restart, when user continues finish animation first
    =============  ==============================================================================
 
-They are also explained in the `interactive tutorial <https://manimeditorproject.github.io/manim_editor/>`_.
+They are also explained in the `interactive tutorial <https://manimeditorproject.github.io/manim_editor/Tutorial/index.html>`_.
 
 With this information you can create a ``Manim`` scene with the correct types like this:
 
@@ -56,11 +56,13 @@ Once you're happy with your scene, you can `create the Manim Editor project <cre
 Minimal Example
 ---------------
 
-You can run the follwing minimal example, to get your first presentation!
+You can run the following minimal example, to get your first presentation.
+It results in `this presentation <https://manimeditorproject.github.io/manim_editor/MinimalPresentationExample/index.html>`_.
 
 .. code-block:: python
 
-   def make_elements():  # only setting up the mobjects
+   # only setting up the mobjects
+   def make_elements():
       dots = VGroup(Dot(), Dot(), Dot(), Dot(), Dot(), Dot(), z_index=0)
       dots.arrange(buff=0.7).scale(2).set_color(BLUE)
       dots[0].set_color(ORANGE)
