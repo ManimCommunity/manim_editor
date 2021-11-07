@@ -53,7 +53,7 @@ You can create as many scenes as your heart desires, they should only be created
 That way they can be used together for the same project.
 Once you're happy with your scene, you can `create the Manim Editor project <create_project>`_.
 
-Mimimal Example
+Minimal Example
 ---------------
 
 You can run the follwing minimal example, to get your first presentation!
