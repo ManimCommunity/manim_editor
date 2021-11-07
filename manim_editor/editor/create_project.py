@@ -56,4 +56,10 @@ def populate_project(project_name: str, scene_ids: List[int]) -> bool:
     for scene in scenes:
         sections += scene.sections
 
-    return populate_project_with_loaded_sections(project_name, sections)
+    success = populate_project_with_loaded_sections(project_name, sections)
+    if success:
+        # xD
+        print(f"Project '{project_name}' population finished.")
+    else:
+        print(f"Project '{project_name}' population failed.")
+    return success

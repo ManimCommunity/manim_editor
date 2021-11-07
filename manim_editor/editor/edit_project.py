@@ -20,7 +20,7 @@ def emulate_url_for(endpoint: str, path: str = "", name: str = "", filename: str
 
 
 def export_presentation(project_name: str, sections: List[Section]) -> None:
-    print(f"Exporting Project {project_name} as presentation.")
+    print(f"Exporting Project '{project_name}' as presentation.")
     jinja2_env = jinja2.Environment(
         loader=jinja2.FileSystemLoader([
             get_config().ROOT_DIR / "app" / "templates",
@@ -41,3 +41,5 @@ def export_presentation(project_name: str, sections: List[Section]) -> None:
         file.write(html)
     copy_tree(get_config().ROOT_DIR / "app" / "static" / "webpack", str(Path(project_name) / "webpack"))
     copy_tree(get_config().ROOT_DIR / "app" / "static" / "img", str(Path(project_name) / "img"))
+    print(f"Presentation is ready at '{Path(project_name).absolute()}'")
+    print("Run 'python3 -m http.server' in that directory. Simply opening the .html file won't work.")
