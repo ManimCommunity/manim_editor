@@ -1,3 +1,5 @@
+.. _create_scene:
+
 Creating the Manim Scene
 ========================
 
@@ -51,7 +53,7 @@ This creates a ``media`` directory in the current working directory (CWD).
 
 You can create as many scenes as your heart desires, they should only be created in the ``media`` directory.
 That way they can be used together for the same project.
-Once you're happy with your scene, you can `create the Manim Editor project <create_project>`__.
+Once you're happy with your scene, you can :ref:`create the Manim Editor project <create_project>`.
 
 Minimal Example
 ***************

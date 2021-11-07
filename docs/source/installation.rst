@@ -1,3 +1,5 @@
+.. _installation:
+
 Installation
 ============
 
@@ -26,4 +28,4 @@ Working with The Manim Editor
 *****************************
 
 Now you should be able to use the ``Manim Editor``.
-Now you can `get started with the Manim Editor <use>`__.
+Now you can :ref:`get started with the Manim Editor <getting_started>`.

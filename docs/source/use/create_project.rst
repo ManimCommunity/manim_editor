@@ -1,7 +1,9 @@
+.. _create_project:
+
 Create a New Project
 ====================
 
-Once you have `installed the Manim Editor <installation>`__ you can start it by running `manedit`.
+Once you have :ref:`installed the Manim Editor <installation>` you can start it by running `manedit`.
 
 .. tip::
 

@@ -2,6 +2,8 @@
 
     This documentation is a work in progress, please tread carefully.
 
+.. _index:
+
 Manim Editor Overview
 =====================
 
@@ -32,12 +34,12 @@ It allows the separation of a scene into multiple sections.
 In addition to that it optionally stores names and types for each section.
 ``Manim`` only supports the type ``DefaultSesctionType.NORMAL`` out of the box.
 The ``Manim`` Editor defines more types, which define how a section should be played in the presentation.
-They are described `here <use/create_scene>`__.
+They are described :ref:`here <create_scene>`.
 
 Each section is equivalent to a slide from PowerPoint and can be shown individually.
 Multiple sections (possibly from different ``Manim`` scenes) build one project that can be presented as a whole.
 A Manim Editor project is a directory that will house everything needed to present a project.
-More on that `here <use/create_project>`__.
+More on that :ref:`here <create_project>`.
 
 .. note::
 
