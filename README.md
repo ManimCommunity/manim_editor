@@ -23,13 +23,13 @@ These Browsers are supported:
 ## Create a Project
 
 <video muted autoplay loop width=1280 height=720>
-   <source src="docs/source/_static/export_presenter.mp4">
+   <source src="https://raw.githubusercontent.com/ManimEditorProject/manim_editor/main/docs/source/_static/create_project.mp4">
    Your browser doesn't support embedded videos.
 </video>
 
 ## Export a Project as a Presentation
 
 <video muted autoplay loop width=1280 height=720>
-   <source src="docs/source/_static/create_project.mp4">
+   <source src="https://raw.githubusercontent.com/ManimEditorProject/manim_editor/main/docs/source/_static/export_presenter.mp4">
    Your browser doesn't support embedded videos.
 </video>
