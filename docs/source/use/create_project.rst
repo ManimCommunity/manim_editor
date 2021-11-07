@@ -16,3 +16,13 @@ Here you can select any ``Manim Editor`` Projects you have already created.
 
 When you create a new project, the editor asks you to select the scenes you want to be included in the new project.
 The order of the scenes can be adjusted with the priority; the smaller the priority the earlier that scene gets played.
+
+.. container:: custom
+   <p>test</p>
+
+   <video muted autoplay>
+
+       <source src="_static/create_project.mp4">
+       Your browser doesn't support embedded videos.
+
+   </video>

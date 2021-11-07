@@ -7,7 +7,7 @@ Getting Started
 * Finally you can `export that project as a presentation <export_presentation>`__.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 0
    :caption: Contents:
 
    use/create_project

@@ -74,7 +74,8 @@ jobs:
 
       - name: Run Manim
         run: | 
-          poetry run manim -qh --save_sections example.py Tutorial MinimalPresentationExample
+          poetry run manim -qh --save_sections example.py Tutorial
+          poetry run manim -qh --save_sections example.py MinimalPresentationExample
 
       - name: Run the Manim Editor
         run: |
