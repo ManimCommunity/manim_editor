@@ -1,11 +1,11 @@
 Installation
 ============
 
-Just as ``Manim`` the ``Manim Editor`` is a `Python package on PyPi <https://pypi.org/project/manim-editor/>`_.
+Just as ``Manim`` the ``Manim Editor`` is a `Python package on PyPi <https://pypi.org/project/manim-editor/>`__.
 If you know what you're doing, simply install it using pip.
 But make sure that FFmpeg is accessible through the ``ffmpeg`` command.
 
-First you have to `install Manim <https://docs.manim.community/en/stable/installation.html#local-installation>`_ and ensure that it functions on your system.
+First you have to `install Manim <https://docs.manim.community/en/stable/installation.html#local-installation>`__ and ensure that it functions on your system.
 
 .. tip::
 
@@ -19,11 +19,11 @@ Once your Python environment is functioning and populated with ``Manim`` and its
 
 Now the ``Manim Editor`` is accessible through the terminal via ``manim_editor`` or ``manedit``.
 
-If you've gotten stuck and don't know what to do, feel free to ask on the `Manim Discord Server <https://www.manim.community/discord/>`_ or open an `Issue on GitHub <https://github.com/ManimEditorProject/manim_editor/issues>`_.
+If you've gotten stuck and don't know what to do, feel free to ask on the `Manim Discord Server <https://www.manim.community/discord/>`__ or open an `Issue on GitHub <https://github.com/ManimEditorProject/manim_editor/issues>`__.
 (The latter is preferred.)
 
 Working with The Manim Editor
 .............................
 
 Now you should be able to use the ``Manim Editor``.
-Now you can `get started with the Manim Editor <use>`_.
+Now you can `get started with the Manim Editor <use>`__.

@@ -1,7 +1,7 @@
 Create a new Project
 ====================
 
-Once you have `installed the Manim Editor <installation>`_ you can start it by running `manedit`.
+Once you have `installed the Manim Editor <installation>`__ you can start it by running `manedit`.
 
 .. tip::
 

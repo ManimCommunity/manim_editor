@@ -18,4 +18,4 @@ Simply run this in the projects directory:
 
 Instead of running a local web server you can host the project on an online web server (e.g. GitHub Pages).
 That way you can access it from anywhere.
-This is how the `example <https://manimeditorproject.github.io/manim_editor/Tutorial/index.html>`_ has been created.
+This is how the `example <https://manimeditorproject.github.io/manim_editor/Tutorial/index.html>`__ has been created.

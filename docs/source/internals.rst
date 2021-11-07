@@ -25,7 +25,7 @@ Files to be Updated when Bumping Version
 History
 *******
 
-This project started in September 2021 as the `Manim Web Presenter <https://github.com/christopher-besch/manim_web_presenter>`_, which has been inspired by the `Manim Presentation Repo <https://github.com/galatolofederico/manim-presentation>`_.
+This project started in September 2021 as the `Manim Web Presenter <https://github.com/christopher-besch/manim_web_presenter>`__, which has been inspired by the `Manim Presentation Repo <https://github.com/galatolofederico/manim-presentation>`__.
 Back then Manim didn't have any sections, therefore this functionality had to be implemented using wrappers around the ``Scene`` class and subclasses.
-This was an ugly solution, which turned obsolete with the `implementation of the Section API <https://github.com/ManimCommunity/manim/pull/2152>`_
+This was an ugly solution, which turned obsolete with the `implementation of the Section API <https://github.com/ManimCommunity/manim/pull/2152>`__
 Since more and more features were requested, it made sense to re-design the project from scratch and give it another name: the ``Manim Editor``.

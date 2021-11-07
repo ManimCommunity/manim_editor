@@ -22,7 +22,7 @@ Four types are provided:
    COMPLETE_LOOP  start, end, restart, when user continues finish animation first
    =============  ==============================================================================
 
-They are also explained in the `interactive tutorial <https://manimeditorproject.github.io/manim_editor/Tutorial/index.html>`_.
+They are also explained in the `interactive tutorial <https://manimeditorproject.github.io/manim_editor/Tutorial/index.html>`__.
 
 With this information you can create a ``Manim`` scene with the correct types like this:
 
@@ -51,13 +51,13 @@ This creates a ``media`` directory in the current working directory (CWD).
 
 You can create as many scenes as your heart desires, they should only be created in the ``media`` directory.
 That way they can be used together for the same project.
-Once you're happy with your scene, you can `create the Manim Editor project <create_project>`_.
+Once you're happy with your scene, you can `create the Manim Editor project <create_project>`__.
 
 Minimal Example
 ---------------
 
 You can run the following minimal example, to get your first presentation.
-It results in `this presentation <https://manimeditorproject.github.io/manim_editor/MinimalPresentationExample/index.html>`_.
+It results in `this presentation <https://manimeditorproject.github.io/manim_editor/MinimalPresentationExample/index.html>`__.
 
 .. code-block:: python
 
