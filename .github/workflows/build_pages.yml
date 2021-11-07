@@ -81,6 +81,17 @@ jobs:
       - name: Create Redirect
         run: echo "<head><meta http-equiv='refresh' content='0; URL=Tutorial/index.html'></head>" > index.html
 
+      - name: Run Manim
+        run: poetry run manim -qh --save_sections example.py MinimalPresentationExample
+
+      - name: Run the Manim Editor
+        run: poetry run manedit --quick_present_export media/videos/example/1080p60/sections/MinimalPresentationExample.json 
+
+      - name: Create Redirect
+        run: echo "<head><meta http-equiv='refresh' content='0; URL=MinimalPresentationExample/index.html'></head>" > index.html
+
+
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:

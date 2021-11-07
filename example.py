@@ -1,89 +1,10 @@
 from manim import *
-from manim.mobject.geometry import ArrowTriangleFilledTip
-
 from manim_editor import PresentationSectionType, IconNormal, IconSkip, IconLoop, IconCompleteLoop
 
 
 class IconTest(Scene):
     def construct(self):
         self.add(VGroup(IconNormal(), IconSkip(), IconLoop(), IconCompleteLoop()).arrange(RIGHT))
-
-
-class ManimEditorSquareLogo(ZoomedScene):
-    def construct(self):
-        self.camera.background_color = "#ece6e2"
-        logo_green = "#87c2a5"
-        logo_blue = "#525893"
-        logo_red = "#e07a5f"
-        triangle = Triangle(color=logo_red, fill_opacity=1, z_index=10).shift(1.2*RIGHT)
-        square = Square(color=logo_blue, fill_opacity=1, z_index=20).shift(UP)
-        circle = Circle(color=logo_green, fill_opacity=1, z_index=30).shift(LEFT)
-        logo = VGroup(triangle, square, circle).scale(2.5)
-        logo.move_to(ORIGIN)
-        self.add(logo)
-
-        l1 = Rectangle(height=1.7, width=0.6, stroke_width=0, fill_opacity=1, z_index=11)
-        l2 = l1.copy()
-        pause = VGroup(l1, l2).arrange(RIGHT)
-        pause.move_to(triangle.get_center_of_mass())
-        self.add(pause)
-
-        play = Triangle(color=WHITE, fill_opacity=1, z_index=21).rotate(-90*DEGREES).move_to(square.get_center()).scale(1.5).shift(0.2*RIGHT)
-        self.add(play)
-
-        arc = Arc(arc_center=circle.get_center(), radius=1.3, start_angle=-PI/16-PI/2, angle=-1.5*PI, color=WHITE, stroke_width=35, z_index=31)
-        tip = ArrowTriangleFilledTip(z_index=31, color=WHITE, start_angle=-PI/16-PI/2).scale(3)
-        tip.next_to(arc.get_end(), DOWN, buff=-0.1)
-
-        loop = VGroup(arc, tip)
-        self.add(loop)
-        self.camera.frame.scale(0.8)  # needs ZoomedScene
-
-
-class ManimEditorFullLogo(ZoomedScene):
-    def construct(self):
-        self.camera.background_color = BLACK
-        logo_green = "#87c2a5"
-        logo_blue = "#525893"
-        logo_red = "#e07a5f"
-        triangle = Triangle(color=logo_red, fill_opacity=1, z_index=10).shift(1.2*RIGHT)
-        square = Square(color=logo_blue, fill_opacity=1, z_index=20).shift(UP)
-        circle = Circle(color=logo_green, fill_opacity=1, z_index=30).shift(LEFT)
-        logo = VGroup(triangle, square, circle).scale(2.5)
-        logo.move_to(ORIGIN)
-        self.add(logo)
-
-        l1 = Rectangle(height=1.7, width=0.6, stroke_width=0, fill_opacity=1, z_index=11)
-        l2 = l1.copy()
-        pause = VGroup(l1, l2).arrange(RIGHT)
-        pause.move_to(triangle.get_center_of_mass())
-        self.add(pause)
-
-        play = Triangle(color=WHITE, fill_opacity=1, z_index=21).rotate(-90*DEGREES).move_to(square.get_center()).scale(1.5).shift(0.2*RIGHT)
-        self.add(play)
-
-        arc = Arc(arc_center=circle.get_center(), radius=1.3, start_angle=-PI/16-PI/2, angle=-1.5*PI, color=WHITE, stroke_width=35, z_index=31)
-        tip = ArrowTriangleFilledTip(z_index=31, color=WHITE, start_angle=-PI/16-PI/2).scale(3)
-        tip.next_to(arc.get_end(), DOWN, buff=-0.1)
-
-        loop = VGroup(arc, tip)
-        self.add(loop)
-        logo_all = VGroup(logo, play, pause, loop).scale(0.5)
-        self.camera.frame.scale(1.8)  # needs ZoomedScene
-
-        logo_black = "#343434"
-        M = MathTex(r"\mathbb{M}").scale(7).set_color(logo_black)
-        anim = Tex(r"\textbf{anim}", tex_template=TexFontTemplates.gnu_freeserif_freesans).scale(7).set_color(logo_black).scale(0.75748)
-
-        E = MathTex(r"\mathbb{E}").scale(7).set_color(logo_black)
-        ditor = Tex(r"\textbf{ditor}", tex_template=TexFontTemplates.gnu_freeserif_freesans).scale(7).set_color(logo_black).scale(0.75748)
-        x = VGroup(M, anim).arrange(RIGHT, buff=0.1)
-        y = VGroup(E, ditor).arrange(RIGHT, buff=0.1)
-        VGroup(x, y, logo_all).arrange(RIGHT, buff=0.5)
-        anim.align_to(M, DOWN)
-        ditor.align_to(M, DOWN)
-        self.add(x, y)
-
 
 class Test(Scene):
     def construct(self):
@@ -100,6 +21,129 @@ class Test(Scene):
         self.next_section()
         self.remove(square)
         self.wait()
+
+import manim
+from .config import get_config
+from manim_editor import PresentationSectionType
+
+class IconNormal(manim.VGroup):
+    def __init__(self):
+        manim.VGroup.__init__(self)
+        icon_normal = manim.SVGMobject(str(get_config().STATIC_DIR / "img" / "play_btn.svg"))
+        self.add(icon_normal)
+
+
+class IconSkip(manim.VGroup):
+    def __init__(self):
+        manim.VGroup.__init__(self)
+        icon_skip = manim.SVGMobject(str(get_config().STATIC_DIR / "img" / "wind.svg"))
+        self.add(icon_skip)
+
+
+class IconLoop(manim.VGroup):
+    def __init__(self):
+        manim.VGroup.__init__(self)
+        icon_loop = manim.SVGMobject(str(get_config().STATIC_DIR / "img" / "arrow_clockwise.svg"))
+        self.add(icon_loop)
+
+
+class IconCompleteLoop(manim.VGroup):
+    def __init__(self):
+        manim.VGroup.__init__(self)
+        icon_completeloop = manim.SVGMobject(str(get_config().STATIC_DIR / "img" / "hourglass_split.svg"))
+        self.add(icon_completeloop)
+
+
+class EditorLogo(manim.VGroup):
+    def __init__(self):
+        manim.VGroup.__init__(self)
+        logo_green = "#87c2a5"
+        logo_blue = "#525893"
+        logo_red = "#e07a5f"
+        triangle = manim.Triangle(color=logo_red, fill_opacity=1, z_index=10).shift(1.2*manim.RIGHT)
+        square = manim.Square(color=logo_blue, fill_opacity=1, z_index=20).shift(manim.UP)
+        circle = manim.Circle(color=logo_green, fill_opacity=1, z_index=30).shift(manim.LEFT)
+        logo = manim.VGroup(triangle, square, circle).scale(2.5)
+        logo.move_to(manim.ORIGIN)
+        self.add(logo)
+
+        l1 = manim.Rectangle(height=1.7, width=0.6, stroke_width=0, fill_opacity=1, z_index=11)
+        l2 = l1.copy()
+        pause = manim.VGroup(l1, l2).arrange(manim.RIGHT)
+        pause.move_to(triangle.get_center_of_mass())
+        self.add(pause)
+
+        play = manim.Triangle(color=manim.WHITE, fill_opacity=1, z_index=21).rotate(-90*manim.DEGREES).move_to(square.get_center()).scale(1.5).shift(0.2*manim.RIGHT)
+        self.add(play)
+
+        inner = 1.2
+        outer = 1.75
+        arc = manim.Sector(arc_center=circle.get_center(), inner_radius=inner, outer_radius=outer, start_angle=-manim.PI/2, angle=-1.5*manim.PI, color=manim.WHITE, stroke_width=0, z_index=31)
+        tip = manim.mobject.geometry.ArrowTriangleFilledTip(z_index=31, color=manim.WHITE, start_angle=-manim.PI/2).scale(3.5)
+        tip.next_to(arc.get_right(), manim.DOWN, buff=0).shift((outer-inner)/2*manim.LEFT+0.05*manim.UP)
+
+        loop = manim.VGroup(arc, tip).rotate(-manim.PI/16)
+        self.add(loop)
+
+
+class EditorBanner(manim.VGroup):
+    def __init__(self):
+        manim.VGroup.__init__(self)
+
+        logo_all = EditorLogo().scale(0.5)
+
+        logo_black = "#343434"
+        M = manim.MathTex(r"\mathbb{M}").scale(7).set_color(logo_black)
+        anim = manim.Tex(r"\textbf{anim}", tex_template=manim.TexFontTemplates.gnu_freeserif_freesans).scale(7).set_color(logo_black).scale(0.75748)
+
+        E = manim.MathTex(r"\mathbb{E}").scale(7).set_color(logo_black)
+        ditor = manim.Tex(r"\textbf{ditor}", tex_template=manim.TexFontTemplates.gnu_freeserif_freesans).scale(7).set_color(logo_black).scale(0.75748)
+        x = manim.VGroup(M, anim).arrange(manim.RIGHT, buff=0.1)
+        y = manim.VGroup(E, ditor).arrange(manim.RIGHT, buff=0.1)
+        banner = manim.VGroup(x, y, logo_all).arrange(manim.RIGHT, buff=0.5)
+        anim.align_to(M, manim.DOWN)
+        ditor.align_to(M, manim.DOWN)
+        self.add(manim.RoundedRectangle(fill_color="#ece6e2", height=banner.get_height()+1, width=banner.get_width()+1.5, fill_opacity=1, stroke_width=0, z_index=0))
+        self.add(banner)
+        self.scale(0.3)
+
+from manim import Dot,VGroup,ORANGE,BLUE,Scene, Line, linear
+
+def make_elements():  # only setting up the mobjects
+    dots = VGroup(Dot(), Dot(), Dot(), Dot(), Dot(), Dot(), z_index=0)
+    dots.arrange(buff=0.7).scale(2).set_color(BLUE)
+    dots[0].set_color(ORANGE)
+    dots[-1].set_color(ORANGE)
+    moving_dot = Dot(color=ORANGE, z_index=1).scale(2.5)
+    moving_dot.move_to(dots[0])
+    path = VGroup()
+    path.add_updater(
+        lambda x: x.become(
+            Line(dots[0], moving_dot, stroke_width=10, z_index=1, color=ORANGE)
+        )
+    )
+    return dots, moving_dot, path
+class MinimalPresentationExample(Scene):
+    def construct(self):
+
+        dots, moving_dot, path = make_elements()
+        self.add(dots, moving_dot, path)
+
+        self.next_section("A", PresentationSectionType.NORMAL)
+        self.play(moving_dot.animate.move_to(dots[1]), rate_func=linear)
+
+        self.next_section("B", PresentationSectionType.SKIP)
+        self.play(moving_dot.animate.move_to(dots[2]), rate_func=linear)
+
+        self.next_section("C", PresentationSectionType.LOOP)
+        self.play(moving_dot.animate.move_to(dots[3]), rate_func=linear)
+
+        self.next_section("D", PresentationSectionType.COMPLETE_LOOP)
+        self.play(moving_dot.animate.move_to(dots[4]), rate_func=linear)
+
+        self.next_section("E", PresentationSectionType.NORMAL)
+        self.play(moving_dot.animate.move_to(dots[5]), rate_func=linear)
+
 
 
 class Tutorial(Scene):
