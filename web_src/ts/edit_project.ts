@@ -135,12 +135,12 @@ function attach_keyboard_ui(presentation: Presentation): void {
     document.addEventListener("keydown", (e: KeyboardEvent) => {
         if (e.repeat)
             return;
-        if (prev_keys.includes(e.code) && e.ctrlKey)
+        if (prev_keys.includes(e.code) && (e.ctrlKey || e.metaKey))
             presentation.play_previous_section_forced();
         else if (prev_keys.includes(e.code))
             presentation.play_previous_section();
 
-        else if (next_keys.includes(e.code) && e.ctrlKey)
+        else if (next_keys.includes(e.code) && (e.ctrlKey || e.metaKey))
             presentation.play_next_section_forced();
         else if (next_keys.includes(e.code))
             presentation.play_next_section();
