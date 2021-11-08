@@ -332,7 +332,7 @@ class Tutorial(Scene):
         moving_dot.x0 = dots[7].get_x()
         moving_dot.x1 = dots[8].get_x()
         moving_dot.FRACTION = 0
-        moving_dot.run_time = 10
+        moving_dot.run_time = 6
 
         iconcompleteloop.add_updater(lambda x, dt: x.set_opacity(x.stroke_opacity - dt))
         # self.wait(3)
