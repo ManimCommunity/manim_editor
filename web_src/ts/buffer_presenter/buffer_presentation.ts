@@ -7,8 +7,8 @@ export class BufferPresentation extends Presentation {
     private future_sections_to_buffer;
     private past_sections_to_buffer;
 
-    public constructor(cache_batch_size: number, past_sections_to_buffer: number, future_sections_to_buffer: number) {
-        super(cache_batch_size);
+    public constructor(go_back_time: number, cache_batch_size: number, past_sections_to_buffer: number, future_sections_to_buffer: number) {
+        super(go_back_time, cache_batch_size);
         this.past_sections_to_buffer = past_sections_to_buffer;
         this.future_sections_to_buffer = future_sections_to_buffer;
     }
