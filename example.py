@@ -268,6 +268,8 @@ class Tutorial(Scene):
         self.add(t12, t3)
 
         iconloop = IconLoop().set_style(fill_opacity=0.8)
+        iconloop.stroke_opacity=0.8
+
         iconloop.add_updater(lambda x, dt: x.rotate(-dt/3 * TAU, about_point=ORIGIN-0.16*UP))
 
         self.add(iconloop)
@@ -320,6 +322,7 @@ class Tutorial(Scene):
         self.add(t12, t3)
 
         iconcompleteloop = IconCompleteLoop().set_style(fill_opacity=0.8)
+        iconcompleteloop.stroke_opacity=0.8
         iconcompleteloop.add_updater(lambda x, dt: x.rotate(-dt/3 * TAU))
 
         self.add(iconcompleteloop)
