@@ -157,7 +157,7 @@ class Tutorial(Scene):
         banner = EditorBanner().scale(1.2)
         self.play(FadeIn(banner, scale=1.5, shift=DOWN))
         self.play(banner.animate.shift(2.5*UP))
-        A1 = "Welcome! In this presentation, you will learn about these 4 Slide Types in the Manim Editor."
+        A1 = "Welcome! This presentation will guide you through the 4 provided section types."
         A1 = Text(A1).scale(0.5)
         A2 = IconArray().scale(0.7)
         A2.add(SurroundingRectangle(A2, stroke_color=BLUE, corner_radius=0.1, buff=0.2))
@@ -184,10 +184,10 @@ class Tutorial(Scene):
         t12.next_to(line, UP)
 
         t3 = VGroup(
-            Text("Press any of the usual \"next\"-keys"),
+            Text("Press any of the usual \"next slide\"-keys"),
             Text("like RightArrow or PageUp"),
-            Text("to go to the next slide."),
-            Text("You can also use the > button above."),
+            Text("to go to the next section."),
+            Text("You can also use the controls on the right."),
         ).arrange(DOWN).scale(0.7).next_to(line, DOWN, buff=0.7)
         self.add(line, t12, t3)
         self.wait(4)
@@ -209,9 +209,9 @@ class Tutorial(Scene):
         t12 = VGroup(t1, t2).arrange(RIGHT)
         t12.next_to(line, UP)
         t3 = VGroup(
-            Text("When the video of the skip slide is finished "),
-            Text("it automatically continues with the next slide."),
-            Text("No key input required.")
+            Text("When the video of the skip section has finished "),
+            Text("it automatically continues with the next."),
+            Text("No user input required.")
         ).arrange(DOWN).scale(0.7).next_to(line, DOWN, buff=0.7)
         self.add(t12, t3)
         self.wait(2)
@@ -283,8 +283,8 @@ class Tutorial(Scene):
         moving_dot.run_time = 6
 
         t3b = VGroup(
-            Text("But when pressing a key to enter the next slide,"),
-            Text("The transition won't be smooth."),
+            Text("There won't be any smooth transitions"),
+            Text("when continuing to the next section though."),
         ).arrange(DOWN).scale(0.7).next_to(line, DOWN, buff=0.7)
         t3.become(t3b)
         self.wait(0.5)
@@ -292,11 +292,12 @@ class Tutorial(Scene):
         self.wait(2)
 
         t4 = VGroup(
-            Text("That's why there is also CompleteLoop!"),
+            Text("This is where Complete Loop Sections come in."),
         ).scale(0.7).next_to(t3, DOWN, buff=0.7)
         self.add(t4)
         self.wait(3.5)
         self.remove(t12, t3, t4)
+
         #################################################################
 
         self.next_section("G", PresentationSectionType.COMPLETE_LOOP, skip_animations=False)
@@ -312,7 +313,9 @@ class Tutorial(Scene):
         t12 = VGroup(t1, t2).arrange(RIGHT)
         t12.next_to(line, UP)
         t3 = VGroup(
-            Text("Its a loop that will always finish the whole video!"),
+            Text("When continuing to the next section,"),
+            Text("all animations of this section finish first."),
+            Text("Enjoy some smooth transitions!"),
         ).arrange(DOWN).scale(0.7).next_to(line, DOWN, buff=0.7)
         self.add(t12, t3)
 
@@ -331,18 +334,10 @@ class Tutorial(Scene):
         moving_dot.FRACTION = 0
         moving_dot.run_time = 10
 
-        t3b = VGroup(
-            Text("Its a loop that will always finish the whole video!"),
-            Text("And transitions will be smooth."),
-        ).arrange(DOWN).scale(0.7).next_to(line, DOWN, buff=0.7)
-        t3.become(t3b)
-
-        self.wait(1)
         iconcompleteloop.add_updater(lambda x, dt: x.set_opacity(x.stroke_opacity - dt))
-        self.wait(3)
-        self.remove(t3, t12, line)
-        self.wait(1)
-        self.play(Write(Text("END").scale(4)), run_time=2)
+        # self.wait(3)
+        self.play(Unwrite(VGroup(t3, t12, line)))
+        self.play(Write(Text("THE END").scale(4)), run_time=2)
         self.wait(3)
         iconcompleteloop.clear_updaters()
 
