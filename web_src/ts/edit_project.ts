@@ -5,8 +5,8 @@ import { FallbackPresentation } from "./fallback_presenter/fallback_presentation
 import { send_json, flash } from "./utils";
 
 // used to load and update player settings
-// in milliseconds
-let GO_BACK_TIME = 1;
+// NOTE: in milliseconds rather than seconds as inputted by the user
+let GO_BACK_TIME = 1000;
 let CACHE_BATCH_SIZE = 3;
 let PAST_SECTIONS_TO_BUFFER = 10;
 let FUTURE_SECTIONS_TO_BUFFER = 20;
@@ -26,7 +26,7 @@ function load_url_params(): void {
         USE_FALLBACK_LOADER = url_search_params.get("use_fallback_loader") === "true";
 }
 
-// update url parameters and reload page
+// update url parameter and reload page
 function update_url_params(): void {
     url_search_params.set("go_back_time", GO_BACK_TIME.toString());
     url_search_params.set("cache_batch_size", CACHE_BATCH_SIZE.toString());
@@ -35,6 +35,12 @@ function update_url_params(): void {
     url_search_params.set("use_fallback_loader", USE_FALLBACK_LOADER.toString());
 
     window.history.replaceState({}, "", `${location.pathname}?${url_search_params.toString()}`);
+    location.reload();
+}
+
+// remove url parameter and reload page
+function discard_url_params(): void {
+    window.history.replaceState({}, "", `${location.pathname}`);
     location.reload();
 }
 
@@ -55,9 +61,10 @@ function attach_settings(): void {
     let past_sections_to_buffer = document.getElementById("past-sections-to-buffer") as HTMLInputElement;
     let future_sections_to_buffer = document.getElementById("future-sections-to-buffer") as HTMLInputElement;
     let use_fallback_loader = document.getElementById("fallback-loader-selected") as HTMLInputElement;
+    let reset_settings = document.getElementById("reset-settings") as HTMLButtonElement;
     let update_settings = document.getElementById("update-settings") as HTMLButtonElement;
 
-    go_back_time.value = GO_BACK_TIME.toString();
+    go_back_time.value = Math.round(GO_BACK_TIME / 1000).toString();
     cache_batch_size.value = CACHE_BATCH_SIZE.toString();
     past_sections_to_buffer.value = PAST_SECTIONS_TO_BUFFER.toString();
     future_sections_to_buffer.value = FUTURE_SECTIONS_TO_BUFFER.toString();
@@ -65,6 +72,7 @@ function attach_settings(): void {
     use_fallback_loader.checked = USE_FALLBACK_LOADER;
 
     // set callback
+    reset_settings.addEventListener("click", discard_url_params);
     update_settings.addEventListener("click", () => {
         // silently prevent invalid input
         // TODO: add error message

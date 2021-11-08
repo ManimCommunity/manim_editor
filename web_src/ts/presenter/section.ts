@@ -34,7 +34,7 @@ export abstract class Section {
 
     // when section starts and ends
     // -1 -> hasn't ended/started yet
-    protected begin_time_stamp: number = -1;
+    protected start_time_stamp: number = -1;
     protected end_time_stamp: number = -1;
 
     public constructor(section: SectionJson, video: string) {
@@ -72,19 +72,18 @@ export abstract class Section {
     }
 
     public start_timer(): void {
-        this.begin_time_stamp = performance.now();
+        this.start_time_stamp = performance.now();
         this.end_time_stamp = -1;
     }
     public stop_timer(): void {
-        if (this.end_time_stamp != -1)
-            console.error(`Attempting to stop section '${this.name}', which has already been stopped without begin restarted afterwards.`);
-        else
+        // prevent attempting to stop not started section
+        if (this.end_time_stamp == -1 && this.start_time_stamp != -1)
             this.end_time_stamp = performance.now();
     }
     // in milliseconds
     public get_duration(): number {
         this.stop_timer();
-        return this.end_time_stamp - this.begin_time_stamp;
+        return this.end_time_stamp - this.start_time_stamp;
     }
     // in seconds rounded to one decimal
     public get_sec_duration(): number {

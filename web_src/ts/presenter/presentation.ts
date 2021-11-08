@@ -178,8 +178,9 @@ export abstract class Presentation {
     }
     public play_previous_section(): void {
         // either restart or go back
-        if (this.go_back_time == -1 || this.sections[this.current_video].get_duration() <= this.go_back_time)
+        if (this.go_back_time < 0 || this.sections[this.current_section].get_duration() < this.go_back_time) {
             this.play_previous_section_forced();
+        }
         else
             this.restart_current_section();
     }
