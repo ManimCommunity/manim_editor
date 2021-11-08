@@ -9,6 +9,7 @@ export abstract class Presentation {
 
     private timeline_sections: HTMLCollectionOf<HTMLDivElement>;
     private timeline_indicators: HTMLCollectionOf<HTMLElement>;
+    private timeline_time_stamps: HTMLCollectionOf<HTMLDivElement>;
 
     private pause_button: HTMLButtonElement;
 
@@ -20,6 +21,7 @@ export abstract class Presentation {
     // switch between play and pause
     private button_should_pause = true;
 
+    private go_back_time: number;
     private cache_batch_size: number;
     // gets flipped when displaying first video
     private current_video = 1;
@@ -28,11 +30,14 @@ export abstract class Presentation {
     protected current_section = -1;
     // used for restarting loops
     // <- has to be done to allow complete loops
+    // also used for setting time stamps
+    // most of the time same as current_section, only different when video element has to be touched
     private previous_section = -1;
     // used for complete loops
     private next_section = 0;
 
-    public constructor(cache_batch_size: number) {
+    public constructor(go_back_time: number, cache_batch_size: number) {
+        this.go_back_time = go_back_time;
         this.cache_batch_size = cache_batch_size;
 
         this.video0 = document.getElementById("video0") as HTMLVideoElement;
@@ -40,6 +45,7 @@ export abstract class Presentation {
         this.videos_div = document.getElementById("videos-div") as HTMLDivElement;
         this.timeline_sections = document.getElementsByClassName("timeline-element") as HTMLCollectionOf<HTMLDivElement>;
         this.timeline_indicators = document.getElementsByClassName("timeline-indicator") as HTMLCollectionOf<HTMLDivElement>;
+        this.timeline_time_stamps = document.getElementsByClassName("timeline-time-stamp") as HTMLCollectionOf<HTMLDivElement>;
         this.pause_button = document.getElementById("pause") as HTMLButtonElement;
         this.normal_legend = document.getElementById("normal-legend") as HTMLTableRowElement;
         this.skip_legend = document.getElementById("skip-legend") as HTMLTableRowElement;
@@ -64,6 +70,13 @@ export abstract class Presentation {
         });
     }
 
+    // to be used when section has ended
+    private set_time_stamp(): void {
+        if (this.previous_section != -1)
+            this.sections[this.previous_section].stop_timer();
+        this.sections[this.current_section].start_timer();
+    }
+
     // update currently playing video in html video element
     private update_video(): void {
         this.set_button_pause();
@@ -72,31 +85,34 @@ export abstract class Presentation {
             // restart video
             this.get_current_video().currentTime = 0;
             this.get_current_video().play();
+            // timestamp in timeline has to be updated
+            this.update_timeline()
             return;
         }
-        let current_section_elem = this.sections[this.current_section];
         // swap videos
         let last_element = this.get_current_video();
         this.current_video = this.current_video == 0 ? 1 : 0;
         let next_element = this.get_current_video();
 
         // double buffering: setup new video
-        next_element.src = current_section_elem.get_src_url();
+        next_element.src = this.sections[this.current_section].get_src_url();
         next_element.style.visibility = "visible";
 
         // set callback for when video has ended
-        switch (current_section_elem.get_type()) {
+        switch (this.sections[this.current_section].get_type()) {
             case SectionType.SKIP:
                 next_element.onended = (_) => {
                     // immediately go to next section without user input
                     ++this.current_section;
                     this.next_section = this.current_section;
+                    this.set_time_stamp();
                     this.update_video();
                 }
                 break;
             case SectionType.LOOP:
                 next_element.onended = (_) => {
                     // restart from beginning
+                    // section ends -> don't set timestamp
                     this.update_video();
                 }
                 break;
@@ -105,6 +121,7 @@ export abstract class Presentation {
                     // when next section has changed, go to next one
                     // otherwise restart
                     this.current_section = this.next_section;
+                    this.set_time_stamp();
                     this.update_video();
                 }
                 break;
@@ -115,7 +132,7 @@ export abstract class Presentation {
                 break;
         }
 
-        console.log(`Playing section '${current_section_elem.get_name()}'`)
+        console.log(`Playing section '${this.sections[this.current_section].get_name()}'`)
         // hide old video once new one plays
         next_element.play().then(() => {
             // pause old video to not call onended callback again when that video ends in background
@@ -145,6 +162,7 @@ export abstract class Presentation {
             // instantly switch the video
             this.next_section = section;
             this.current_section = section;
+            this.set_time_stamp();
             this.update_video();
         }
     }
@@ -159,6 +177,13 @@ export abstract class Presentation {
         this.play_section(this.current_section, true);
     }
     public play_previous_section(): void {
+        // either restart or go back
+        if (this.go_back_time == -1 || this.sections[this.current_video].get_duration() <= this.go_back_time)
+            this.play_previous_section_forced();
+        else
+            this.restart_current_section();
+    }
+    public play_previous_section_forced(): void {
         // don't finish complete loops when going back
         this.play_section(this.current_section - 1, true);
     }
@@ -247,6 +272,10 @@ export abstract class Presentation {
     }
 
     private update_timeline(): void {
+        // update time stamp in timeline of previous section
+        if (this.previous_section != -1)
+            this.timeline_time_stamps[this.previous_section].innerText = `${this.sections[this.previous_section].get_sec_duration()}sec`;
+
         // deselect old section in timeline, select current and scroll to
         if (this.previous_section != -1)
             this.timeline_indicators[this.previous_section].innerHTML = `<i class="timeline-indicators bi-check-circle" role="img"></i>`;

@@ -12,8 +12,17 @@
     </div>
     <div class="modal-body">
 
-        <!-- cache batch size -->
+        <!-- go back time -->
         <div class="row g-3 align-items-center">
+            <div class="col">
+                <label for="go-back-time" class="col-form-label">Seconds after which LeftArrow doesn't go back but restarts current section (-1 always goes back)</label>
+            </div>
+            <div class="col">
+                <input type="number" id="go-back-time" class="form-control">
+            </div>
+        </div>
+        <!-- cache batch size -->
+        <div class="row g-3 align-items-center mt-2">
             <div class="col">
                 <label for="cache-batch-size" class="col-form-label">Cache Batch Size</label>
             </div>
@@ -95,7 +104,10 @@
                             {% endif %}
                             {{ section.name }}
                         </div>
-                        <div class="col-auto text-right">
+                        <div class="col-auto">
+                            <div class="timeline-time-stamp"></div>
+                        </div>
+                        <div class="col-auto">
                             <div class="timeline-indicator">
                                 <!-- one of -->
                                 <!-- <i class="bi-circle" role="img"></i> -->
