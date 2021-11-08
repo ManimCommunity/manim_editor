@@ -135,7 +135,7 @@ class TitleLine(VGroup):
         line.width = config["frame_width"] - 4  
         line.to_edge(UP, buff=2)
         self.add(line)
-class Turorial(Scene):
+class Tutorial(Scene):
     def construct(self):
     
         dots,icons, moving_dot,l, path,slider_number= setup_slider()
