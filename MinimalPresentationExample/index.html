@@ -34,8 +34,18 @@
     </div>
     <div class="modal-body">
 
+        <!-- go back time -->
+        <div class="row g-3 align-items-start">
+            <div class="col">
+                <label for="go-back-time" class="col-form-label">Go Back Time</label>
+                <div class="form-text">Seconds after which LeftArrow doesn't go back but restarts current section (-1 always goes back)</div>
+            </div>
+            <div class="col">
+                <input type="number" id="go-back-time" class="form-control">
+            </div>
+        </div>
         <!-- cache batch size -->
-        <div class="row g-3 align-items-center">
+        <div class="row g-3 align-items-start mt-2">
             <div class="col">
                 <label for="cache-batch-size" class="col-form-label">Cache Batch Size</label>
             </div>
@@ -44,7 +54,7 @@
             </div>
         </div>
         <!-- past sections to buffer -->
-        <div class="row g-3 align-items-center mt-2">
+        <div class="row g-3 align-items-start mt-2">
             <div class="col">
                 <label for="past-sections-to-buffer" class="col-form-label">Past Sections to Buffer</label>
             </div>
@@ -53,7 +63,7 @@
             </div>
         </div>
         <!-- future sections to buffer -->
-        <div class="row g-3 align-items-center mt-1">
+        <div class="row g-3 align-items-start mt-1">
             <div class="col">
                 <label for="future-sections-to-buffer" class="col-form-label">Future Sections to Buffer</label>
             </div>
@@ -86,6 +96,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button id="reset-settings" type="button" class="btn btn-danger">Reset and Reload</button>
         <button id="update-settings" type="button" class="btn btn-primary">Apply and Reload</button>
     </div>
 </div>
@@ -100,16 +111,23 @@
         <div class="timeline row g-2">
             
             <div class="card timeline-element" data-video="video_0000.mp4">
+                <!-- thumbnail -->
                 <img src="thumb_0000.jpg" class="card-img-top" alt="couldn't load thumbnail">
                 <div class="card-body">
                     <div class="row card-text">
+                        <!-- type -->
                         <div class="col">
                             
                             <i class="bi-play-btn" role="img"></i>
                             
                             A
                         </div>
-                        <div class="col-auto text-right">
+                        <!-- timestamp -->
+                        <div class="col-auto">
+                            <div class="timeline-time-stamp">0sec</div>
+                        </div>
+                        <!-- indicator -->
+                        <div class="col-auto">
                             <div class="timeline-indicator">
                                 <!-- one of -->
                                 <!-- <i class="bi-circle" role="img"></i> -->
@@ -123,16 +141,23 @@
             </div>
             
             <div class="card timeline-element" data-video="video_0001.mp4">
+                <!-- thumbnail -->
                 <img src="thumb_0001.jpg" class="card-img-top" alt="couldn't load thumbnail">
                 <div class="card-body">
                     <div class="row card-text">
+                        <!-- type -->
                         <div class="col">
                             
                             <i class="bi-wind" role="img"></i>
                             
                             B
                         </div>
-                        <div class="col-auto text-right">
+                        <!-- timestamp -->
+                        <div class="col-auto">
+                            <div class="timeline-time-stamp">0sec</div>
+                        </div>
+                        <!-- indicator -->
+                        <div class="col-auto">
                             <div class="timeline-indicator">
                                 <!-- one of -->
                                 <!-- <i class="bi-circle" role="img"></i> -->
@@ -146,16 +171,23 @@
             </div>
             
             <div class="card timeline-element" data-video="video_0002.mp4">
+                <!-- thumbnail -->
                 <img src="thumb_0002.jpg" class="card-img-top" alt="couldn't load thumbnail">
                 <div class="card-body">
                     <div class="row card-text">
+                        <!-- type -->
                         <div class="col">
                             
                             <i class="bi-arrow-clockwise" role="img"></i>
                             
                             C
                         </div>
-                        <div class="col-auto text-right">
+                        <!-- timestamp -->
+                        <div class="col-auto">
+                            <div class="timeline-time-stamp">0sec</div>
+                        </div>
+                        <!-- indicator -->
+                        <div class="col-auto">
                             <div class="timeline-indicator">
                                 <!-- one of -->
                                 <!-- <i class="bi-circle" role="img"></i> -->
@@ -169,16 +201,23 @@
             </div>
             
             <div class="card timeline-element" data-video="video_0003.mp4">
+                <!-- thumbnail -->
                 <img src="thumb_0003.jpg" class="card-img-top" alt="couldn't load thumbnail">
                 <div class="card-body">
                     <div class="row card-text">
+                        <!-- type -->
                         <div class="col">
                             
                             <i class="bi-hourglass-split" role="img"></i>
                             
                             D
                         </div>
-                        <div class="col-auto text-right">
+                        <!-- timestamp -->
+                        <div class="col-auto">
+                            <div class="timeline-time-stamp">0sec</div>
+                        </div>
+                        <!-- indicator -->
+                        <div class="col-auto">
                             <div class="timeline-indicator">
                                 <!-- one of -->
                                 <!-- <i class="bi-circle" role="img"></i> -->
@@ -192,16 +231,23 @@
             </div>
             
             <div class="card timeline-element" data-video="video_0004.mp4">
+                <!-- thumbnail -->
                 <img src="thumb_0004.jpg" class="card-img-top" alt="couldn't load thumbnail">
                 <div class="card-body">
                     <div class="row card-text">
+                        <!-- type -->
                         <div class="col">
                             
                             <i class="bi-play-btn" role="img"></i>
                             
                             E
                         </div>
-                        <div class="col-auto text-right">
+                        <!-- timestamp -->
+                        <div class="col-auto">
+                            <div class="timeline-time-stamp">0sec</div>
+                        </div>
+                        <!-- indicator -->
+                        <div class="col-auto">
                             <div class="timeline-indicator">
                                 <!-- one of -->
                                 <!-- <i class="bi-circle" role="img"></i> -->
@@ -252,7 +298,7 @@
                 
             </div>
 
-            <!-- legend -->
+            <!-- type legend -->
             <table class="table table-sm mt-3">
                 <thead>
                     <tr>
@@ -261,7 +307,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr id="normal-legend" class="table-active">
+                    <tr id="normal-legend">
                         <td scope="col"><i class="bi-play-btn" role="img"></i></td>
                         <td scope="col">Normal</td>
                     </tr>
@@ -276,6 +322,38 @@
                     <tr id="complete-loop-legend">
                         <td scope="col"><i class="bi-hourglass-split" role="img"></i></td>
                         <td scope="col">Complete Loop</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- keymap legend -->
+            <table class="table table-sm mt-3">
+                <thead>
+                    <tr>
+                        <th scope="col">Key</th>
+                        <th scope="col">Function</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="normal-legend">
+                        <td scope="col">ArrowLeft</td>
+                        <td scope="col">Last Section / Repeat (According to Go Back Time in Player Settings)</td>
+                    </tr>
+                    <tr id="normal-legend">
+                        <td scope="col">ArrowRight</td>
+                        <td scope="col">Next Section (Respect Complete Loop Sections)</td>
+                    </tr>
+                    <tr id="normal-legend">
+                        <td scope="col">Ctrl/Cmd+ArrowLeft</td>
+                        <td scope="col">Force Last Section</td>
+                    </tr>
+                    <tr id="normal-legend">
+                        <td scope="col">Ctrl/Cmd+ArrowRight</td>
+                        <td scope="col">Force Next Section</td>
+                    </tr>
+                    <tr id="normal-legend">
+                        <td scope="col">Space</td>
+                        <td scope="col">Pause / Unpause</td>
                     </tr>
                 </tbody>
             </table>
