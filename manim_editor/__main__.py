@@ -70,9 +70,6 @@ def run_quick_present_export(section_index_paths: List[Path], project_name: Opti
     export_presentation(project_name, sections)
 
 
-# a;lksdfj;lads ;alksdjf ;lkajs df;al ksdjf;lk ajsdf  hooome
-
-
 @click.command()
 @click.option("--debug", is_flag=True, help="Launch in Debug mode.")
 @click.option("--version", is_flag=True, help="Print version and exit.")

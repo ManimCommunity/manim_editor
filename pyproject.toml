@@ -30,7 +30,6 @@ mypy = "^0.910"
 isort = "^5.10.1"
 types-waitress = "^2.0.1"
 types-jsonschema = "^3.2.1"
-flake8 = "^4.0.1"
 codespell = "^2.1.0"
 
 [tool.black]
