@@ -1,4 +1,4 @@
-// send json via POST and parse json resonse
+// send json via POST and parse json response
 // optional onfailure callback
 export function send_json(url: string,
     payload: any,

@@ -26,8 +26,8 @@ repos:
     hooks:
       - id: system
         name: Codespell
-        entry: echo
-        pass_filenames: true
+        entry: poetry run codespell . --skip='./node_modules,./.mypy_cache,./docs/build,./.git,./media,./manim_editor/app/static/webpack' --ignore-words-list 'tread'
+        pass_filenames: false
         language: system
   # - repo: local
   #   hooks:

@@ -229,13 +229,13 @@ class Tutorial(Scene):
         self.wait(2)
         wind = IconSkip().set_style(fill_opacity=0).shift(2 * LEFT).scale(1.9)
         wind.my_opactiy = 0
-        wind.comming = True
+        wind.coming = True
 
         def wind_updater(mobj, dt):
-            if wind.comming:
+            if wind.coming:
                 if mobj.my_opactiy < 0.4:
                     mobj.my_opactiy += dt
-            if not wind.comming:
+            if not wind.coming:
                 if mobj.my_opactiy > 0:
                     mobj.my_opactiy -= dt
             mobj.set_style(fill_opacity=mobj.my_opactiy)
@@ -255,7 +255,7 @@ class Tutorial(Scene):
         moving_dot.run_time = 3
 
         self.wait(1)
-        wind.comming = False
+        wind.coming = False
         self.wait(2)
         wind.clear_updaters()
         self.remove(wind)
