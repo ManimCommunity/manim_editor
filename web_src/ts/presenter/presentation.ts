@@ -147,14 +147,20 @@ export abstract class Presentation {
 
     // skip_complete_loop can be used in the timeline or as a forced continue
     public play_section(section: number, skip_complete_loop = false): void {
+        // out of bounds checking
         if (section < 0)
             section = 0;
-        else if (section >= this.sections.length)
-            section = this.sections.length - 1;
-        console.log(`Switching to section '${this.sections[section].get_name()}'`);
+        else if (section >= this.sections.length) {
+            // skip to end of current section
+            this.get_current_video().currentTime = this.get_current_video().duration;
+            return;
+        }
 
-        if (this.current_section != -1 && this.sections[this.current_section].get_type() == SectionType.COMPLETE_LOOP && !skip_complete_loop) {
-            // if current section is complete loop, wait until section finishes
+        console.log(`Switching to section '${this.sections[section].get_name()}'`);
+        if (this.current_section != -1 &&
+            this.sections[this.current_section].get_type() == SectionType.COMPLETE_LOOP &&
+            !skip_complete_loop) {
+            // if current section is complete loop, wait until it finishes
             this.next_section = section;
         } else {
             // instantly switch the video
