@@ -131,10 +131,18 @@ function attach_keyboard_ui(presentation: Presentation): void {
     const fullscreen_keys = [
         "KeyF",
     ];
+    const all_keys = prev_keys.concat(next_keys, pause_keys, fullscreen_keys);
 
     document.addEventListener("keydown", (e: KeyboardEvent) => {
+        // prevent keys from scrolling page or clicking buttons
+        if (all_keys.includes(e.code))
+            e.preventDefault();
+
+        // catch keys only once
         if (e.repeat)
             return;
+
+        // run function in presentation
         if (prev_keys.includes(e.code) && (e.ctrlKey || e.metaKey))
             presentation.play_previous_section_forced();
         else if (prev_keys.includes(e.code))
