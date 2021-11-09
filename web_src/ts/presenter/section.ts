@@ -89,9 +89,9 @@ export abstract class Section {
         }
         return this.end_time_stamp - this.start_time_stamp;
     }
-    // in seconds rounded to one decimal
+    // in seconds rounded
     public get_sec_duration(): number {
-        return Math.round(this.get_duration() / 100) / 10;
+        return Math.round(this.get_duration() / 1000);
     }
 
     public get_type(): SectionType { return this.type; }

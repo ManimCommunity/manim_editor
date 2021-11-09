@@ -281,7 +281,7 @@ export abstract class Presentation {
     private update_timeline(): void {
         // update time stamp in timeline of previous section
         if (this.previous_section != -1)
-            this.timeline_time_stamps[this.previous_section].innerText = `${this.sections[this.previous_section].get_sec_duration()}sec`;
+            this.timeline_time_stamps[this.previous_section].innerText = `${this.sections[this.previous_section].get_sec_duration()} s`;
 
         // deselect old section in timeline, select current and scroll to
         if (this.previous_section != -1)
