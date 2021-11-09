@@ -151,6 +151,18 @@ python-versions = ">=3.6"
 click = ">=7.0,<9.0"
 
 [[package]]
+name = "codespell"
+version = "2.1.0"
+description = "Codespell"
+category = "dev"
+optional = false
+python-versions = ">=3.5"
+
+[package.extras]
+dev = ["check-manifest", "flake8", "pytest", "pytest-cov", "pytest-dependency"]
+hard-encoding-detection = ["chardet"]
+
+[[package]]
 name = "colorama"
 version = "0.4.4"
 description = "Cross-platform colored terminal text."
@@ -1165,7 +1177,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "0057f72f47e608afb4767f3099d731d22bbf0c435523f1e98e899730e3a41304"
+content-hash = "29ba0c5c1470832f19ca0509e3328312be4c6edaea5534c1863591461a484434"
 
 [metadata.files]
 alabaster = [
@@ -1214,6 +1226,10 @@ click-default-group = [
 cloup = [
     {file = "cloup-0.7.1-py2.py3-none-any.whl", hash = "sha256:947c881ada77ea2f7b2876f7b5bb2fc7e5406daac5a045342acf8de35bcce5d7"},
     {file = "cloup-0.7.1.tar.gz", hash = "sha256:f26cc500dda4e4c9444ac1008b82376df8d72ecfa43a6310a9b3d54ef98add7b"},
+]
+codespell = [
+    {file = "codespell-2.1.0-py3-none-any.whl", hash = "sha256:b864c7d917316316ac24272ee992d7937c3519be4569209c5b60035ac5d569b5"},
+    {file = "codespell-2.1.0.tar.gz", hash = "sha256:19d3fe5644fef3425777e66f225a8c82d39059dcfe9edb3349a8a2cf48383ee5"},
 ]
 colorama = [
     {file = "colorama-0.4.4-py2.py3-none-any.whl", hash = "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"},
