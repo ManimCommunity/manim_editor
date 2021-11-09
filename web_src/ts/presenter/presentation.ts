@@ -85,8 +85,6 @@ export abstract class Presentation {
             // restart video
             this.get_current_video().currentTime = 0;
             this.get_current_video().play();
-            // timestamp in timeline has to be updated
-            this.update_timeline()
             return;
         }
         // swap videos
@@ -177,6 +175,8 @@ export abstract class Presentation {
         this.play_section(this.current_section, true);
     }
     public play_previous_section(): void {
+        // required to get an accurate duration readout
+        this.sections[this.current_section].stop_timer();
         // either restart or go back
         if (this.go_back_time < 0 || this.sections[this.current_section].get_duration() < this.go_back_time) {
             this.play_previous_section_forced();

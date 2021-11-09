@@ -72,17 +72,21 @@ export abstract class Section {
     }
 
     public start_timer(): void {
+        // console.error(`Starting section '${this.name}'`);
         this.start_time_stamp = performance.now();
         this.end_time_stamp = -1;
     }
     public stop_timer(): void {
+        // console.error(`Stopping section '${this.name}'`);
         // prevent attempting to stop not started section
         if (this.end_time_stamp == -1 && this.start_time_stamp != -1)
             this.end_time_stamp = performance.now();
     }
     // in milliseconds
     public get_duration(): number {
-        this.stop_timer();
+        if (this.end_time_stamp == -1) {
+            console.error(`Trying to get duration of section '${this.name}', which hasn't been stopped yet.`);
+        }
         return this.end_time_stamp - this.start_time_stamp;
     }
     // in seconds rounded to one decimal
