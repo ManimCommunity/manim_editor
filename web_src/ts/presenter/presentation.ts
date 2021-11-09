@@ -284,9 +284,12 @@ export abstract class Presentation {
             this.timeline_time_stamps[this.previous_section].innerText = `${this.sections[this.previous_section].get_sec_duration()} s`;
 
         // deselect old section in timeline, select current and scroll to
-        if (this.previous_section != -1)
+        if (this.previous_section != -1) {
             this.timeline_indicators[this.previous_section].innerHTML = `<i class="timeline-indicators bi-check-circle" role="img"></i>`;
+            this.timeline_sections[this.previous_section].classList.remove("border-dark");
+        }
         this.timeline_indicators[this.current_section].innerHTML = `<i class="timeline-indicators bi-circle-fill" role="img"></i>`;
+        this.timeline_sections[this.current_section].classList.add("border-dark");
         // TODO: sometimes doesn't work on Chromium
         this.timeline_sections[this.current_section].scrollIntoView({ behavior: "smooth", block: "center" });
 
