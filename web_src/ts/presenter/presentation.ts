@@ -149,11 +149,11 @@ export abstract class Presentation {
 
     // skip_complete_loop can be used in the timeline or as a forced continue
     public play_section(section: number, skip_complete_loop = false): void {
-        if (section < 0 || section >= this.sections.length) {
-            console.error(`Trying to switch to invalid section index #${section}`)
-            return;
-        }
-        console.log(`Switching to section '${this.sections[section].get_name()}'`)
+        if (section < 0)
+            section = 0;
+        else if (section >= this.sections.length)
+            section = this.sections.length - 1;
+        console.log(`Switching to section '${this.sections[section].get_name()}'`);
 
         if (this.current_section != -1 && this.sections[this.current_section].get_type() == SectionType.COMPLETE_LOOP && !skip_complete_loop) {
             // if current section is complete loop, wait until section finishes
