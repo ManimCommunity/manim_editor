@@ -88,7 +88,7 @@
         <!-- project json file needs to be accessible from TypeScript -->
         <div class="timeline row g-2">
             {% for section in sections %}
-            <div class="card timeline-element border-dark bg-secondary" data-video="{{ url_for('main.serve_project_static', name=name, path=section.in_project_video) }}">
+            <div class="card timeline-element border-dark bg-light" data-video="{{ url_for('main.serve_project_static', name=name, path=section.in_project_video) }}">
                 <div class="card-text">
                     <div class="row card-text">
                         <!-- type -->
