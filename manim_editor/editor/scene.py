@@ -104,9 +104,11 @@ class Section:
 
     def convert_video(self) -> bool:
         """Convert original video into fragmented format that can be played by the video player.
+        According to https://developer.mozilla.org/en-US/docs/Web/API/Media_Source_Extensions_API/Transcoding_assets_for_MSE.
         Also copy it to project dir.
         Return False at failure.
         """
+        # TODO: this doesn't work for some versions of Chromium
         print(f"Converting video to '{self.in_project_video}' for section '{self.name}'.")
         if not run_ffmpeg(
             [

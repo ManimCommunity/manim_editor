@@ -1,4 +1,5 @@
 import { SectionJson, Section } from "../presenter/section";
+import { flash } from "../utils";
 
 export class BufferSection extends Section {
     private media_source: MediaSource = new MediaSource();
@@ -9,9 +10,10 @@ export class BufferSection extends Section {
         // when setting url to video element
         this.media_source.onsourceopen = (_) => {
             // check if MIME codec is supported
-            let mime_codec = 'video/mp4; codecs="avc1.64002A"';
+            let mime_codec = 'video/mp4; codecs="avc1.64001e"';
             if (!("MediaSource" in window) || !MediaSource.isTypeSupported(mime_codec)) {
-                console.error("MediaSource or mime codec not supported");
+                console.error(`The MediaSource Extension is not supported by this browser(mime codec '${mime_codec}').`);
+                flash("This browser doesn't support the MediaSource Extension, which is needed for the video player.", "danger");
                 this.media_source.endOfStream();
                 return;
             }

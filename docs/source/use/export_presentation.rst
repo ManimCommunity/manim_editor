@@ -35,7 +35,7 @@ These browsers are officially supported.
 Others may work as well but haven't been tested yet.
 
 * Firefox
-* Chrome/Chromium
+* Chrome
 * Edge
 
 If you confirm another functioning browser, feel free to `open an issue <https://github.com/ManimEditorProject/manim_editor/issues>`__ and tell the devs.
