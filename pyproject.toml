@@ -33,7 +33,7 @@ flake8 = "^4.0.1"
 [tool.black]
 line-length = 132
 target-version = ['py37', 'py38']
-include = '(manim_editor/*$|\.py$)'
+include = '(\.py$)'
 exclude = '''
 /(
     \.git
