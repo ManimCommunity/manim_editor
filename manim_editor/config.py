@@ -1,6 +1,6 @@
+import json
 import os
 from pathlib import Path
-import json
 from typing import Any
 
 BASE_DIR = Path(__file__).parent.absolute()

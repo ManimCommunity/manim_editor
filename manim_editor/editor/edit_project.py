@@ -1,7 +1,8 @@
-import jinja2
-from pathlib import Path
 from distutils.dir_util import copy_tree
+from pathlib import Path
 from typing import List
+
+import jinja2
 
 from .config import get_config
 from .scene import Section
@@ -22,20 +23,18 @@ def emulate_url_for(endpoint: str, path: str = "", name: str = "", filename: str
 def export_presentation(project_name: str, sections: List[Section]) -> None:
     print(f"Exporting Project '{project_name}' as presentation.")
     jinja2_env = jinja2.Environment(
-        loader=jinja2.FileSystemLoader([
-            get_config().ROOT_DIR / "app" / "templates",
-            get_config().ROOT_DIR / "app" / "main" / "templates",
-            get_config().ROOT_DIR / "app" / "error" / "templates",
-        ]),
-        autoescape=jinja2.select_autoescape(["html"])
+        loader=jinja2.FileSystemLoader(
+            [
+                get_config().ROOT_DIR / "app" / "templates",
+                get_config().ROOT_DIR / "app" / "main" / "templates",
+                get_config().ROOT_DIR / "app" / "error" / "templates",
+            ]
+        ),
+        autoescape=jinja2.select_autoescape(["html"]),
     )
 
     html = jinja2_env.get_template("edit_project.html").render(
-        present_export=True,
-        version=get_config().VERSION,
-        name=project_name,
-        sections=sections,
-        url_for=emulate_url_for
+        present_export=True, version=get_config().VERSION, name=project_name, sections=sections, url_for=emulate_url_for
     )
     with open(Path(project_name) / "index.html", "w") as file:
         file.write(html)

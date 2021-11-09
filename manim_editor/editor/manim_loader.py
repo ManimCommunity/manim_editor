@@ -1,12 +1,12 @@
 """Functions used to load the render results of Manim."""
 import os
-from pathlib import Path
-from typing import List, Optional, Any, Dict
 from fractions import Fraction
+from pathlib import Path
+from typing import Any, Dict, List, Optional
 
-from .scene import Section, Scene
+from .commands import valid_json_load, walk
 from .config import get_config
-from .commands import walk, valid_json_load
+from .scene import Scene, Section
 
 
 def get_manim_section(raw_section: Dict[str, Any], index_path: Path, new_id: int) -> Section:
@@ -36,12 +36,7 @@ def get_scene(path: Path, new_id: int) -> Optional[Scene]:
     sections: List[Section] = []
     for raw_section in raw_sections:
         sections.append(get_manim_section(raw_section, path, len(sections)))
-    return Scene(
-        new_id,
-        path.name[:-5],
-        path.absolute(),
-        os.path.getmtime(path),
-        sections)
+    return Scene(new_id, path.name[:-5], path.absolute(), os.path.getmtime(path), sections)
 
 
 def get_scenes() -> List[Scene]:

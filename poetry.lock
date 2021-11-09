@@ -1060,6 +1060,22 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "types-jsonschema"
+version = "3.2.1"
+description = "Typing stubs for jsonschema"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "types-waitress"
+version = "2.0.1"
+description = "Typing stubs for waitress"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "typing-extensions"
 version = "3.10.0.2"
 description = "Backported and Experimental Type Hints for Python 3.5+"
@@ -1149,7 +1165,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "8af61f057fdf1d2244f899d5351c09f6f43e65dfc73544d8bb5029428b310365"
+content-hash = "0057f72f47e608afb4767f3099d731d22bbf0c435523f1e98e899730e3a41304"
 
 [metadata.files]
 alabaster = [
@@ -1944,6 +1960,14 @@ typed-ast = [
     {file = "typed_ast-1.4.3-cp39-cp39-win32.whl", hash = "sha256:209596a4ec71d990d71d5e0d312ac935d86930e6eecff6ccc7007fe54d703808"},
     {file = "typed_ast-1.4.3-cp39-cp39-win_amd64.whl", hash = "sha256:9c6d1a54552b5330bc657b7ef0eae25d00ba7ffe85d9ea8ae6540d2197a3788c"},
     {file = "typed_ast-1.4.3.tar.gz", hash = "sha256:fb1bbeac803adea29cedd70781399c99138358c26d05fcbd23c13016b7f5ec65"},
+]
+types-jsonschema = [
+    {file = "types-jsonschema-3.2.1.tar.gz", hash = "sha256:93138afa96d9449625e2d379b933919bcd8b63d0979309ff54bb723ad093cdf0"},
+    {file = "types_jsonschema-3.2.1-py3-none-any.whl", hash = "sha256:e90f2197edb052c6c75b7080519a828f472fa47f7b56ce7956c15b6fdfb59788"},
+]
+types-waitress = [
+    {file = "types-waitress-2.0.1.tar.gz", hash = "sha256:e28045ef2d57c93fe4f747c2ec10ff4eafa5cb87aa851c623df333c619ff12fd"},
+    {file = "types_waitress-2.0.1-py3-none-any.whl", hash = "sha256:4b88d95d0ad8753c9dfe9ec75a85f17f295cb74f546ef1a76d095734ded43f3b"},
 ]
 typing-extensions = [
     {file = "typing_extensions-3.10.0.2-py2-none-any.whl", hash = "sha256:d8226d10bc02a29bcc81df19a26e56a9647f8b0a6d4a83924139f4a8b01f17b7"},

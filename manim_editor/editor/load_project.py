@@ -3,9 +3,9 @@ from fractions import Fraction
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-from .manim_loader import Section, valid_json_load
 from .commands import walk
 from .config import get_config
+from .manim_loader import Section, valid_json_load
 
 
 def get_project_section(raw_section: Dict[str, Any]) -> Section:

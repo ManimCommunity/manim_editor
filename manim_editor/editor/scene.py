@@ -1,9 +1,9 @@
-from pathlib import Path
 import os
 import time
-from fractions import Fraction
 from enum import Enum
-from typing import List, Dict, Any
+from fractions import Fraction
+from pathlib import Path
+from typing import Any, Dict, List
 
 from .commands import run_ffmpeg
 
@@ -54,20 +54,22 @@ class Section:
     :class:`.PresentationSectionType`
     """
 
-    def __init__(self,
-                 id: int,
-                 name: str,
-                 type: PresentationSectionType,
-                 original_video: Path,
-                 width: int,
-                 height: int,
-                 fps: Fraction,
-                 duration: float,
-                 # only to be used when loading from project file
-                 project_name: str = "",
-                 in_project_video: Path = Path(),
-                 in_project_thumbnail: Path = Path(),
-                 in_project_id: int = -1):
+    def __init__(
+        self,
+        id: int,
+        name: str,
+        type: PresentationSectionType,
+        original_video: Path,
+        width: int,
+        height: int,
+        fps: Fraction,
+        duration: float,
+        # only to be used when loading from project file
+        project_name: str = "",
+        in_project_video: Path = Path(),
+        in_project_thumbnail: Path = Path(),
+        in_project_id: int = -1,
+    ):
         self.id = id
         self.name = name
         self.type = type
@@ -106,14 +108,16 @@ class Section:
         Return False at failure.
         """
         print(f"Converting video to '{self.in_project_video}' for section '{self.name}'.")
-        if not run_ffmpeg([
-            "-i",
-            str(self.original_video),
-            "-movflags",
-            "frag_keyframe+empty_moov+default_base_moof",
-            str(self.get_in_project_video_abs()),
-            "-y",
-        ]):
+        if not run_ffmpeg(
+            [
+                "-i",
+                str(self.original_video),
+                "-movflags",
+                "frag_keyframe+empty_moov+default_base_moof",
+                str(self.get_in_project_video_abs()),
+                "-y",
+            ]
+        ):
             print("Video Conversion failed.")
             return False
         return True
@@ -123,18 +127,20 @@ class Section:
         Return False at failure.
         """
         print(f"Extracting thumbnail '{self.in_project_thumbnail}' from video for section '{self.name}'.")
-        if not run_ffmpeg([
-            "-sseof",
-            "-3",
-            "-i",
-            str(self.original_video),
-            "-update",
-            "1",
-            "-q:v",
-            "1",
-            str(self.get_in_project_thumbnail_abs()),
-            "-y",
-        ]):
+        if not run_ffmpeg(
+            [
+                "-sseof",
+                "-3",
+                "-i",
+                str(self.original_video),
+                "-update",
+                "1",
+                "-q:v",
+                "1",
+                str(self.get_in_project_thumbnail_abs()),
+                "-y",
+            ]
+        ):
             print("Thumbnail extraction failed.")
             return False
         return True

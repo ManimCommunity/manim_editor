@@ -1,8 +1,8 @@
 """Create Manim Editor project."""
-import os
 import json
+import os
 from pathlib import Path
-from typing import Any, Dict, Tuple, List
+from typing import Any, Dict, List, Tuple
 
 from .manim_loader import get_scenes
 from .scene import Section
@@ -20,7 +20,10 @@ def create_project_dir(project_name: str) -> Tuple[bool, str]:
         # empty dirs are ok
         if len(os.listdir(project_name)) == 0:
             return True, f"The project directory '{project_name}' has already been created. It will be used."
-        return False, f"The project name '{project_name}' points to a filled directory. If this is a project, you can open it instead."
+        return (
+            False,
+            f"The project name '{project_name}' points to a filled directory. If this is a project, you can open it instead.",
+        )
     try:
         os.mkdir(project_name)
     except FileNotFoundError:

@@ -28,6 +28,8 @@ pre-commit = "^2.15.0"
 black = "^21.10b0"
 mypy = "^0.910"
 isort = "^5.10.1"
+types-waitress = "^2.0.1"
+types-jsonschema = "^3.2.1"
 flake8 = "^4.0.1"
 
 [tool.black]

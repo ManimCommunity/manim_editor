@@ -1,13 +1,21 @@
-import click
 import logging
-from pathlib import Path
-from waitress import serve
 import socket
-from typing import Optional, List
+from pathlib import Path
+from typing import List, Optional
+
+import click
+from waitress import serve
 
 from .app import create_app
 from .config import Config
-from .editor import set_config, create_project_dir, get_scene, populate_project_with_loaded_sections, export_presentation, Section
+from .editor import (
+    Section,
+    create_project_dir,
+    export_presentation,
+    get_scene,
+    populate_project_with_loaded_sections,
+    set_config,
+)
 
 
 def find_open_port():
@@ -65,8 +73,14 @@ def run_quick_present_export(section_index_paths: List[Path], project_name: Opti
 @click.command()
 @click.option("--debug", is_flag=True, help="Launch in Debug mode.")
 @click.option("--version", is_flag=True, help="Print version and exit.")
-@click.option("--quick_present_export", help="Create a project from a scene and export the presentation. The path to the section index file must be provided as the argument.", multiple=True)
-@click.option("--project_name", help="Use this name for the project being created use the name of the first section when not provided.")
+@click.option(
+    "--quick_present_export",
+    help="Create a project from a scene and export the presentation. The path to the section index file must be provided as the argument.",
+    multiple=True,
+)
+@click.option(
+    "--project_name", help="Use this name for the project being created use the name of the first section when not provided."
+)
 def main(debug: bool, version: bool, quick_present_export: List[str], project_name: Optional[str]) -> None:
     if version:
         print(f"Manim Editor {Config.VERSION}")

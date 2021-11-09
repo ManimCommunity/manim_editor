@@ -1,16 +1,15 @@
-import subprocess
-import os
-from pathlib import Path
 import json
+import os
+import subprocess
+from pathlib import Path
+from typing import Any, Generator, List, Optional, Tuple
+
 import jsonschema
-from typing import List, Optional, Tuple, Generator, Any
 
 from .config import get_config
 
 
-def capture(command: List[str],
-            cwd: Optional[Path] = None,
-            command_input: Optional[str] = None) -> Tuple[str, str, int]:
+def capture(command: List[str], cwd: Optional[Path] = None, command_input: Optional[str] = None) -> Tuple[str, str, int]:
     """Run command and capture standard output, standard error and return code."""
     p = subprocess.run(command, cwd=cwd, input=command_input, capture_output=True, text=True)
     out, err = p.stdout, p.stderr
@@ -39,7 +38,7 @@ def walk(top: Path, maxdepth: int) -> Generator[Tuple[Path, List[str], List[str]
     yield top, dirs, nondirs
     if maxdepth:
         for name in dirs:
-            for res in walk(top / name, maxdepth-1):
+            for res in walk(top / name, maxdepth - 1):
                 yield res
 
 

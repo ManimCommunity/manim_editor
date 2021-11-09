@@ -7,9 +7,11 @@ def create_app(config) -> Flask:
 
     # blueprints
     from .error import bp as errors_bp
+
     app.register_blueprint(errors_bp)
 
     from .main import bp as main_bp
+
     app.register_blueprint(main_bp)
 
     return app

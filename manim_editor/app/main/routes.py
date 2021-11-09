@@ -1,10 +1,27 @@
 """Main backend file."""
 import os
 from pathlib import Path
-from flask import render_template, flash, redirect, url_for, request, jsonify, abort, send_file, current_app
 
-from ...editor import get_scenes, create_project_dir, populate_project, get_projects, get_project, export_presentation
+from flask import (
+    abort,
+    current_app,
+    flash,
+    jsonify,
+    redirect,
+    render_template,
+    request,
+    send_file,
+    url_for,
+)
 
+from ...editor import (
+    create_project_dir,
+    export_presentation,
+    get_project,
+    get_projects,
+    get_scenes,
+    populate_project,
+)
 from . import bp
 
 
@@ -17,7 +34,13 @@ def index():
 @bp.route("/project_selection")
 def project_selection():
     projects = get_projects()
-    return render_template("project_selection.html", version=current_app.config["VERSION"], title="Project Selection", cwd=os.getcwd(), projects=projects)
+    return render_template(
+        "project_selection.html",
+        version=current_app.config["VERSION"],
+        title="Project Selection",
+        cwd=os.getcwd(),
+        projects=projects,
+    )
 
 
 @bp.route("/edit_project/<name>")
@@ -25,7 +48,14 @@ def edit_project(name: str):
     project_name, sections = get_project(name)
     if project_name is None:
         abort(404)
-    return render_template("edit_project.html", version=current_app.config["VERSION"], title="Edit Project", name=name, sections=sections, present_export=False)
+    return render_template(
+        "edit_project.html",
+        version=current_app.config["VERSION"],
+        title="Edit Project",
+        name=name,
+        sections=sections,
+        present_export=False,
+    )
 
 
 # ajax
@@ -74,8 +104,17 @@ def scene_selection():
     flash(message, "success")
     scenes = get_scenes()
     if len(scenes) == 0:
-        flash("No sections were found. You must render you scene with the '--save_sections' flag. Refer to the documentation for more information.", "danger")
-    return render_template("scene_selection.html", version=current_app.config["VERSION"], title="Create New Project", scenes=scenes, project_name=project_name)
+        flash(
+            "No sections were found. You must render you scene with the '--save_sections' flag. Refer to the documentation for more information.",
+            "danger",
+        )
+    return render_template(
+        "scene_selection.html",
+        version=current_app.config["VERSION"],
+        title="Create New Project",
+        scenes=scenes,
+        project_name=project_name,
+    )
 
 
 # ajax
