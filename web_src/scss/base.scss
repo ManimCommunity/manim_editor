@@ -2,11 +2,11 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
 .timeline {
-    width: 10rem;
-    min-height: 75vh;
-    max-height: 75vh;
+    min-height: 80vh;
+    max-height: 80vh;
     position: relative;
     overflow-y: scroll;
+    padding-right: 10px;
 }
 
 .timeline-element {
