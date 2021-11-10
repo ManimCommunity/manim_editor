@@ -3,6 +3,7 @@ import { Presentation } from "./presenter/presentation";
 import { BufferPresentation } from "./buffer_presenter/buffer_presentation";
 import { FallbackPresentation } from "./fallback_presenter/fallback_presentation";
 import { send_json, flash } from "./utils";
+import * as Bowser from "bowser";
 
 // used to load and update player settings
 // NOTE: in milliseconds rather than seconds as inputted by the user
@@ -161,10 +162,23 @@ function attach_keyboard_ui(presentation: Presentation): void {
     });
 }
 
+function check_browser(): void {
+    const browser = Bowser.getParser(window.navigator.userAgent);
+    // TODO: add better versions that have actually been tested
+    const is_valid = browser.satisfies({
+        firefox: ">80",
+        chrome: ">80",
+        edge: ">40",
+    });
+    if (!is_valid)
+        flash("Your browser isn't officially supported. If you encounter any problems use a recent Version of Firefox, Chrome or Edge. Consider opening an Issue on GitHub to remove this warning if your browser works regardless.", "warning");
+}
+
 document.body.onload = () => {
     load_url_params();
     let presentation = create_presentation();
     attach_settings();
     attach_export();
     attach_keyboard_ui(presentation);
+    check_browser();
 }
