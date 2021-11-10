@@ -103,13 +103,12 @@
 </div>
 </div>
 
-<div class="row">
-    <div class="col-auto">
+<div class="row g-0">
+    <div class="col-1">
         <!-- timeline -->
-        <h1 class="text-center">Timeline</h1>
-        <!-- project json file needs to be accessible from TypeScript -->
         <div class="timeline row g-2">
             
+            <!-- project json file needs to be accessible from TypeScript -->
             <div class="card timeline-element" data-video="video_0000.mp4">
                 <div class="card-text">
                     <div class="row card-text">
@@ -140,6 +139,7 @@
                 <img src="thumb_0000.jpg" class="card-img-top" alt="couldn't load thumbnail">
             </div>
             
+            <!-- project json file needs to be accessible from TypeScript -->
             <div class="card timeline-element" data-video="video_0001.mp4">
                 <div class="card-text">
                     <div class="row card-text">
@@ -170,6 +170,7 @@
                 <img src="thumb_0001.jpg" class="card-img-top" alt="couldn't load thumbnail">
             </div>
             
+            <!-- project json file needs to be accessible from TypeScript -->
             <div class="card timeline-element" data-video="video_0002.mp4">
                 <div class="card-text">
                     <div class="row card-text">
@@ -200,6 +201,7 @@
                 <img src="thumb_0002.jpg" class="card-img-top" alt="couldn't load thumbnail">
             </div>
             
+            <!-- project json file needs to be accessible from TypeScript -->
             <div class="card timeline-element" data-video="video_0003.mp4">
                 <div class="card-text">
                     <div class="row card-text">
@@ -230,6 +232,7 @@
                 <img src="thumb_0003.jpg" class="card-img-top" alt="couldn't load thumbnail">
             </div>
             
+            <!-- project json file needs to be accessible from TypeScript -->
             <div class="card timeline-element" data-video="video_0004.mp4">
                 <div class="card-text">
                     <div class="row card-text">
@@ -260,6 +263,7 @@
                 <img src="thumb_0004.jpg" class="card-img-top" alt="couldn't load thumbnail">
             </div>
             
+            <!-- project json file needs to be accessible from TypeScript -->
             <div class="card timeline-element" data-video="video_0005.mp4">
                 <div class="card-text">
                     <div class="row card-text">
@@ -290,6 +294,7 @@
                 <img src="thumb_0005.jpg" class="card-img-top" alt="couldn't load thumbnail">
             </div>
             
+            <!-- project json file needs to be accessible from TypeScript -->
             <div class="card timeline-element" data-video="video_0006.mp4">
                 <div class="card-text">
                     <div class="row card-text">
@@ -320,6 +325,7 @@
                 <img src="thumb_0006.jpg" class="card-img-top" alt="couldn't load thumbnail">
             </div>
             
+            <!-- project json file needs to be accessible from TypeScript -->
             <div class="card timeline-element" data-video="video_0007.mp4">
                 <div class="card-text">
                     <div class="row card-text">
@@ -352,101 +358,106 @@
             
         </div>
     </div>
-    <div class="col">
-        <!-- heading -->
-        <h1>Tutorial</h1>
+    <div class="col ms-3">
+        <div class="row g-0">
+            <div class="col">
+                <!-- heading -->
+                <h1>Tutorial</h1>
 
-        <!-- video player -->
-        <div id="videos-div" data-project_file="project.json">
-            <video id="video0" class="main-video" muted>
-                Your browser doesn't support HTML5 videos.
-            </video>
-            <video id="video1" class="main-video" muted>
-                Your browser doesn't support HTML5 videos.
-            </video>
-        </div>
-    </div>
-    <div class="col">
-        <div class="container">
-            <!-- buttons -->
-            <div class="btn-toolbar mt-4" role="toolbar">
-                <div class="btn-group me-2 btn-group mt-3" role="group">
-                    <button id="previous-section" type="button" class="btn btn-secondary"><i class="bi-caret-left"></i></button>
-                    <button id="restart-section" type="button" class="btn btn-secondary"><i class="bi-arrow-counterclockwise"></i></button>
-                    <button id="pause" type="button" class="btn btn-secondary"><i class="bi-pause"></i></button>
-                    <button id="next-section" type="button" class="btn btn-secondary"><i class="bi-caret-right"></i></button>
+                <!-- video player -->
+                <div id="videos-div" data-project_file="project.json">
+                    <video id="video0" class="main-video" muted>
+                        your browser doesn't support html5 videos.
+                    </video>
+                    <video id="video1" class="main-video" muted>
+                        your browser doesn't support html5 videos.
+                    </video>
                 </div>
-                <div class="btn-group btn-group me-3 mt-3" role="group">
-                    <button id="fullscreen" type="button" class="btn btn-secondary"><i class="bi-arrows-fullscreen"></i></button>
-                </div>
-                <div class="btn-group btn-group me-2 mt-3" role="group">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#settings-modal"><i class="bi-gear me-1"></i>Player Settings</button>
-                </div>
-                <div class="btn-group btn-group me-3 mt-3" role="group">
-                    <button id="cache" type="button" class="btn btn-secondary"><i class="bi-download me-1"></i>Cache Videos</button>
-                </div>
-                
             </div>
 
-            <!-- type legend -->
-            <table class="table table-sm mt-3">
-                <thead>
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr id="normal-legend">
-                        <td scope="col"><i class="bi-play-btn" role="img"></i></td>
-                        <td scope="col">Normal</td>
-                    </tr>
-                    <tr id="skip-legend">
-                        <td scope="col"><i class="bi-wind" role="img"></i></td>
-                        <td scope="col">Skip</td>
-                    </tr>
-                    <tr id="loop-legend">
-                        <td scope="col"><i class="bi-arrow-clockwise" role="img"></i></td>
-                        <td scope="col">Loop</td>
-                    </tr>
-                    <tr id="complete-loop-legend">
-                        <td scope="col"><i class="bi-hourglass-split" role="img"></i></td>
-                        <td scope="col">Complete Loop</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="col ms-3">
+                <div class="container">
+                    <!-- buttons -->
+                    <div class="btn-toolbar mt-4" role="toolbar">
+                        <div class="btn-group me-2 btn-group mt-3" role="group">
+                            <button id="previous-section" type="button" class="btn btn-secondary"><i class="bi-caret-left"></i></button>
+                            <button id="restart-section" type="button" class="btn btn-secondary"><i class="bi-arrow-counterclockwise"></i></button>
+                            <button id="pause" type="button" class="btn btn-secondary"><i class="bi-pause"></i></button>
+                            <button id="next-section" type="button" class="btn btn-secondary"><i class="bi-caret-right"></i></button>
+                        </div>
+                        <div class="btn-group btn-group me-3 mt-3" role="group">
+                            <button id="fullscreen" type="button" class="btn btn-secondary"><i class="bi-arrows-fullscreen"></i></button>
+                        </div>
+                        <div class="btn-group btn-group me-2 mt-3" role="group">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#settings-modal"><i class="bi-gear me-1"></i>player settings</button>
+                        </div>
+                        <div class="btn-group btn-group me-3 mt-3" role="group">
+                            <button id="cache" type="button" class="btn btn-secondary"><i class="bi-download me-1"></i>cache videos</button>
+                        </div>
+                        
+                    </div>
 
-            <!-- keymap legend -->
-            <table class="table table-sm mt-3">
-                <thead>
-                    <tr>
-                        <th scope="col">Key</th>
-                        <th scope="col">Function</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr id="normal-legend">
-                        <td scope="col">ArrowLeft</td>
-                        <td scope="col">Last Section / Repeat (According to Go Back Time in Player Settings)</td>
-                    </tr>
-                    <tr id="normal-legend">
-                        <td scope="col">ArrowRight</td>
-                        <td scope="col">Next Section (Respect Complete Loop Sections)</td>
-                    </tr>
-                    <tr id="normal-legend">
-                        <td scope="col">Ctrl/Cmd+ArrowLeft</td>
-                        <td scope="col">Force Last Section</td>
-                    </tr>
-                    <tr id="normal-legend">
-                        <td scope="col">Ctrl/Cmd+ArrowRight</td>
-                        <td scope="col">Force Next Section</td>
-                    </tr>
-                    <tr id="normal-legend">
-                        <td scope="col">Space</td>
-                        <td scope="col">Pause / Unpause</td>
-                    </tr>
-                </tbody>
-            </table>
+                    <!-- type legend -->
+                    <table class="table table-sm mt-3">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="normal-legend">
+                                <td scope="col"><i class="bi-play-btn" role="img"></i></td>
+                                <td scope="col">normal</td>
+                            </tr>
+                            <tr id="skip-legend">
+                                <td scope="col"><i class="bi-wind" role="img"></i></td>
+                                <td scope="col">skip</td>
+                            </tr>
+                            <tr id="loop-legend">
+                                <td scope="col"><i class="bi-arrow-clockwise" role="img"></i></td>
+                                <td scope="col">loop</td>
+                            </tr>
+                            <tr id="complete-loop-legend">
+                                <td scope="col"><i class="bi-hourglass-split" role="img"></i></td>
+                                <td scope="col">complete loop</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- keymap legend -->
+                    <table class="table table-sm mt-3">
+                        <thead>
+                            <tr>
+                                <th scope="col">key</th>
+                                <th scope="col">function</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="normal-legend">
+                                <td scope="col">arrowleft</td>
+                                <td scope="col">last section / repeat (according to go back time in player settings)</td>
+                            </tr>
+                            <tr id="normal-legend">
+                                <td scope="col">arrowright</td>
+                                <td scope="col">next section (respect complete loop sections)</td>
+                            </tr>
+                            <tr id="normal-legend">
+                                <td scope="col">ctrl/cmd+arrowleft</td>
+                                <td scope="col">force last section</td>
+                            </tr>
+                            <tr id="normal-legend">
+                                <td scope="col">ctrl/cmd+arrowright</td>
+                                <td scope="col">force next section</td>
+                            </tr>
+                            <tr id="normal-legend">
+                                <td scope="col">space</td>
+                                <td scope="col">pause / unpause</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
