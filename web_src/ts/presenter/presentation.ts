@@ -152,7 +152,11 @@ export abstract class Presentation {
             section = 0;
         else if (section >= this.sections.length) {
             // skip to end of current section
-            this.get_current_video().currentTime = this.get_current_video().duration;
+            let current_video = this.get_current_video();
+            console.log(current_video.currentTime);
+            // required for chrome
+            current_video.currentTime = Math.max(0, current_video.duration - 0.1);
+            console.log(current_video.currentTime);
             return;
         }
 

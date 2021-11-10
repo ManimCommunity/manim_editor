@@ -12,7 +12,7 @@ export class BufferSection extends Section {
             // check if MIME codec is supported
             let mime_codec = 'video/mp4; codecs="avc1.64001e"';
             if (!("MediaSource" in window) || !MediaSource.isTypeSupported(mime_codec)) {
-                console.error(`The MediaSource Extension is not supported by this browser(mime codec '${mime_codec}').`);
+                console.error(`The MediaSource Extension is not supported by this browser(mime codec '${mime_codec}'). Try using a different browser.`);
                 flash("This browser doesn't support the MediaSource Extension, which is needed for the video player.", "danger");
                 this.media_source.endOfStream();
                 return;
@@ -26,12 +26,12 @@ export class BufferSection extends Section {
                 this.media_source.endOfStream();
             };
             source_buffer.onerror = (_) => {
-                console.error("Failed to append buffer to source buffer:");
-                console.error(this.media_source);
+                flash("There has been a problem with the MediaSource Extension. Try using the fallback loader from the settings or use a different browser.", "danger");
+                console.error("Failed to append source buffer to source buffer:");
             };
             source_buffer.onabort = (_) => {
-                console.error("Aborted source buffer:");
-                console.error(this.media_source);
+                flash("There has been a problem with the MediaSource Extension. Try using the fallback loader from the settings or use a different browser.", "danger");
+                console.error("Aborted source buffer");
             };
 
             this.load(() => {
