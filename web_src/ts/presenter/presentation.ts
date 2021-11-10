@@ -291,7 +291,7 @@ export abstract class Presentation {
         this.timeline_indicators[this.current_section].innerHTML = `<i class="timeline-indicators bi-circle-fill" role="img"></i>`;
         this.timeline_sections[this.current_section].classList.add("border-dark");
         // TODO: sometimes doesn't work on Chromium
-        this.timeline_sections[this.current_section].scrollIntoView({ behavior: "smooth", block: "center" });
+        this.timeline_sections[this.current_section].scrollIntoView({ behavior: "smooth", block: "nearest" });
 
         // remove old type in legend and select current
         if (this.previous_section != -1)
