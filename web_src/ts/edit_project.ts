@@ -7,7 +7,7 @@ import * as Bowser from "bowser";
 
 // used to load and update player settings
 // NOTE: in milliseconds rather than seconds as inputted by the user
-let GO_BACK_TIME = 500;
+let GO_BACK_TIME = 1000;
 let CACHE_BATCH_SIZE = 3;
 let PAST_SECTIONS_TO_BUFFER = 10;
 let FUTURE_SECTIONS_TO_BUFFER = 20;
