@@ -86,32 +86,41 @@
         <!-- timeline -->
         <div class="timeline row g-2">
             {% for section in sections %}
+            <!-- used to parse video url to TypeScript -->
+            <div class="section-urls" data-video="{{ url_for('main.serve_project_static', name=name, path=section.in_project_video) }}"></div>
+            <!-- only display full sections -->
+            {% if not section.is_sub_section() %}
             <!-- project json file needs to be accessible from TypeScript -->
-            <div class="card timeline-element" data-video="{{ url_for('main.serve_project_static', name=name, path=section.in_project_video) }}">
+            <div id="timeline-element-{{ section.in_project_id }}" class="card timeline-element">
                 <div class="card-text">
                     <div class="row card-text">
                         <!-- type -->
                         <div class="col">
-                            {% if section.type == "presentation.normal" %}
+                            {% if section.type == "normal" %}
                             <i class="bi-play-btn" role="img"></i>
-                            {% elif section.type == "presentation.skip" %}
+                            {% elif section.type == "skip" %}
                             <i class="bi-wind" role="img"></i>
-                            {% elif section.type == "presentation.loop" %}
+                            {% elif section.type == "loop" %}
                             <i class="bi-arrow-clockwise" role="img"></i>
-                            {% elif section.type == "presentation.complete_loop" %}
+                            {% elif section.type == "complete_loop" %}
                             <i class="bi-hourglass-split" role="img"></i>
                             {% else %}
                             [unsupported type]
                             {% endif %}
+
+                            {% if section.sub_sections %}
+                            +{{ section.sub_sections }}
+                            {% endif %}
+
                             {{ section.name }}
                         </div>
                         <!-- timestamp -->
                         <div class="col-auto">
-                            <div class="timeline-time-stamp">0 s</div>
+                            <div id="timeline-time-stamp-{{ section.in_project_id }}">0 s</div>
                         </div>
                         <!-- indicator -->
                         <div class="col-auto">
-                            <div class="timeline-indicator">
+                            <div id="timeline-indicator-{{ section.in_project_id }}">
                                 <!-- one of -->
                                 <!-- <i class="bi-circle" role="img"></i> -->
                                 <!-- <i class="bi-circle-fill" role="img"></i> -->
@@ -124,6 +133,7 @@
                 <!-- thumbnail -->
                 <img src="{{ url_for('main.serve_project_static', name=name, path=section.in_project_thumbnail) }}" class="card-img-top" alt="couldn't load thumbnail">
             </div>
+            {% endif %}
             {% endfor %}
         </div>
     </div>

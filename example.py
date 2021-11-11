@@ -33,7 +33,7 @@ class Test(Scene):
 
 
 def make_elements():  # only setting up the mobjects
-    dots = VGroup(Dot(), Dot(), Dot(), Dot(), Dot(), Dot(), z_index=0)
+    dots = VGroup(Dot(), Dot(), Dot(), Dot(), Dot(), Dot(), Dot(), z_index=0)
     dots.arrange(buff=0.7).scale(2).set_color(BLUE)
     dots[0].set_color(ORANGE)
     dots[-1].set_color(ORANGE)
@@ -53,17 +53,20 @@ class MinimalPresentationExample(Scene):
         self.next_section("A", PresentationSectionType.NORMAL)
         self.play(moving_dot.animate.move_to(dots[1]), rate_func=linear)
 
-        self.next_section("B", PresentationSectionType.SKIP)
+        self.next_section("A.1", PresentationSectionType.SUB_NORMAL)
         self.play(moving_dot.animate.move_to(dots[2]), rate_func=linear)
 
-        self.next_section("C", PresentationSectionType.LOOP)
+        self.next_section("B", PresentationSectionType.SKIP)
         self.play(moving_dot.animate.move_to(dots[3]), rate_func=linear)
 
-        self.next_section("D", PresentationSectionType.COMPLETE_LOOP)
+        self.next_section("C", PresentationSectionType.LOOP)
         self.play(moving_dot.animate.move_to(dots[4]), rate_func=linear)
 
-        self.next_section("E", PresentationSectionType.NORMAL)
+        self.next_section("D", PresentationSectionType.COMPLETE_LOOP)
         self.play(moving_dot.animate.move_to(dots[5]), rate_func=linear)
+
+        self.next_section("E", PresentationSectionType.NORMAL)
+        self.play(moving_dot.animate.move_to(dots[6]), rate_func=linear)
 
 
 def setup_slider():

@@ -21,6 +21,8 @@ def get_project_section(raw_section: Dict[str, Any]) -> Section:
         int(raw_section["height"]),
         Fraction(raw_section["fps"]),
         float(raw_section["duration"]),
+        int(raw_section["sub_sections"]),
+        # this hasn't been created by Manim directly
         raw_section["project_name"],
         raw_section["in_project_video"],
         raw_section["in_project_thumbnail"],

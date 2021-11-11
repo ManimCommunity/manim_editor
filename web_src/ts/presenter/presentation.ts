@@ -7,10 +7,6 @@ export abstract class Presentation {
     private video1: HTMLVideoElement;
     private videos_div: HTMLDivElement;
 
-    private timeline_sections: HTMLCollectionOf<HTMLDivElement>;
-    private timeline_indicators: HTMLCollectionOf<HTMLElement>;
-    private timeline_time_stamps: HTMLCollectionOf<HTMLDivElement>;
-
     private pause_button: HTMLButtonElement;
 
     private normal_legend: HTMLTableRowElement;
@@ -43,9 +39,6 @@ export abstract class Presentation {
         this.video0 = document.getElementById("video0") as HTMLVideoElement;
         this.video1 = document.getElementById("video1") as HTMLVideoElement;
         this.videos_div = document.getElementById("videos-div") as HTMLDivElement;
-        this.timeline_sections = document.getElementsByClassName("timeline-element") as HTMLCollectionOf<HTMLDivElement>;
-        this.timeline_indicators = document.getElementsByClassName("timeline-indicator") as HTMLCollectionOf<HTMLDivElement>;
-        this.timeline_time_stamps = document.getElementsByClassName("timeline-time-stamp") as HTMLCollectionOf<HTMLDivElement>;
         this.pause_button = document.getElementById("pause") as HTMLButtonElement;
         this.normal_legend = document.getElementById("normal-legend") as HTMLTableRowElement;
         this.skip_legend = document.getElementById("skip-legend") as HTMLTableRowElement;
@@ -54,11 +47,12 @@ export abstract class Presentation {
 
         // load_sections
         let project_file = this.videos_div.dataset.project_file as string;
+        let section_urls = document.getElementsByClassName("section-urls") as HTMLCollectionOf<HTMLDivElement>;
         get_json(project_file, (sections: SectionJson[]) => {
             // construct sections from json response
             for (let i = 0; i < sections.length; ++i) {
                 // custom Flask url
-                let video = this.timeline_sections[i].dataset.video as string;
+                let video = section_urls[i].dataset.video as string;
                 this.add_section(sections[i], video);
             }
             console.log(`All ${sections.length} sections have been parsed successfully.`)
@@ -139,6 +133,7 @@ export abstract class Presentation {
         });
 
         this.update_timeline()
+        this.update_legend()
         this.update_source();
 
         // everything done -> section has changed
@@ -275,28 +270,26 @@ export abstract class Presentation {
     // user interface //
     ////////////////////
     private attach_timeline(): void {
-        for (let i = 0; i < this.timeline_sections.length; ++i) {
-            this.timeline_sections[i].addEventListener("click", () => {
-                this.play_section(i, true);
-            });
+        for (let i = 0; i < this.sections.length; ++i) {
+            if (!this.sections[i].is_sub_section())
+                this.sections[i].attach_timeline_click(() => {
+                    this.play_section(i, true);
+                });
         }
     }
 
     private update_timeline(): void {
-        // update time stamp in timeline of previous section
-        if (this.previous_section != -1)
-            this.timeline_time_stamps[this.previous_section].innerText = `${this.sections[this.previous_section].get_sec_duration()} s`;
-
-        // deselect old section in timeline, select current and scroll to
-        if (this.previous_section != -1) {
-            this.timeline_indicators[this.previous_section].innerHTML = `<i class="timeline-indicators bi-check-circle" role="img"></i>`;
-            this.timeline_sections[this.previous_section].classList.remove("border-dark");
+        if (!this.sections[this.current_section].is_sub_section()) {
+            // find last full section
+            for (let i = this.previous_section; i >= 0; --i) {
+                if (!this.sections[i].is_sub_section())
+                    this.sections[i].remove_timeline_selection();
+            }
+            this.sections[this.current_section].add_timeline_selection();
         }
-        this.timeline_indicators[this.current_section].innerHTML = `<i class="timeline-indicators bi-circle-fill" role="img"></i>`;
-        this.timeline_sections[this.current_section].classList.add("border-dark");
-        // TODO: sometimes doesn't work on Chromium
-        this.timeline_sections[this.current_section].scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
 
+    private update_legend(): void {
         // remove old type in legend and select current
         if (this.previous_section != -1)
             switch (this.sections[this.previous_section].get_type()) {

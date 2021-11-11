@@ -13,15 +13,18 @@ def get_manim_section(raw_section: Dict[str, Any], index_path: Path, new_id: int
     """Create :class:`.Section` from dict read from a section index created by Manim."""
 
     parent_path = index_path.parent.absolute()
+    type = raw_section["type"].split(".")[-1]
+    is_sub_section = raw_section["type"].split(".")[-2] == "sub"
     return Section(
         new_id,
         raw_section["name"],
-        raw_section["type"],
+        type,
         parent_path / raw_section["video"],
         int(raw_section["width"]),
         int(raw_section["height"]),
         Fraction(raw_section["avg_frame_rate"]),
         float(raw_section["duration"]),
+        -1 if is_sub_section else -2,
     )
 
 

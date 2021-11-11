@@ -34,13 +34,21 @@ def create_project_dir(project_name: str) -> Tuple[bool, str]:
 def populate_project_with_loaded_sections(project_name: str, sections: List[Section]) -> bool:
     if not len(sections):
         raise RuntimeError(f"No sections given for project '{project_name}'.")
+    if sections[0].is_sub_section():
+        raise RuntimeError(f"The first section of project '{project_name}' can't be a sub section.")
     project: List[Dict[str, Any]] = []
 
     # prepare section
-    for id, section in enumerate(sections):
-        if not section.set_project(project_name, id):
+    # come from behind and count subsections between sections
+    next_section_id = len(sections)
+    for id, section in reversed(list(enumerate(sections))):
+        if not section.set_project(project_name, id, next_section_id):
             return False
         project.append(section.get_dict())
+
+        if not section.is_sub_section():
+            next_section_id = id
+    project.reverse()
 
     # write project file
     with open(Path(project_name) / "project.json", "w") as file:

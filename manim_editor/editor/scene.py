@@ -18,6 +18,12 @@ class PresentationSectionType(str, Enum):
     # start, end, restart, finish animation first when user continues
     COMPLETE_LOOP = "presentation.complete_loop"
 
+    # same as above but define sub-section
+    SUB_NORMAL = "presentation.sub.normal"
+    SUB_SKIP = "presentation.sub.skip"
+    SUB_LOOP = "presentation.sub.loop"
+    SUB_COMPLETE_LOOP = "presentation.sub.complete_loop"
+
 
 class Section:
     """Representation of Manim :class:`.Section`.
@@ -48,6 +54,12 @@ class Section:
         Path to thumbnail file relative to project file.
     in_project_id
         Id for this section that is unique in its project.
+    sub_sections
+        Amount of sub sections belonging to this section.
+        -2  -> is section but amount of sub-sections hasn't been counted yet
+        -1  -> is sub-section -> can't have sub-sections itself
+        0   -> section without sub-sections
+        >=1 -> section with sub-sections
 
     See Also
     --------
@@ -58,12 +70,13 @@ class Section:
         self,
         id: int,
         name: str,
-        type: PresentationSectionType,
+        type: str,
         original_video: Path,
         width: int,
         height: int,
         fps: Fraction,
         duration: float,
+        sub_sections: int,
         # only to be used when loading from project file
         project_name: str = "",
         in_project_video: Path = Path(),
@@ -78,6 +91,7 @@ class Section:
         self.height = height
         self.fps = fps
         self.duration = duration
+        self.sub_sections = sub_sections
         # to be set once project is being populated
         self.project_name = project_name
         self.in_project_video = in_project_video
@@ -90,13 +104,17 @@ class Section:
     def get_in_project_thumbnail_abs(self) -> Path:
         return Path(self.project_name) / self.in_project_thumbnail
 
-    def set_project(self, project_name: str, in_project_id: int) -> bool:
+    def is_sub_section(self) -> bool:
+        return self.sub_sections == -1
+
+    def set_project(self, project_name: str, in_project_id: int, next_section_id: int) -> bool:
         """Hand this video over to a project.
         Update attributes and copy assets.
         """
+        if not self.is_sub_section():
+            self.sub_sections = next_section_id - in_project_id - 1
         self.project_name = project_name
         self.in_project_id = in_project_id
-        # TODO support other file types as well
         self.in_project_video = Path(f"video_{in_project_id:04}.mp4")
         self.in_project_thumbnail = Path(f"thumb_{in_project_id:04}.jpg")
 
@@ -159,6 +177,7 @@ class Section:
             "fps": str(self.fps),
             "duration": self.duration,
             "project_name": self.project_name,
+            "sub_sections": self.sub_sections,
             "in_project_video": str(self.in_project_video),
             "in_project_thumbnail": str(self.in_project_thumbnail),
             "in_project_id": self.in_project_id,
