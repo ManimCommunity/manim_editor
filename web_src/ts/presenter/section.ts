@@ -1,3 +1,7 @@
+export type SlideJson = {
+    sections: SectionJson[];
+};
+
 export type SectionJson = {
     type: string;
     name: string;
@@ -5,7 +9,8 @@ export type SectionJson = {
     first_animation: number;
     after_last_animation: number;
     video: string;
-    sub_sections: number;
+    parent_id: number;
+    is_sub_section: boolean;
 };
 
 export enum SectionType {
@@ -27,35 +32,98 @@ export function get_section_type(str: string): SectionType {
     }
 }
 
+// contains one section with 0 or more sub sections
+export class Slide {
+    private sections: Section[];
+    // is id of first section
+    private id: number;
+
+    protected timeline_element: HTMLDivElement;
+    protected timeline_time_stamp: HTMLDivElement;
+    protected timeline_indicator: HTMLElement;
+
+    public constructor(sections: SlideJson, create_section: { (section_json: SectionJson, slide: Slide): Section; }) {
+        this.sections = [];
+        for (let section_json of sections.sections) {
+            this.sections.push(create_section(section_json, this));
+        }
+        this.id = this.sections[0].get_id();
+
+        this.timeline_element = document.getElementById(`timeline-element-${this.id}`) as HTMLDivElement;
+        this.timeline_indicator = document.getElementById(`timeline-indicator-${this.id}`) as HTMLDivElement;
+        this.timeline_time_stamp = document.getElementById(`timeline-time-stamp-${this.id}`) as HTMLDivElement;
+        console.log(`Parsed slide #${this.id} with ${this.sections.length} sections.`);
+    }
+
+    public get_sections(): Section[] { return this.sections; }
+    public get_id(): number { return this.id; }
+
+    // sum of time spent in sections in milliseconds
+    // unstopped sections don't get counted
+    public get_duration(): number {
+        let sum: number = 0;
+        for (let section of this.sections) {
+            if (section.has_stopped())
+                sum += section.get_duration();
+        }
+        return sum;
+    }
+    // in seconds rounded
+    public get_sec_duration(): number {
+        return Math.round(this.get_duration() / 1000);
+    }
+
+    public attach_timeline_click(callback: { (): void; }): void {
+        this.timeline_element.addEventListener("click", callback);
+    }
+
+    public add_timeline_selection(): void {
+        // update indicator
+        this.timeline_indicator.innerHTML = `<i class="timeline-indicators bi-circle-fill" role="img"></i>`;
+        // add border
+        this.timeline_element.classList.add("border-dark");
+        // scroll
+        // TODO: sometimes doesn't work on Chromium
+        this.timeline_element.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    public remove_timeline_selection(): void {
+        // update time stamp of previous section
+        this.timeline_time_stamp.innerText = `${this.get_sec_duration()} s`;
+        // update indicator
+        this.timeline_indicator.innerHTML = `<i class="timeline-indicators bi-check-circle" role="img"></i>`;
+        // remove border
+        this.timeline_element.classList.remove("border-dark");
+    }
+}
+
 export abstract class Section {
     protected type: SectionType;
     protected name: string;
     protected id: number;
     // custom address from Flask
     protected video: string;
-    protected sub_sections: number;
-    protected parent_id: number;
+    protected is_sub_section: boolean;
 
-    // null when sub section
-    protected timeline_element: HTMLDivElement | null;
-    protected timeline_indicator: HTMLElement | null;
-    protected timeline_time_stamp: HTMLDivElement | null;
+    protected parent_slide: Slide;
 
     // when section starts and ends
     // -1 -> hasn't ended/started yet
     protected start_time_stamp: number = -1;
     protected end_time_stamp: number = -1;
 
-    public constructor(section: SectionJson, video: string) {
-        this.type = get_section_type(section.type);
-        this.name = section.name;
-        this.id = section.in_project_id;
-        this.video = video;
-        this.sub_sections = section.sub_sections;
+    public constructor(section_json: SectionJson, parent_slide: Slide) {
+        this.type = get_section_type(section_json.type);
+        this.name = section_json.name;
+        this.id = section_json.in_project_id;
+        this.is_sub_section = section_json.is_sub_section;
 
-        this.timeline_element = document.getElementById(`timeline-element-${this.id}`) as HTMLDivElement | null;
-        this.timeline_indicator = document.getElementById(`timeline-indicator-${this.id}`) as HTMLDivElement | null;
-        this.timeline_time_stamp = document.getElementById(`timeline-time-stamp-${this.id}`) as HTMLDivElement | null;
+        this.parent_slide = parent_slide;
+
+        // custom Flask url
+        let section_urls = document.getElementsByClassName("section-urls") as HTMLCollectionOf<HTMLDivElement>;
+        this.video = section_urls[this.id].dataset.video as string;
+        console.log(`Parsed section #'${this.id}'`);
     }
 
     public cache(on_cached: () => void): void {
@@ -84,53 +152,25 @@ export abstract class Section {
         request.send();
     }
 
-    public attach_timeline_click(callback: { (): void; }): void {
-        if (this.timeline_element == null || this.timeline_time_stamp == null || this.timeline_indicator == null) {
-            console.error(`Trying to add callback to sub section '${this.name}'.`);
-            return;
-        }
-        this.timeline_element.addEventListener("click", callback);
+    public has_started(): boolean {
+        return this.start_time_stamp != -1;
     }
-    public add_timeline_selection(): void {
-        if (this.timeline_element == null || this.timeline_time_stamp == null || this.timeline_indicator == null) {
-            console.error(`Trying to add timeline selection to sub section '${this.name}'.`);
-            return;
-        }
-        // update indicator
-        this.timeline_indicator.innerHTML = `<i class="timeline-indicators bi-circle-fill" role="img"></i>`;
-        // add border
-        this.timeline_element.classList.add("border-dark");
-        // scroll
-        // TODO: sometimes doesn't work on Chromium
-        this.timeline_element.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    public has_stopped(): boolean {
+        return this.end_time_stamp != -1;
     }
-    public remove_timeline_selection(): void {
-        if (this.timeline_element == null || this.timeline_time_stamp == null || this.timeline_indicator == null) {
-            console.error(`Trying to remove timeline selection to sub section '${this.name}'.`);
-            return;
-        }
-        // update time stamp of previous section
-        this.timeline_time_stamp.innerText = `${this.get_sec_duration()} s`;
-        // update indicator
-        this.timeline_indicator.innerHTML = `<i class="timeline-indicators bi-check-circle" role="img"></i>`;
-        // remove border
-        this.timeline_element.classList.remove("border-dark");
-    }
-
     public start_timer(): void {
         this.start_time_stamp = performance.now();
         this.end_time_stamp = -1;
     }
     public stop_timer(): void {
         // prevent attempting to stop not started section
-        if (this.end_time_stamp == -1 && this.start_time_stamp != -1)
+        if (!this.has_stopped() && this.has_started())
             this.end_time_stamp = performance.now();
     }
     // in milliseconds
     public get_duration(): number {
-        if (this.end_time_stamp == -1) {
+        if (!this.has_stopped())
             console.error(`Trying to get duration of section '${this.name}', which hasn't been stopped yet.`);
-        }
         return this.end_time_stamp - this.start_time_stamp;
     }
     // in seconds rounded
@@ -138,12 +178,10 @@ export abstract class Section {
         return Math.round(this.get_duration() / 1000);
     }
 
-    public is_sub_section(): boolean {
-        return this.sub_sections == -1;
-    }
-
+    public get_is_sub_section(): boolean { return this.is_sub_section; }
     public get_type(): SectionType { return this.type; }
     public get_name(): string { return this.name; }
     public get_id(): number { return this.id; }
+    public get_parent_slide(): Slide { return this.parent_slide; }
     public abstract get_src_url(): string;
 }

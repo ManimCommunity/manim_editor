@@ -1,5 +1,5 @@
 import { Presentation } from "../presenter/presentation";
-import { SectionJson } from "../presenter/section";
+import { Section, SectionJson, Slide } from "../presenter/section";
 import { BufferSection } from "./buffer_section";
 
 export class BufferPresentation extends Presentation {
@@ -23,7 +23,7 @@ export class BufferPresentation extends Presentation {
             (this.sections[i] as BufferSection).unload();
     }
 
-    protected override add_section(section: SectionJson, video: string): void {
-        this.sections.push(new BufferSection(section, video));
+    protected override create_section(section_json: SectionJson, slide: Slide): Section {
+        return new BufferSection(section_json, slide);
     }
 }
