@@ -25,8 +25,77 @@ class PresentationSectionType(str, Enum):
     SUB_COMPLETE_LOOP = "presentation.sub.complete_loop"
 
 
+class Slide:
+    """An instance of this class is represented as one element in the timeline of the presenter.
+    It can hold one section or one section and multiple sub sections.
+    A presentation consists of multiple sections.
+
+    Attributes
+    ----------
+    sections
+        List of sections in this slide
+    """
+
+    def __init__(self):
+        self.sections: List[Section] = []
+
+    def populate(self, main_section: "Section", project_name: str, in_project_id: int) -> bool:
+        """Load first section."""
+        if not main_section.set_project(project_name, in_project_id, in_project_id):
+            return False
+        self.sections = [main_section]
+        return True
+
+    def populate_sub_section(self, sub_section: "Section") -> bool:
+        """meth:`populate` must have been executed first."""
+        if not sub_section.set_project(
+            self.sections[0].project_name, self.sections[-1].in_project_id + 1, self.sections[0].in_project_id
+        ):
+            return False
+        self.sections.append(sub_section)
+        return True
+
+    def get_dict(self) -> Dict[str, Any]:
+        """Get dictionary representation."""
+        return {
+            "sections_len": len(self.sections),
+            "sections": [section.get_dict() for section in self.sections],
+        }
+
+    def __load_section(self, raw_section: Dict[str, Any]) -> "Section":
+        """Create :class:`.Section` from dict read from a project json file created by the Manim Editor.
+        Assumes the input data to be valid.
+        """
+
+        return Section(
+            int(raw_section["id"]),
+            raw_section["name"],
+            # TODO: should be converted to PresentationSectionType
+            raw_section["type"],
+            raw_section["is_sub_section"],
+            raw_section["original_video"],
+            int(raw_section["width"]),
+            int(raw_section["height"]),
+            Fraction(raw_section["fps"]),
+            float(raw_section["duration"]),
+            # this hasn't been created by Manim directly
+            raw_section["project_name"],
+            raw_section["in_project_video"],
+            raw_section["in_project_thumbnail"],
+            int(raw_section["in_project_id"]),
+        )
+
+    def load(self, raw_slide: Dict[str, Any]) -> None:
+        """Create :class:`.Slide` from dict read from a project json file created by the Manim Editor.
+        Assumes the input data to be valid.
+        """
+        for section in raw_slide["sections"]:
+            self.sections.append(self.__load_section(section))
+
+
 class Section:
     """Representation of Manim :class:`.Section`.
+    It can either be a section of a sub section.
 
     Attributes
     ----------
@@ -36,6 +105,8 @@ class Section:
         Human readable, non-unique name for this section.
     type
         How should this section be played?
+    is_sub_section
+        ``True`` when this is a subsection rather than a section.
     original_video
         Path to original video file.
     width
@@ -54,12 +125,9 @@ class Section:
         Path to thumbnail file relative to project file.
     in_project_id
         Id for this section that is unique in its project.
-    sub_sections
-        Amount of sub sections belonging to this section.
-        -2  -> is section but amount of sub-sections hasn't been counted yet
-        -1  -> is sub-section -> can't have sub-sections itself
-        0   -> section without sub-sections
-        >=1 -> section with sub-sections
+    parent_id
+        In project id of the section this sub-section belongs to.
+        When this is not a sub section it holds its own id.
 
     See Also
     --------
@@ -71,32 +139,34 @@ class Section:
         id: int,
         name: str,
         type: str,
+        is_sub_section: bool,
         original_video: Path,
         width: int,
         height: int,
         fps: Fraction,
         duration: float,
-        sub_sections: int,
         # only to be used when loading from project file
         project_name: str = "",
         in_project_video: Path = Path(),
         in_project_thumbnail: Path = Path(),
         in_project_id: int = -1,
+        parent_id: int = -1,
     ):
         self.id = id
         self.name = name
         self.type = type
+        self.is_sub_section = is_sub_section
         self.original_video = original_video
         self.width = width
         self.height = height
         self.fps = fps
         self.duration = duration
-        self.sub_sections = sub_sections
         # to be set once project is being populated
         self.project_name = project_name
         self.in_project_video = in_project_video
         self.in_project_thumbnail = in_project_thumbnail
         self.in_project_id = in_project_id
+        self.parent_id = parent_id
 
     def get_in_project_video_abs(self) -> Path:
         return Path(self.project_name) / self.in_project_video
@@ -104,19 +174,15 @@ class Section:
     def get_in_project_thumbnail_abs(self) -> Path:
         return Path(self.project_name) / self.in_project_thumbnail
 
-    def is_sub_section(self) -> bool:
-        return self.sub_sections == -1
-
-    def set_project(self, project_name: str, in_project_id: int, next_section_id: int) -> bool:
+    def set_project(self, project_name: str, in_project_id: int, parent_id: int) -> bool:
         """Hand this video over to a project.
         Update attributes and copy assets.
         """
-        if not self.is_sub_section():
-            self.sub_sections = next_section_id - in_project_id - 1
         self.project_name = project_name
         self.in_project_id = in_project_id
         self.in_project_video = Path(f"video_{in_project_id:04}.mp4")
         self.in_project_thumbnail = Path(f"thumb_{in_project_id:04}.jpg")
+        self.parent_id = parent_id
 
         return self.convert_video() and self.extract_thumbnail()
 
@@ -171,16 +237,17 @@ class Section:
             "id": self.id,
             "name": self.name,
             "type": self.type,
+            "is_sub_section": self.is_sub_section,
             "original_video": str(self.original_video),
             "width": self.width,
             "height": self.height,
             "fps": str(self.fps),
             "duration": self.duration,
             "project_name": self.project_name,
-            "sub_sections": self.sub_sections,
             "in_project_video": str(self.in_project_video),
             "in_project_thumbnail": str(self.in_project_thumbnail),
             "in_project_id": self.in_project_id,
+            "parent_id": self.parent_id,
         }
 
 

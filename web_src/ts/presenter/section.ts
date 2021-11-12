@@ -34,6 +34,7 @@ export abstract class Section {
     // custom address from Flask
     protected video: string;
     protected sub_sections: number;
+    protected parent_id: number;
 
     // null when sub section
     protected timeline_element: HTMLDivElement | null;
@@ -117,12 +118,10 @@ export abstract class Section {
     }
 
     public start_timer(): void {
-        // console.error(`Starting section '${this.name}'`);
         this.start_time_stamp = performance.now();
         this.end_time_stamp = -1;
     }
     public stop_timer(): void {
-        // console.error(`Stopping section '${this.name}'`);
         // prevent attempting to stop not started section
         if (this.end_time_stamp == -1 && this.start_time_stamp != -1)
             this.end_time_stamp = performance.now();

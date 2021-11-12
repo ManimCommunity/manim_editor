@@ -45,7 +45,7 @@ def project_selection():
 
 @bp.route("/edit_project/<name>")
 def edit_project(name: str):
-    project_name, sections = get_project(name)
+    project_name, slides = get_project(name)
     if project_name is None:
         abort(404)
     return render_template(
@@ -53,7 +53,7 @@ def edit_project(name: str):
         version=current_app.config["VERSION"],
         title="Edit Project",
         name=name,
-        sections=sections,
+        slides=slides,
         present_export=False,
     )
 
@@ -64,11 +64,11 @@ def export_presenter():
     project = request.json
     if project is None:
         abort(400)
-    project_name, sections = get_project(project["name"])
+    project_name, slides = get_project(project["name"])
     if project_name is None:
         print(f"Project '{project['name']}' couldn't be found.")
         return jsonify(success=False)
-    export_presentation(project_name, sections)
+    export_presentation(project_name, slides)
     return jsonify(success=True)
 
 

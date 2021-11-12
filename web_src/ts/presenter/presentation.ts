@@ -148,10 +148,8 @@ export abstract class Presentation {
         else if (section >= this.sections.length) {
             // skip to end of current section
             let current_video = this.get_current_video();
-            console.log(current_video.currentTime);
             // required for chrome
             current_video.currentTime = Math.max(0, current_video.duration - 0.1);
-            console.log(current_video.currentTime);
             return;
         }
 
@@ -279,12 +277,16 @@ export abstract class Presentation {
     }
 
     private update_timeline(): void {
-        if (!this.sections[this.current_section].is_sub_section()) {
-            // find last full section
-            for (let i = this.previous_section; i >= 0; --i) {
-                if (!this.sections[i].is_sub_section())
-                    this.sections[i].remove_timeline_selection();
+        // find last full section
+        for (let i = this.previous_section; i >= 0 && i != this.current_section; --i) {
+            if (!this.sections[i].is_sub_section()) {
+                console.log(`Removing ${this.sections[i].get_name()}`);
+                this.sections[i].remove_timeline_selection();
+                break;
             }
+        }
+        if (!this.sections[this.current_section].is_sub_section()) {
+            console.log(`Adding ${this.sections[this.current_section].get_name()}`);
             this.sections[this.current_section].add_timeline_selection();
         }
     }
