@@ -51,7 +51,7 @@ In addition to that it shows the amount of time spent playing each slide.
 This value will only update once a different section is being shown or the section gets restarted.
 That way you get accurate information on how much time you spent on each section.
 
-Instead of using the keyboard, you can utilise the controls on the right instead.
+Instead of using the keyboard, you can utilise the controls on the right.
 They offer basic media functionality like play last section, play next section, pause, restart section and enter fullscreen.
 Pressing the "last section" button (or using ArrowLeft on the keyboard) doesn't necessarily go back one section.
 If the current section has already been playing for a while, the current section will be restarted instead.
