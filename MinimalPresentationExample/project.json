@@ -1,92 +1,123 @@
 [
     {
-        "id": 0,
-        "name": "A",
-        "type": "normal",
-        "original_video": "/home/runner/work/manim_editor/manim_editor/pages/../media/videos/example/1080p60/sections/MinimalPresentationExample_0000.mp4",
-        "width": 1920,
-        "height": 1080,
-        "fps": "60",
-        "duration": 1.0,
-        "project_name": "MinimalPresentationExample",
-        "sub_sections": 1,
-        "in_project_video": "video_0000.mp4",
-        "in_project_thumbnail": "thumb_0000.jpg",
-        "in_project_id": 0
+        "sections_len": 2,
+        "sections": [
+            {
+                "id": 0,
+                "name": "A",
+                "type": "normal",
+                "is_sub_section": false,
+                "original_video": "/home/runner/work/manim_editor/manim_editor/pages/../media/videos/example/1080p60/sections/MinimalPresentationExample_0000.mp4",
+                "width": 1920,
+                "height": 1080,
+                "fps": "60",
+                "duration": 1.0,
+                "project_name": "MinimalPresentationExample",
+                "in_project_video": "video_0000.mp4",
+                "in_project_thumbnail": "thumb_0000.jpg",
+                "in_project_id": 0,
+                "parent_id": 0
+            },
+            {
+                "id": 1,
+                "name": "A.1",
+                "type": "normal",
+                "is_sub_section": true,
+                "original_video": "/home/runner/work/manim_editor/manim_editor/pages/../media/videos/example/1080p60/sections/MinimalPresentationExample_0001.mp4",
+                "width": 1920,
+                "height": 1080,
+                "fps": "60",
+                "duration": 1.0,
+                "project_name": "MinimalPresentationExample",
+                "in_project_video": "video_0001.mp4",
+                "in_project_thumbnail": "thumb_0001.jpg",
+                "in_project_id": 1,
+                "parent_id": 0
+            }
+        ]
     },
     {
-        "id": 1,
-        "name": "A.1",
-        "type": "normal",
-        "original_video": "/home/runner/work/manim_editor/manim_editor/pages/../media/videos/example/1080p60/sections/MinimalPresentationExample_0001.mp4",
-        "width": 1920,
-        "height": 1080,
-        "fps": "60",
-        "duration": 1.0,
-        "project_name": "MinimalPresentationExample",
-        "sub_sections": -1,
-        "in_project_video": "video_0001.mp4",
-        "in_project_thumbnail": "thumb_0001.jpg",
-        "in_project_id": 1
+        "sections_len": 1,
+        "sections": [
+            {
+                "id": 2,
+                "name": "B",
+                "type": "skip",
+                "is_sub_section": false,
+                "original_video": "/home/runner/work/manim_editor/manim_editor/pages/../media/videos/example/1080p60/sections/MinimalPresentationExample_0002.mp4",
+                "width": 1920,
+                "height": 1080,
+                "fps": "60",
+                "duration": 1.0,
+                "project_name": "MinimalPresentationExample",
+                "in_project_video": "video_0002.mp4",
+                "in_project_thumbnail": "thumb_0002.jpg",
+                "in_project_id": 2,
+                "parent_id": 2
+            }
+        ]
     },
     {
-        "id": 2,
-        "name": "B",
-        "type": "skip",
-        "original_video": "/home/runner/work/manim_editor/manim_editor/pages/../media/videos/example/1080p60/sections/MinimalPresentationExample_0002.mp4",
-        "width": 1920,
-        "height": 1080,
-        "fps": "60",
-        "duration": 1.0,
-        "project_name": "MinimalPresentationExample",
-        "sub_sections": 0,
-        "in_project_video": "video_0002.mp4",
-        "in_project_thumbnail": "thumb_0002.jpg",
-        "in_project_id": 2
+        "sections_len": 1,
+        "sections": [
+            {
+                "id": 3,
+                "name": "C",
+                "type": "loop",
+                "is_sub_section": false,
+                "original_video": "/home/runner/work/manim_editor/manim_editor/pages/../media/videos/example/1080p60/sections/MinimalPresentationExample_0003.mp4",
+                "width": 1920,
+                "height": 1080,
+                "fps": "60",
+                "duration": 1.0,
+                "project_name": "MinimalPresentationExample",
+                "in_project_video": "video_0003.mp4",
+                "in_project_thumbnail": "thumb_0003.jpg",
+                "in_project_id": 3,
+                "parent_id": 3
+            }
+        ]
     },
     {
-        "id": 3,
-        "name": "C",
-        "type": "loop",
-        "original_video": "/home/runner/work/manim_editor/manim_editor/pages/../media/videos/example/1080p60/sections/MinimalPresentationExample_0003.mp4",
-        "width": 1920,
-        "height": 1080,
-        "fps": "60",
-        "duration": 1.0,
-        "project_name": "MinimalPresentationExample",
-        "sub_sections": 0,
-        "in_project_video": "video_0003.mp4",
-        "in_project_thumbnail": "thumb_0003.jpg",
-        "in_project_id": 3
+        "sections_len": 1,
+        "sections": [
+            {
+                "id": 4,
+                "name": "D",
+                "type": "complete_loop",
+                "is_sub_section": false,
+                "original_video": "/home/runner/work/manim_editor/manim_editor/pages/../media/videos/example/1080p60/sections/MinimalPresentationExample_0004.mp4",
+                "width": 1920,
+                "height": 1080,
+                "fps": "60",
+                "duration": 1.0,
+                "project_name": "MinimalPresentationExample",
+                "in_project_video": "video_0004.mp4",
+                "in_project_thumbnail": "thumb_0004.jpg",
+                "in_project_id": 4,
+                "parent_id": 4
+            }
+        ]
     },
     {
-        "id": 4,
-        "name": "D",
-        "type": "complete_loop",
-        "original_video": "/home/runner/work/manim_editor/manim_editor/pages/../media/videos/example/1080p60/sections/MinimalPresentationExample_0004.mp4",
-        "width": 1920,
-        "height": 1080,
-        "fps": "60",
-        "duration": 1.0,
-        "project_name": "MinimalPresentationExample",
-        "sub_sections": 0,
-        "in_project_video": "video_0004.mp4",
-        "in_project_thumbnail": "thumb_0004.jpg",
-        "in_project_id": 4
-    },
-    {
-        "id": 5,
-        "name": "E",
-        "type": "normal",
-        "original_video": "/home/runner/work/manim_editor/manim_editor/pages/../media/videos/example/1080p60/sections/MinimalPresentationExample_0005.mp4",
-        "width": 1920,
-        "height": 1080,
-        "fps": "60",
-        "duration": 1.0,
-        "project_name": "MinimalPresentationExample",
-        "sub_sections": 0,
-        "in_project_video": "video_0005.mp4",
-        "in_project_thumbnail": "thumb_0005.jpg",
-        "in_project_id": 5
+        "sections_len": 1,
+        "sections": [
+            {
+                "id": 5,
+                "name": "E",
+                "type": "normal",
+                "is_sub_section": false,
+                "original_video": "/home/runner/work/manim_editor/manim_editor/pages/../media/videos/example/1080p60/sections/MinimalPresentationExample_0005.mp4",
+                "width": 1920,
+                "height": 1080,
+                "fps": "60",
+                "duration": 1.0,
+                "project_name": "MinimalPresentationExample",
+                "in_project_video": "video_0005.mp4",
+                "in_project_thumbnail": "thumb_0005.jpg",
+                "in_project_id": 5,
+                "parent_id": 5
+            }
+        ]
     }
 ]
