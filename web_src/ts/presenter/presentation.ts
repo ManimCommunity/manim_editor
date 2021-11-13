@@ -277,14 +277,13 @@ export abstract class Presentation {
     private update_timeline(): void {
         let previous_slide = this.previous_section == -1 ? null : this.sections[this.previous_section].get_parent_slide();
         let current_slide = this.sections[this.current_section].get_parent_slide();
-        // don't do anything when previous and current slide are the same
         if (previous_slide == null)
             current_slide.add_timeline_selection();
         else if (previous_slide != current_slide) {
             current_slide.add_timeline_selection();
             previous_slide.remove_timeline_selection();
         }
-
+        // don't do anything when previous and current slide are the same
     }
 
     private update_legend(): void {

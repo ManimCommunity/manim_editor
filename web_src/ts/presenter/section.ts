@@ -42,9 +42,9 @@ export class Slide {
     protected timeline_time_stamp: HTMLDivElement;
     protected timeline_indicator: HTMLElement;
 
-    public constructor(sections: SlideJson, create_section: { (section_json: SectionJson, slide: Slide): Section; }) {
+    public constructor(slide_json: SlideJson, create_section: { (section_json: SectionJson, slide: Slide): Section; }) {
         this.sections = [];
-        for (let section_json of sections.sections) {
+        for (let section_json of slide_json.sections) {
             this.sections.push(create_section(section_json, this));
         }
         this.id = this.sections[0].get_id();
@@ -83,7 +83,7 @@ export class Slide {
         // add border
         this.timeline_element.classList.add("border-dark");
         // scroll
-        // TODO: sometimes doesn't work on Chromium
+        // TODO: sometimes doesn't work on Chrome
         this.timeline_element.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
@@ -183,5 +183,7 @@ export abstract class Section {
     public get_name(): string { return this.name; }
     public get_id(): number { return this.id; }
     public get_parent_slide(): Slide { return this.parent_slide; }
+
+    // to be defined by inheritor
     public abstract get_src_url(): string;
 }

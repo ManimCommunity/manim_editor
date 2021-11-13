@@ -18,7 +18,7 @@ class PresentationSectionType(str, Enum):
     # start, end, restart, finish animation first when user continues
     COMPLETE_LOOP = "presentation.complete_loop"
 
-    # same as above but define sub-section
+    # same as above but define sub section
     SUB_NORMAL = "presentation.sub.normal"
     SUB_SKIP = "presentation.sub.skip"
     SUB_LOOP = "presentation.sub.loop"
@@ -27,8 +27,8 @@ class PresentationSectionType(str, Enum):
 
 class Slide:
     """An instance of this class is represented as one element in the timeline of the presenter.
-    It can hold one section or one section and multiple sub sections.
-    A presentation consists of multiple sections.
+    It can hold one full section or one full section and multiple sub sections.
+    A presentation consists of multiple slides.
 
     Attributes
     ----------
@@ -70,7 +70,6 @@ class Slide:
         return Section(
             int(raw_section["id"]),
             raw_section["name"],
-            # TODO: should be converted to PresentationSectionType
             raw_section["type"],
             raw_section["is_sub_section"],
             raw_section["original_video"],
@@ -95,7 +94,7 @@ class Slide:
 
 class Section:
     """Representation of Manim :class:`.Section`.
-    It can either be a section of a sub section.
+    It can either be a full section of a sub section.
 
     Attributes
     ----------
@@ -128,6 +127,7 @@ class Section:
     parent_id
         In project id of the section this sub-section belongs to.
         When this is not a sub section it holds its own id.
+        This is similar to a union-find structure.
 
     See Also
     --------

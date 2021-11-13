@@ -90,7 +90,6 @@
             <!-- used to parse video url to TypeScript -->
             <div class="section-urls" data-video="{{ url_for('main.serve_project_static', name=name, path=section.in_project_video) }}"></div>
             {% endfor %}
-            <!-- project json file needs to be accessible from TypeScript -->
             <div id="timeline-element-{{ slide.sections[0].in_project_id }}" class="card timeline-element">
                 <div class="card-text">
                     <div class="row card-text">
@@ -130,8 +129,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- thumbnail -->
-                <img src="{{ url_for('main.serve_project_static', name=name, path=slide.sections[0].in_project_thumbnail) }}" class="card-img-top" alt="couldn't load thumbnail">
+                <!-- thumbnail (use last in slide) -->
+                <img src="{{ url_for('main.serve_project_static', name=name, path=slide.sections[-1].in_project_thumbnail) }}" class="card-img-top" alt="couldn't load thumbnail">
             </div>
             {% endfor %}
         </div>

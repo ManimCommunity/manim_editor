@@ -61,6 +61,7 @@ If you are hosting the presenter on a remote webserver, you should consider usin
 It requests all videos and thus offers the browser the opportunity of caching them, speeding up future requests.
 
 .. info::
+
    The timeline shows slides while the controls jump from section to section.
    That way you can create a lot of individual sections that don't clutter the timeline.
 
