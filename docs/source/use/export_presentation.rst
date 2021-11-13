@@ -60,7 +60,7 @@ You can always use the Control key (or Command on a Mac) to forcefully go to the
 If you are hosting the presenter on a remote webserver, you should consider using the "Cache Videos" button.
 It requests all videos and thus offers the browser the opportunity of caching them, speeding up future requests.
 
-.. info::
+.. note::
 
    The timeline shows slides while the controls jump from section to section.
    That way you can create a lot of individual sections that don't clutter the timeline.
