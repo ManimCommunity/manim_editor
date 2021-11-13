@@ -12,6 +12,7 @@ from .editor import (
     Section,
     create_project_dir,
     export_presentation,
+    get_project,
     get_scene,
     populate_project_with_loaded_sections,
     set_config,
@@ -67,7 +68,10 @@ def run_quick_present_export(section_index_paths: List[Path], project_name: Opti
         sections += scene.sections
     if not populate_project_with_loaded_sections(project_name, sections):
         raise RuntimeError("Failed to populate project.")
-    export_presentation(project_name, sections)
+    project_name, slides = get_project(project_name)
+    if project_name is None:
+        raise RuntimeError("Failed to load project.")
+    export_presentation(project_name, slides)
 
 
 @click.command()

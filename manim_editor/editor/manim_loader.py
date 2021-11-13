@@ -6,7 +6,7 @@ from typing import Any, Dict, List, Optional
 
 from .commands import valid_json_load, walk
 from .config import get_config
-from .scene import Scene, Section
+from .presentation_classes import Scene, Section
 
 
 def get_manim_section(raw_section: Dict[str, Any], index_path: Path, new_id: int) -> Section:
@@ -19,12 +19,12 @@ def get_manim_section(raw_section: Dict[str, Any], index_path: Path, new_id: int
         new_id,
         raw_section["name"],
         type,
+        is_sub_section,
         parent_path / raw_section["video"],
         int(raw_section["width"]),
         int(raw_section["height"]),
         Fraction(raw_section["avg_frame_rate"]),
         float(raw_section["duration"]),
-        -1 if is_sub_section else -2,
     )
 
 

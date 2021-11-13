@@ -30,6 +30,9 @@ Four types (and four secondary types) are provided:
 
 They are also explained in the `interactive tutorial <https://manimeditorproject.github.io/manim_editor/Tutorial/index.html>`__.
 Sub sections are sections that don't get listed in the timeline.
+They belong to the slide of the last full section.
+If you don't need sub sections you can simply ignore this feature.
+When there are no sub sections, sections and slides are synonymous.
 
 With this information you can create a ``Manim`` scene with the correct types like this:
 

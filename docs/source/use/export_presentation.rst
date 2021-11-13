@@ -45,9 +45,9 @@ Presenter Explanation
 
 The presenter is separated in three parts: timeline, video player, controls and informative tables.
 
-In the timeline you can find the name, type (which is also displayed in the tables beneath the controls) and the thumbnail of each section.
+In the timeline you can find the name, type (which is also displayed in the tables beneath the controls) and the thumbnail of each slide.
 You can click on an element and it will take you to that part in the presentation.
-In addition to that it shows the amount of time spent playing each section.
+In addition to that it shows the amount of time spent playing each slide.
 This value will only update once a different section is being shown or the section gets restarted.
 That way you get accurate information on how much time you spent on each section.
 
@@ -59,6 +59,11 @@ You can always use the Control key (or Command on a Mac) to forcefully go to the
 
 If you are hosting the presenter on a remote webserver, you should consider using the "Cache Videos" button.
 It requests all videos and thus offers the browser the opportunity of caching them, speeding up future requests.
+
+.. info::
+
+   The timeline shows slides while the controls jump from section to section.
+   That way you can create a lot of individual sections that don't clutter the timeline.
 
 The player settings offer some fine-grained options, most of which are for debugging purposes.
 Only the loader switch is of any interest:

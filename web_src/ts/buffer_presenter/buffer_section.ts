@@ -1,12 +1,12 @@
-import { SectionJson, Section } from "../presenter/section";
+import { SectionJson, Section, Slide } from "../presenter/section";
 import { flash } from "../utils";
 
 export class BufferSection extends Section {
     private media_source: MediaSource = new MediaSource();
     private media_buffer: BufferSource | null = null;
 
-    public constructor(section: SectionJson, video: string) {
-        super(section, video);
+    public constructor(section_json: SectionJson, slide: Slide) {
+        super(section_json, slide);
         // when setting url to video element
         this.media_source.onsourceopen = (_) => {
             // check if MIME codec is supported

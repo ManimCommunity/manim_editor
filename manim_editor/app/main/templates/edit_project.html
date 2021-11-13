@@ -85,42 +85,41 @@
     <div class="col-1">
         <!-- timeline -->
         <div class="timeline row g-2">
-            {% for section in sections %}
+            {% for slide in slides %}
+            {% for section in slide.sections %}
             <!-- used to parse video url to TypeScript -->
             <div class="section-urls" data-video="{{ url_for('main.serve_project_static', name=name, path=section.in_project_video) }}"></div>
-            <!-- only display full sections -->
-            {% if not section.is_sub_section() %}
-            <!-- project json file needs to be accessible from TypeScript -->
-            <div id="timeline-element-{{ section.in_project_id }}" class="card timeline-element">
+            {% endfor %}
+            <div id="timeline-element-{{ slide.sections[0].in_project_id }}" class="card timeline-element">
                 <div class="card-text">
                     <div class="row card-text">
                         <!-- type -->
                         <div class="col">
-                            {% if section.type == "normal" %}
-                            <i class="bi-play-btn" role="img"></i>
-                            {% elif section.type == "skip" %}
-                            <i class="bi-wind" role="img"></i>
-                            {% elif section.type == "loop" %}
-                            <i class="bi-arrow-clockwise" role="img"></i>
-                            {% elif section.type == "complete_loop" %}
-                            <i class="bi-hourglass-split" role="img"></i>
+                            {% if slide.sections | length == 1 %}
+                                {% if slide.sections[0].type == "normal" %}
+                                <i class="bi-play-btn" role="img"></i>
+                                {% elif slide.sections[0].type == "skip" %}
+                                <i class="bi-wind" role="img"></i>
+                                {% elif slide.sections[0].type == "loop" %}
+                                <i class="bi-arrow-clockwise" role="img"></i>
+                                {% elif slide.sections[0].type == "complete_loop" %}
+                                <i class="bi-hourglass-split" role="img"></i>
+                                {% else %}
+                                [unsupported type]
+                                {% endif %}
                             {% else %}
-                            [unsupported type]
+                                +{{ slide.sections | length - 1 }}
                             {% endif %}
 
-                            {% if section.sub_sections %}
-                            +{{ section.sub_sections }}
-                            {% endif %}
-
-                            {{ section.name }}
+                            {{ slide.sections[0].name }}
                         </div>
                         <!-- timestamp -->
                         <div class="col-auto">
-                            <div id="timeline-time-stamp-{{ section.in_project_id }}">0 s</div>
+                            <div id="timeline-time-stamp-{{ slide.sections[0].in_project_id }}">0 s</div>
                         </div>
                         <!-- indicator -->
                         <div class="col-auto">
-                            <div id="timeline-indicator-{{ section.in_project_id }}">
+                            <div id="timeline-indicator-{{ slide.sections[0].in_project_id }}">
                                 <!-- one of -->
                                 <!-- <i class="bi-circle" role="img"></i> -->
                                 <!-- <i class="bi-circle-fill" role="img"></i> -->
@@ -130,10 +129,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- thumbnail -->
-                <img src="{{ url_for('main.serve_project_static', name=name, path=section.in_project_thumbnail) }}" class="card-img-top" alt="couldn't load thumbnail">
+                <!-- thumbnail (use last in slide) -->
+                <img src="{{ url_for('main.serve_project_static', name=name, path=slide.sections[-1].in_project_thumbnail) }}" class="card-img-top" alt="couldn't load thumbnail">
             </div>
-            {% endif %}
             {% endfor %}
         </div>
     </div>

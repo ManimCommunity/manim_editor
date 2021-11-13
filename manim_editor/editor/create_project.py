@@ -2,10 +2,10 @@
 import json
 import os
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import List, Tuple
 
 from .manim_loader import get_scenes
-from .scene import Section
+from .presentation_classes import Section, Slide
 
 
 def create_project_dir(project_name: str) -> Tuple[bool, str]:
@@ -34,25 +34,25 @@ def create_project_dir(project_name: str) -> Tuple[bool, str]:
 def populate_project_with_loaded_sections(project_name: str, sections: List[Section]) -> bool:
     if not len(sections):
         raise RuntimeError(f"No sections given for project '{project_name}'.")
-    if sections[0].is_sub_section():
+    if sections[0].is_sub_section:
         raise RuntimeError(f"The first section of project '{project_name}' can't be a sub section.")
-    project: List[Dict[str, Any]] = []
 
-    # prepare section
-    # come from behind and count subsections between sections
-    next_section_id = len(sections)
-    for id, section in reversed(list(enumerate(sections))):
-        if not section.set_project(project_name, id, next_section_id):
-            return False
-        project.append(section.get_dict())
-
-        if not section.is_sub_section():
-            next_section_id = id
-    project.reverse()
+    # load slides
+    slides: List[Slide] = []
+    for id, section in enumerate(sections):
+        # add sub section
+        if section.is_sub_section:
+            if not slides[-1].populate_sub_section(section):
+                return False
+        else:
+            # set main section
+            slides.append(Slide())
+            if not slides[-1].populate_main_section(section, project_name, id):
+                return False
 
     # write project file
     with open(Path(project_name) / "project.json", "w") as file:
-        json.dump(project, file, indent=4)
+        json.dump([slide.get_dict() for slide in slides], file, indent=4)
     return True
 
 

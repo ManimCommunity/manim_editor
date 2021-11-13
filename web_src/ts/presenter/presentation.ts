@@ -1,5 +1,5 @@
 import { spin_button, get_json } from "../utils";
-import { Section, SectionJson, SectionType } from "./section";
+import { Section, Slide, SectionJson, SectionType, SlideJson } from "./section";
 
 export abstract class Presentation {
     // using two video elements for smooth transitions
@@ -22,6 +22,7 @@ export abstract class Presentation {
     // gets flipped when displaying first video
     private current_video = 1;
 
+    protected slides: Slide[] = [];
     protected sections: Section[] = [];
     protected current_section = -1;
     // used for restarting loops
@@ -47,15 +48,14 @@ export abstract class Presentation {
 
         // load_sections
         let project_file = this.videos_div.dataset.project_file as string;
-        let section_urls = document.getElementsByClassName("section-urls") as HTMLCollectionOf<HTMLDivElement>;
-        get_json(project_file, (sections: SectionJson[]) => {
-            // construct sections from json response
-            for (let i = 0; i < sections.length; ++i) {
-                // custom Flask url
-                let video = section_urls[i].dataset.video as string;
-                this.add_section(sections[i], video);
+        get_json(project_file, (slides_json: SlideJson[]) => {
+            // construct slides (and sections) from json response
+            for (let slide_json of slides_json) {
+                let new_slide = new Slide(slide_json, this.create_section.bind(this));
+                this.slides.push(new_slide);
+                this.sections = this.sections.concat(new_slide.get_sections());
             }
-            console.log(`All ${sections.length} sections have been parsed successfully.`)
+            console.log(`All ${this.slides.length} slides and a total of ${this.sections.length} sections have been parsed successfully.`)
 
             this.attach_timeline();
             this.attach_buttons();
@@ -148,10 +148,8 @@ export abstract class Presentation {
         else if (section >= this.sections.length) {
             // skip to end of current section
             let current_video = this.get_current_video();
-            console.log(current_video.currentTime);
             // required for chrome
             current_video.currentTime = Math.max(0, current_video.duration - 0.1);
-            console.log(current_video.currentTime);
             return;
         }
 
@@ -270,23 +268,22 @@ export abstract class Presentation {
     // user interface //
     ////////////////////
     private attach_timeline(): void {
-        for (let i = 0; i < this.sections.length; ++i) {
-            if (!this.sections[i].is_sub_section())
-                this.sections[i].attach_timeline_click(() => {
-                    this.play_section(i, true);
-                });
-        }
+        for (let slide of this.slides)
+            slide.attach_timeline_click(() => {
+                this.play_section(slide.get_id(), true);
+            });
     }
 
     private update_timeline(): void {
-        if (!this.sections[this.current_section].is_sub_section()) {
-            // find last full section
-            for (let i = this.previous_section; i >= 0; --i) {
-                if (!this.sections[i].is_sub_section())
-                    this.sections[i].remove_timeline_selection();
-            }
-            this.sections[this.current_section].add_timeline_selection();
+        let previous_slide = this.previous_section == -1 ? null : this.sections[this.previous_section].get_parent_slide();
+        let current_slide = this.sections[this.current_section].get_parent_slide();
+        if (previous_slide == null)
+            current_slide.add_timeline_selection();
+        else if (previous_slide != current_slide) {
+            current_slide.add_timeline_selection();
+            previous_slide.remove_timeline_selection();
         }
+        // don't do anything when previous and current slide are the same
     }
 
     private update_legend(): void {
@@ -375,7 +372,7 @@ export abstract class Presentation {
     ////////////////////////////////
     // to be defined by inheritor //
     ////////////////////////////////
-    protected abstract add_section(section: SectionJson, video: string): void;
+    protected abstract create_section(section_json: SectionJson, slide: Slide): Section;
 
     // called after section changed
     // to be overwritten if required
