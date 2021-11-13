@@ -96,20 +96,20 @@
                     <div class="row card-text">
                         <!-- type -->
                         <div class="col">
-                            {% if slide.sections[0].type == "normal" %}
-                            <i class="bi-play-btn" role="img"></i>
-                            {% elif slide.sections[0].type == "skip" %}
-                            <i class="bi-wind" role="img"></i>
-                            {% elif slide.sections[0].type == "loop" %}
-                            <i class="bi-arrow-clockwise" role="img"></i>
-                            {% elif slide.sections[0].type == "complete_loop" %}
-                            <i class="bi-hourglass-split" role="img"></i>
+                            {% if slide.sections | length == 1 %}
+                                {% if slide.sections[0].type == "normal" %}
+                                <i class="bi-play-btn" role="img"></i>
+                                {% elif slide.sections[0].type == "skip" %}
+                                <i class="bi-wind" role="img"></i>
+                                {% elif slide.sections[0].type == "loop" %}
+                                <i class="bi-arrow-clockwise" role="img"></i>
+                                {% elif slide.sections[0].type == "complete_loop" %}
+                                <i class="bi-hourglass-split" role="img"></i>
+                                {% else %}
+                                [unsupported type]
+                                {% endif %}
                             {% else %}
-                            [unsupported type]
-                            {% endif %}
-
-                            {% if slide.sections | length %}
-                            +{{ slide.sections | length - 1 }}
+                                +{{ slide.sections | length - 1 }}
                             {% endif %}
 
                             {{ slide.sections[0].name }}

@@ -47,7 +47,7 @@ def populate_project_with_loaded_sections(project_name: str, sections: List[Sect
         else:
             # set main section
             slides.append(Slide())
-            if not slides[-1].populate(section, project_name, id):
+            if not slides[-1].populate_main_section(section, project_name, id):
                 return False
 
     # write project file

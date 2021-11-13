@@ -39,7 +39,7 @@ class Slide:
     def __init__(self):
         self.sections: List[Section] = []
 
-    def populate(self, main_section: "Section", project_name: str, in_project_id: int) -> bool:
+    def populate_main_section(self, main_section: "Section", project_name: str, in_project_id: int) -> bool:
         """Load first section."""
         if not main_section.set_project(project_name, in_project_id, in_project_id):
             return False

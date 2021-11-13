@@ -36,8 +36,9 @@ In addition to that it optionally stores names and types for each section.
 The ``Manim`` Editor defines more types, which define how a section should be played in the presentation.
 They are described :ref:`here <create_scene>`.
 
-Each section is equivalent to a slide from PowerPoint and can be shown individually.
-Multiple sections (possibly from different ``Manim`` scenes) build one project that can be presented as a whole.
+One or more sections build a slide.
+They equivalent to slides from PowerPoint and can be shown individually.
+Multiple slides (possibly build out of sections from different ``Manim`` scenes) build one project that can be presented as a whole.
 A Manim Editor project is a directory that will house everything needed to present a project.
 More on that :ref:`here <create_project>`.
 
