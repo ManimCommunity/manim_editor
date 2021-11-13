@@ -7,6 +7,8 @@ from .config import get_config
 from .manim_loader import valid_json_load
 from .presentation_classes import Slide
 
+__all__ = ["get_project", "get_projects"]
+
 
 def get_project(name: str) -> Tuple[Optional[str], List[Slide]]:
     """Parse project json file if valid.

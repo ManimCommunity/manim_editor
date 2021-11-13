@@ -8,6 +8,8 @@ import jsonschema
 
 from .config import get_config
 
+__all__ = ["capture", "capture_ffmpeg", "run_ffmpeg", "walk", "valid_json_load"]
+
 
 def capture(command: List[str], cwd: Optional[Path] = None, command_input: Optional[str] = None) -> Tuple[str, str, int]:
     """Run command and capture standard output, standard error and return code."""

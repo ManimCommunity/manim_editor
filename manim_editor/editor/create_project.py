@@ -7,6 +7,8 @@ from typing import List, Tuple
 from .manim_loader import get_scenes
 from .presentation_classes import Section, Slide
 
+__all__ = ["create_project_dir", "populate_project_with_loaded_sections", "populate_project"]
+
 
 def create_project_dir(project_name: str) -> Tuple[bool, str]:
     """Ensure existence of project dir.

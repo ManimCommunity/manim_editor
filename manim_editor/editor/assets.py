@@ -2,6 +2,8 @@ import manim
 
 from .config import get_config
 
+__all__ = ["IconNormal", "IconSkip", "IconLoop", "IconCompleteLoop", "EditorLogo", "EditorBanner"]
+
 
 class IconNormal(manim.VGroup):
     def __init__(self):

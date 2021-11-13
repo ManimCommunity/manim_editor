@@ -7,6 +7,8 @@ from typing import Any, Dict, List
 
 from .commands import run_ffmpeg
 
+__all__ = ["PresentationSectionType", "Slide", "Section", "Scene"]
+
 
 class PresentationSectionType(str, Enum):
     # start, end, wait for continuation by user

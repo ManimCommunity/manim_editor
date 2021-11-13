@@ -7,6 +7,8 @@ import jinja2
 from .config import get_config
 from .presentation_classes import Slide
 
+__all__ = ["export_presentation"]
+
 
 def emulate_url_for(endpoint: str, path: str = "", name: str = "", filename: str = "") -> str:
     """Translate flask urls into local urls for project.

@@ -8,6 +8,8 @@ from .commands import valid_json_load, walk
 from .config import get_config
 from .presentation_classes import Scene, Section
 
+__all__ = ["get_scene", "get_scenes"]
+
 
 def get_manim_section(raw_section: Dict[str, Any], index_path: Path, new_id: int) -> Section:
     """Create :class:`.Section` from dict read from a section index created by Manim."""
