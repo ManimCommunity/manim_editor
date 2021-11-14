@@ -96,7 +96,3 @@ def main(debug: bool, version: bool, quick_present_export: List[str], project_na
         run_debug()
     else:
         run_normal()
-
-
-if __name__ == "__main__":
-    main()
