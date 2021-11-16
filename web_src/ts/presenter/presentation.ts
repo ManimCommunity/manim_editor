@@ -132,8 +132,8 @@ export abstract class Presentation {
             last_element.style.visibility = "hidden";
         });
 
-        this.update_timeline()
-        this.update_legend()
+        this.update_timeline();
+        this.update_legend();
         this.update_source();
 
         // everything done -> section has changed
