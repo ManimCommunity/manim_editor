@@ -38,9 +38,9 @@
             {% endif %}
         </div>
     </nav>
-    {% if not present_export %}
-        <div class="container">
-            <div id="flashes">
+    <div class="container">
+        <div id="flashes">
+            {% if not present_export %}
                 {% with messages = get_flashed_messages(with_categories=True) %}
                 {% for category, message in messages %}
                 <div class="alert alert-{{ category }} alert-dismissible fade show mt-3" role="alert">
@@ -49,10 +49,12 @@
                 </div>
                 {% endfor %}
                 {% endwith %}
-            </div>
-            {% block content %}{% endblock %}
+            {% endif %}
         </div>
-    {% endif %}
+        {% if not present_export %}
+            {% block content %}{% endblock %}
+        {% endif %}
+    </div>
 
     <div class="container-fluid">
         {% block fluid_content %}{% endblock %}
