@@ -28,7 +28,7 @@ Four types (and four secondary types) are provided:
    ``SUB_COMPLETE_LOOP``  same as ``COMPLETE_LOOP`` but as sub section
    =====================  ================================================================================
 
-They are also explained in the `interactive tutorial <https://manimeditorproject.github.io/manim_editor/Tutorial/index.html>`__.
+They are also explained in the `interactive tutorial <https://manimcommunity.github.io/manim_editor/Tutorial/index.html>`__.
 Sub sections are sections that don't get listed in the timeline.
 They belong to the slide of the last full section.
 If you don't need sub sections you can simply ignore this feature.
@@ -67,7 +67,7 @@ Minimal Example
 ***************
 
 You can run the following minimal example, to get your first presentation.
-It results in `this presentation <https://manimeditorproject.github.io/manim_editor/MinimalPresentationExample/index.html>`__.
+It results in `this presentation <https://manimcommunity.github.io/manim_editor/MinimalPresentationExample/index.html>`__.
 
 .. code-block:: python
 

@@ -21,7 +21,7 @@ The ``Manim Editor`` offers two main functions:
 
 .. tip::
 
-    If you want to test the presentation output of the ``Manim Editor`` without having to install anything, take a look at the `example <https://manimeditorproject.github.io/manim_editor/Tutorial/index.html>`__.
+    If you want to test the presentation output of the ``Manim Editor`` without having to install anything, take a look at the `example <https://manimcommunity.github.io/manim_editor/Tutorial/index.html>`__.
 
 If you don't know how to use ``Manim``, `it's documentation <https://docs.manim.community/en/stable>`__ is where you should start.
 Come back once you've familiarised yourself with the core concepts.
