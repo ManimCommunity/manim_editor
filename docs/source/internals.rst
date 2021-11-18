@@ -29,6 +29,7 @@ This project started in September 2021 as the `Manim Web Presenter <https://gith
 Back then ``Manim`` didn't have any sections, therefore this functionality had to be implemented using wrappers around the ``Scene`` class and subclasses.
 This was an ugly solution, which turned obsolete with the `implementation of the Section API <https://github.com/ManimCommunity/manim/pull/2152>`__.
 Since more and more features were requested, it made sense to re-design the project from scratch and give it another name: the ``Manim Editor``.
+The ``Manim Editor`` repository got created in October and was moved under the ManimCommunity namespace in November.
 
 These people directly participated in developing the ``Manim Editor`` (in order of first contribution):
 
