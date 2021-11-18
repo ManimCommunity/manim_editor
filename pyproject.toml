@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "manim_editor"
-version = "0.3.1"
+version = "0.3.2"
 description = "Editor and Presenter for Manim Generated Content."
 authors = ["christopher-besch <christopher.besch@gmx.de>"]
 license = "MIT"
