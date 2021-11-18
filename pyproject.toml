@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "manim_editor"
 version = "0.3.1"
-description = "Editor and Presenter for Manim Generated Content"
+description = "Editor and Presenter for Manim Generated Content."
 authors = ["christopher-besch <christopher.besch@gmx.de>"]
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/ManimEditorProject/manim_editor"
-documentation = "https://manim-editor.readthedocs.io"
+repository = "https://github.com/ManimCommunity/manim_editor"
+documentation = "https://docs.editor.manim.community"
 include = [
     "manim_editor/app/static/webpack/*"
 ]
