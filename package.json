@@ -1,6 +1,6 @@
 {
     "name": "manim_editor",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "description": "Editor and Presenter for Manim Generated Content.",
     "scripts": {
         "build_release": "webpack --env=production",
