@@ -17,7 +17,7 @@ class Config:
     ROOT_DIR = BASE_DIR
     STATIC_DIR = BASE_DIR / "app" / "static"
 
-    VERSION = "v0.3.3"
+    VERSION = "v0.3.4"
 
     with open(BASE_DIR / "section_index.schema.json", "r") as file:
         SECTION_INDEX_SCHEMA = json.load(file)
