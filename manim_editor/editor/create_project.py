@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import List, Tuple
 
 from .manim_loader import get_scenes
-from .presentation_classes import Section, Slide
+from .presentation_classes import Scene, Section, Slide
 
 __all__ = ["create_project_dir", "populate_project_with_loaded_sections", "populate_project"]
 
@@ -64,7 +64,9 @@ def populate_project(project_name: str, scene_ids: List[int]) -> bool:
     """
     print(f"Populating project '{project_name}'.")
     # select scenes according to ids set by frontend
-    scenes = [scene for scene in get_scenes() if scene.id in scene_ids]
+    scenes_raw = get_scenes()
+    scenes = [scenes_raw[scene_id] for scene_id in scene_ids]
+
     sections: List[Section] = []
     for scene in scenes:
         sections += scene.sections

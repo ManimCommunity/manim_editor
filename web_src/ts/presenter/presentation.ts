@@ -95,10 +95,7 @@ export abstract class Presentation {
             case SectionType.SKIP:
                 next_element.onended = (_) => {
                     // immediately go to next section without user input
-                    ++this.current_section;
-                    this.next_section = this.current_section;
-                    this.set_time_stamp();
-                    this.update_video();
+                    this.play_section(this.current_section + 1, true);
                 }
                 break;
             case SectionType.LOOP:
@@ -112,9 +109,7 @@ export abstract class Presentation {
                 next_element.onended = (_) => {
                     // when next section has changed, go to next one
                     // otherwise restart
-                    this.current_section = this.next_section;
-                    this.set_time_stamp();
-                    this.update_video();
+                    this.play_section(this.next_section, true);
                 }
                 break;
             // SectionType.NORMAL
