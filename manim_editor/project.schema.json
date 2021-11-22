@@ -128,7 +128,7 @@
                         "duration": {
                             "$id": "#root/items/sections/items/duration",
                             "title": "Duration",
-                            "type": "integer",
+                            "type": "number",
                             "examples": [
                                 1
                             ],
