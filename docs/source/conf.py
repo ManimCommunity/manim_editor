@@ -26,7 +26,7 @@ copyright = '2021, ManimEditorProject'
 author = 'ManimEditorProject'
 
 # The full version, including alpha/beta/rc tags
-release = "v0.3.4"
+release = "v0.3.5"
 
 
 # -- General configuration ---------------------------------------------------
