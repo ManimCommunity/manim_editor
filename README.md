@@ -13,7 +13,7 @@
 <hr />
 
 Take a look at the [Working Example](https://ManimCommunity.github.io/manim_editor/).
-More information can be found on the [documentation](https://docs.editor.manim.community/en/stable/).
+More information can be found in the [documentation](https://docs.editor.manim.community/en/stable/).
 
 These Browsers are supported:
 - Firefox
