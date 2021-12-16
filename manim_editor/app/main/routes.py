@@ -2,26 +2,9 @@
 import os
 from pathlib import Path
 
-from flask import (
-    abort,
-    current_app,
-    flash,
-    jsonify,
-    redirect,
-    render_template,
-    request,
-    send_file,
-    url_for,
-)
+from flask import abort, current_app, flash, jsonify, redirect, render_template, request, send_file, url_for
 
-from ...editor import (
-    create_project_dir,
-    export_presentation,
-    get_project,
-    get_projects,
-    get_scenes,
-    populate_project,
-)
+from ...editor import create_project_dir, export_presentation, get_project, get_projects, get_scenes, populate_project
 from . import bp
 
 

@@ -32,11 +32,15 @@ def walk(top: Path, maxdepth: int) -> Generator[Tuple[Path, List[str], List[str]
     """Reimplementation of os.walk with max recursion depth."""
     dirs: List[str] = []
     nondirs: List[str] = []
-    for name in os.listdir(top):
-        if os.path.isdir(top / name):
-            dirs.append(name)
-        else:
-            nondirs.append(name)
+    # check if dir can be read
+    try:
+        for name in os.listdir(top):
+            if os.path.isdir(top / name):
+                dirs.append(name)
+            else:
+                nondirs.append(name)
+    except PermissionError:
+        print(f"Warning: can't access dir '{top}'")
     yield top, dirs, nondirs
     if maxdepth:
         for name in dirs:
@@ -50,11 +54,16 @@ def valid_json_load(path: Path, schema: Any) -> Optional[Any]:
     """
     if not os.path.isfile(path):
         return None
-    with open(path, "r") as file:
-        try:
-            data = json.load(file)
-        except json.decoder.JSONDecodeError:
-            return None
+    # check if file can be read
+    try:
+        with open(path, "r") as file:
+            try:
+                data = json.load(file)
+            except json.decoder.JSONDecodeError:
+                return None
+    except PermissionError:
+        print(f"Warning: can't access file '{path}'")
+        return None
     try:
         jsonschema.validate(data, schema)
     except jsonschema.ValidationError:

@@ -1,13 +1,6 @@
 from manim import *
 
-from manim_editor import (
-    EditorBanner,
-    IconCompleteLoop,
-    IconLoop,
-    IconNormal,
-    IconSkip,
-    PresentationSectionType,
-)
+from manim_editor import EditorBanner, IconCompleteLoop, IconLoop, IconNormal, IconSkip, PresentationSectionType
 
 
 class IconTest(Scene):
