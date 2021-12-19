@@ -64,6 +64,9 @@ def valid_json_load(path: Path, schema: Any) -> Optional[Any]:
     except PermissionError:
         print(f"Warning: can't access file '{path}'")
         return None
+    except UnicodeDecodeError:
+        print(f"Warning: can't decode file '{path}'")
+        return None
     try:
         jsonschema.validate(data, schema)
     except jsonschema.ValidationError:
