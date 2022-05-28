@@ -32,7 +32,7 @@ If you intend to use GitHub Pages, you have to create a GitHub repository first.
 All the steps you need to follow are explained in [this official GitHub Pages tutorial](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site).
 The tutorial diverges at one point:
 You don't have to create any markdown or HTML files.
-Instead you have to copy the contents of the project folder (after you've exported the presenter) into the root of the repo.
+Instead, copy the contents of the project folder (after you've exported the presenter) into the root of the repo.
 Which branch you want to populate is entirely up to you.
 You only have to select the branch you chose (in this case ``pages``) in the GitHub Pages settings.
 In the end you should end up with settings that look similar to these:
