@@ -15,7 +15,7 @@ You can copy this directory to a flash drive or wherever you need it.
        Your browser doesn't support embedded videos.
    </video>
 
-Now don't need the ``Manim Editor`` to be installed anymore to be able to present the project.
+Now you don't need the ``Manim Editor`` to be installed anymore to be able to present the project.
 You only need a local web server.
 If you have Python installed, you're good to go.
 Simply run this in the projects directory:
@@ -27,6 +27,54 @@ Simply run this in the projects directory:
 Instead of running a local web server you can host the project on an online web server (e.g. GitHub Pages).
 That way you can access it from anywhere.
 This is how the `example <https://manimcommunity.github.io/manim_editor/Tutorial/index.html>`__ has been created.
+
+If you intend to use GitHub Pages, you have to create a GitHub repository first.
+All the steps you need to follow are explained in [this official GitHub Pages tutorial](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site).
+The tutorial diverges at one point:
+You don't have to create any markdown or HTML files.
+Instead you have to copy the contents of the project folder (after you've exported the presenter) into the root of the repo.
+Which branch you want to populate is entirely up to you.
+You only have to select the branch you chose (in this case ``pages``) in the GitHub Pages settings.
+In the end you should end up with settings that look similar to these:
+
+.. image:: ../_static/github_pages.png
+   :alt: GitHub Pages Settings
+
+And the root directory directory of said branch should look like this:
+
+.. code-block:: bash
+   .
+   ├── img
+   │   ├── arrow_clockwise.svg
+   │   ├── banner.png
+   │   ├── favicon.png
+   │   ├── hourglass_split.svg
+   │   ├── play_btn.svg
+   │   └── wind.svg
+   ├── index.html
+   ├── project.json
+   ├── thumb_0000.jpg
+   ├── thumb_0001.jpg
+   ├── thumb_0002.jpg
+   ├── thumb_0003.jpg
+   ├── thumb_0004.jpg
+   ├── thumb_0005.jpg
+   ├── video_0000.mp4
+   ├── video_0001.mp4
+   ├── video_0002.mp4
+   ├── video_0003.mp4
+   ├── video_0004.mp4
+   ├── video_0005.mp4
+   └── webpack
+       ├── 67475f65d9d8a1fe03a2.woff
+       ├── base.css
+       ├── base.js
+       ├── base.js.LICENSE.txt
+       ├── d0ec932c09e146590948.woff2
+       ├── edit_project.js
+       └── scene_selection.js
+
+If you've done all that correctly, everyone with an internet connection can access your presentation under the URL listed in the settings.
 
 Supported Browsers
 ******************
