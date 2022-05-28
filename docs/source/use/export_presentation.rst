@@ -29,7 +29,7 @@ That way you can access it from anywhere.
 This is how the `example <https://manimcommunity.github.io/manim_editor/Tutorial/index.html>`__ has been created.
 
 If you intend to use GitHub Pages, you have to create a GitHub repository first.
-All the steps you need to follow are explained in [this official GitHub Pages tutorial](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site).
+All the steps you need to follow are explained in `this official GitHub Pages tutorial <https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site>`__.
 The tutorial diverges at one point:
 You don't have to create any markdown or HTML files.
 Instead, copy the contents of the project folder (after you've exported the presenter) into the root of the repo.
