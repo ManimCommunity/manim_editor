@@ -43,6 +43,7 @@ In the end you should end up with settings that look similar to these:
 And the root directory directory of said branch should look like this:
 
 .. code-block:: bash
+
    .
    ├── img
    │   ├── arrow_clockwise.svg
