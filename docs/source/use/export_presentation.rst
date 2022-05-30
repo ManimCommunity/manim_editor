@@ -34,7 +34,8 @@ The tutorial diverges at one point:
 You don't have to create any markdown or HTML files.
 Instead, copy the contents of the project folder (after you've exported the presenter) into the root of the repo.
 Which branch you want to populate is entirely up to you.
-You only have to select the branch you chose (in this case ``pages``) in the GitHub Pages settings.
+Any Python files used to create the presentation aren't needed.
+In the GitHub Pages settings you have to select the branch you chose (in this case ``pages``) in the GitHub Pages settings.
 In the end you should end up with settings that look similar to these:
 
 .. image:: ../_static/github_pages.png
@@ -76,6 +77,7 @@ And the root directory directory of said branch should look like this:
        └── scene_selection.js
 
 If you've done all that correctly, everyone with an internet connection can access your presentation under the URL listed in the settings.
+Should you require multiple presentations, you can simply put them in individual subdirectories and append the subdirectory name to the url (like ``https://manimcommunity.github.io/manim_editor/Tutorial`` instead of ``https://manimcommunity.github.io/manim_editor``).
 
 Supported Browsers
 ******************
