@@ -32,7 +32,7 @@ Main Idea
 The ``Manim Editor`` is using the `Manim Section API <https://docs.manim.community/en/stable/tutorials/a_deeper_look.html#sections>`__.
 It allows the separation of a scene into multiple sections.
 In addition to that it optionally stores names and types for each section.
-``Manim`` only supports the type ``DefaultSesctionType.NORMAL`` out of the box.
+``Manim`` only supports the type ``DefaultSectionType.NORMAL`` out of the box.
 The ``Manim`` Editor defines more types, which define how a section should be played in the presentation.
 They are described :ref:`here <create_scene>`.
 
