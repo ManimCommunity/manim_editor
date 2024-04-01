@@ -12,12 +12,13 @@ include = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = ">=3.9,<3.13"
 Flask = "^2.0.2"
 click = "^8.0.3"
 manim = ">=0.13.1"
 waitress = "^2.0.0"
 jsonschema = "^4.1.2"
+numpy = "1.26.0"
 
 [tool.poetry.dev-dependencies]
 Sphinx = "^4"
