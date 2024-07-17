@@ -29,7 +29,7 @@ Come back once you've familiarised yourself with the core concepts.
 Main Idea
 *********
 
-The ``Manim Editor`` is using the `Manim Section API <https://docs.manim.community/en/stable/tutorials/a_deeper_look.html#sections>`__.
+The ``Manim Editor`` is using the `Manim Section API <https://docs.manim.community/en/stable/reference/manim.scene.section.Section.html>`__.
 It allows the separation of a scene into multiple sections.
 In addition to that it optionally stores names and types for each section.
 ``Manim`` only supports the type ``DefaultSectionType.NORMAL`` out of the box.
